@@ -53,6 +53,7 @@
 \newcommand{\der}[2]{\ensuremath{\frac{d #1}{d #2}}}
 \newcommand{\dx}{\ensuremath{\frac{d}{dx}}}
 \newcommand{\ddx}{\ensuremath{\frac{d}{dx}}}
+\newcommand{\ddtau}[1]{\ensuremath{\frac{d #1}{d\tau}}}
 \newcommand{\kvec}{\ensuremath{\vec{k}}}
 \newcommand{\uvec}{\ensuremath{\mathbf{u}}}
 \newcommand{\zhat}{\ensuremath{\mathbf{\hat{z}}}}
@@ -63,44 +64,58 @@
 \newcommand{\ppz}{\ensuremath{\partial_z}}
 \newcommand{\ppt}{\ensuremath{\partial_T}}
 \newcommand{\ppp}{\ensuremath{\partial_p}}
+\newcommand{\pptau}{\ensuremath{\partial_\tau}}
 
-% units shorthand
-\newcommand{\Wmsq}{\ensuremath{\mathrm{W/m^2}}}
-\newcommand{\Kinverse}{\ensuremath{\mathrm{K^{-1}}}}
 
 % radiation shorthand
 \newcommand{\cotwo}{\ensuremath{\mathrm{CO_2}}}
-\newcommand{\othree}{\ensuremath{\mathrm{O_3}}}
 \newcommand{\htwo}{\ensuremath{\mathrm{H_2O}}}
-\newcommand{\QLW}{\ensuremath{Q}}
-\newcommand{\QLWgray}{\ensuremath{Q_\mathrm{gray}}}
+\newcommand{\QLW}{\ensuremath{Q_\mathrm{LW}}}
 \newcommand{\QSW}{\ensuremath{Q_\mathrm{SW}}}
 \newcommand{\Qnet}{\ensuremath{Q_\mathrm{net}}}
-\newcommand{\FLW}{\ensuremath{F^\mathrm{LW}}}
+\newcommand{\Qcts}{\ensuremath{Q_\mathrm{cts}}}
+\newcommand{\Qgex}{\ensuremath{Q_\mathrm{gex}}}
+\newcommand{\FLW}{\ensuremath{F}}
 \newcommand{\FSW}{\ensuremath{F^\mathrm{SW}}}
-\newcommand{\USW}{\ensuremath{U^\mathrm{SW}}}
-\newcommand{\DSW}{\ensuremath{D^\mathrm{SW}}}
 \newcommand{\Fnet}{\ensuremath{F^\mathrm{net}}}
 \newcommand{\olr}{\ensuremath{\mathrm{OLR}}}
 \newcommand{\OLR}{\ensuremath{\mathrm{OLR}}}
-\newcommand{\OLRgray}{\ensuremath{\mathrm{OLR_{gray}}}}
 \newcommand{\trans}{\ensuremath{\mathcal{T}}}
-\newcommand{\solar}{\ensuremath{I_0}}
 \newcommand{\cool}{\ensuremath{\mathcal{C}}}
 \newcommand{\cminverse}{\ensuremath{\mathrm{cm^{-1}}}}
 \newcommand{\pierre}{P10}
+\newcommand{\pem}{\ensuremath{p_1}}
 \newcommand{\tauk}{\ensuremath{\tau_k}}
 \newcommand{\taus}{\ensuremath{\tau_s}}
-\newcommand{\Tone}{\ensuremath{T_{\tau=1}}}
+\newcommand{\Bs}{\ensuremath{B_s}}
+\newcommand{\SX}{\ensuremath{\mathrm{SX}}}
+\newcommand{\AX}{\ensuremath{\mathrm{AX}}}
+\newcommand{\CTS}{\ensuremath{\mathrm{CTS}}}
 
 % meteorology shorthand
 \newcommand{\qv}{\ensuremath{q}}
 \newcommand{\rhov}{\ensuremath{\rho_\mathrm{v}}}
+\newcommand{\Hv}{\ensuremath{H_\mathrm{v}}}
+\newcommand{\Rv}{\ensuremath{R_\mathrm{v}}}
+\newcommand{\qa}{\ensuremath{q_a}}
 \newcommand{\qvstar}{\ensuremath{q^*}}
+\newcommand{\Ta}{\ensuremath{T_a}}
+\newcommand{\Tav}{\ensuremath{T_\mathrm{av}}}
 \newcommand{\Ts}{\ensuremath{T_\mathrm{s}}}
 \newcommand{\ps}{\ensuremath{p_s}}
 \newcommand{\RH}{\ensuremath{\mathrm{RH}}}
 \newcommand{\WVP}{\ensuremath{\mathrm{WVP}}}
+\newcommand{\ztop}{\ensuremath{z_\mathrm{top}}}
+\newcommand{\ztp}{\ensuremath{z_\mathrm{tp}}}
+\newcommand{\zlcl}{\ensuremath{z_\mathrm{LCL}}}
+\newcommand{\Tlcl}{\ensuremath{T_\mathrm{LCL}}}
+\newcommand{\Ttp}{\ensuremath{T_\mathrm{tp}}}
+\newcommand{\ptp}{\ensuremath{p_\mathrm{tp}}}
+\newcommand{\lapseav}{\ensuremath{\Gamma_\mathrm{av}}}
+\newcommand{\gammatr}{\ensuremath{\Gamma_\mathrm{tr}}}
+\newcommand{\gammast}{\ensuremath{\Gamma_\mathrm{st}}}
+\newcommand{\Kinverse}{\ensuremath{\mathrm{K^{-1}}}}
+\newcommand{\Htauk}{\ensuremath{H_{\tau_k}}}
 
 %Variables
 \newcommand{\figurepath}{../figures/}
@@ -115,7 +130,7 @@
 %% ------------------------------------------------------------------------ %%
 
 
-\title{Relative Humidity, Radiative Cooling, and the Gray Approximation}
+\title{On the cooling-to-space from water vapor and carbon dioxide}
 
 %% ------------------------------------------------------------------------ %%
 %
@@ -124,13 +139,12 @@
 %% ------------------------------------------------------------------------ %%
 
 
- \author{Nadir Jeevanjee\footnote{Department of Physics, University of California at Berkeley, Berkeley, CA 94702  USA. jeevanje@berkeley.edu (corresponding author)} \footnote{Climate and Ecosystems Science Division, Lawrence Berkeley National Laboratory, Berkeley, CA USA} and David Romps\footnote{Department of Earth and Planetary Sciences, University of California at Berkeley, Berkeley, CA 94702  USA.} \footnote{Climate and Ecosystems Science Division, Lawrence Berkeley National Laboratory, Berkeley, CA USA}
-}
+ \author{Nadir Jeevanjee and Stephan Fueglistaler}
 
 \maketitle
 
 \begin{abstract}
-We show here that atmospheric radiative cooling typically decreases as relative humidity (RH) decreases. This contrasts the behavior of outgoing longwave radiation as a function of RH, as well as expectations from the gray approximation. This simultaneous decrease of cooling and increase in OLR with drying occurs whenever surface emission to space is non-negligible. The gray approximation, tuned appropriately, can capture this behavior, at least qualitatively.
+The contribution of water vapor emission to  top-of-atmosphere radiance (i.e. water vapor's `cooling-to-space', or CTS) emanates largely from the troposphere, whereas the CTS from carbon dioxide emanates largely from the stratosphere. Furthermore, these CTS terms  roughly approximate the flux divergence in a given layer, giving rise to the `CTS approximation' for radiative cooling. Here, we use  a simple grey model to investigate the fundamental reasons for these effects. We find that the differences in emission level between \htwo\ and \cotwo\ are due not spectroscopy but rather to differences in their respective scale heights, and that the CTS approximation relies on this as well as the magnitude of the tropospheric and stratospheric lapse rates. We also find that the CTS approximation holds for \htwo\ across its spectrum, but fails for some parts of the \cotwo\ specturm.  Analytical expressions are developed to provide intuition for these results, and their relevance  is assessed using comprehensive  line-by-line radiative transfer  calculations.
 
 
 %\vspace{0.5cm}
@@ -147,130 +161,206 @@ We show here that atmospheric radiative cooling typically decreases as relative 
 
 
 \section {Introduction}
-Though the increase of outgoing longwave radiation (OLR) with decreased relative humidity (RH) is well-known \citep{pierrehumbert2010}, the dependence of longwave atmospheric radiative cooling on RH has not been as well studied. This dependence has been implicated, however, as a key feedback in convective self-aggregation \citep[e.g.][]{muller2015, emanuel2014,wing2014}, and so the time seems ripe for a closer examination. 
+Spectrally and vertically resolved radiative cooling (plotted in K/day/\cminverse\ in $k-p$ coords in Fig. \ref{lbl_H}) for a tropical column show that the \htwo\ rotational band and \cotwo\  vibrational band behave markedly differently: the \cotwo\ band cools primarily in the stratosphere, whereas the \htwo\ band cools primarily in the troposphere. Furthermore, if we plot the contribution of each $k-p$ layer to the TOA radiance at that $k$ (Fig. \ref{lbl_cts}), we find that this approximates the radiative cooling very well; this is the `cooling-to-space' or CTS approximation \citep{rodgers1966, clough1992,thomas2002}.
 
-Our current understanding of how LW radiative cooling depends on RH is quite murky.  For instance, since the cooling-to-space (CTS) approximation says that radiative cooling profiles can be approximated to first order by cooling-to-space profiles \citep[e.g]{jeevanjee2016,clough1992,rodgers1966}, where the cooling-to-space of a given layer is simply its contribution to the OLR, one might expect a close connection between column-integrated longwave cooling \QLW\ and OLR. In particular, one might expect that both quantities behave similarly under perturbations with respect to, say, surface temperature \Ts\ or RH. Indeed, under increases in \Ts\  both OLR and \QLW\ increase, as is well-known \citep{jeevanjee2016,pendergrass2014,ogorman2012,stephens2008}. Should OLR and \QLW\  also behave similarly under changes in RH? More specifically, since we know that  OLR increase with decreased RH,  should we expect \QLW\  to also increase with drying?
+Two questions immediately spring to mind here: why do the \htwo\ and \cotwo\ bands behave so differently? And why does the CTS approximation work so well? We seek to answer these questions by emulating the LBL results with a single-line grey radiative transfer model, whose behavior can be understood analytically. 
 
-Attempts to answer this question further expose the murkiness of our understanding. If we take a gray view of the atmosphere, in which radiative transfer occurs through water vapor but at a single frequency with absorption coefficient $\kappa$, then we might think of all OLR as being generated by thermal emission at the level of unit optical depth. We describe this level by its temperature \Tone  (and in general use temperature as a vertical coordinate throughout this study).  Drying the atmosphere causes this  level to descend, increasing \Tone\ and hence increasing OLR. By the CTS approximation, \QLW\ should then increase as well.
-
-A spectrally resolved view, however, potentially gives a different result. In this view, it is well-known that some wavenumbers $k$ have water-vapor optical depth  $\tauk(\Ts) \gtrsim 1$ and thus have significant cooling-to-space, whilst others have $\tauk(\Ts) \ll 1$ and thus do not significantly contribute to atmospheric cooling (these latter wavenumbers constitute the water-vapor `window'). If RH decreases, this pushes some  wavenumbers into the $\tauk(\Ts) \ll 1$ regime, eliminating their contribution to atmospheric cooling and \emph{reducing} \QLW.
-
-The goal of this short paper is to resolve the tension between the two arguments presented above,  and to clarify the relationship between OLR and \QLW. We will use a comprehensive radiation scheme, RRTM \citep{mlawer1997}, for benchmark calculations which will comprise our main result. We then ask whether a gray radiation model can at least qualitatively match the benchmark's behaviour, and finally employ an analytical but spectrally-resolved model to try and understand our benchmark results. 
-
-\section{Simulations}
-Methods here	
-
-
-%======================%
-% Content 1    %
-%======================%
-
-\section{Content 1}
-We begin by calculating \QLW\ and OLR for \Ts=300 K thermodynamic profiles, with specific humidity \qv\ scaled by factors of (1, 0.8, 0.4, 0.6, 0.2). The results are shown in Fig. \ref{fig_olr_qlw_window}a, which clearly show an increase in OLR and a \emph{decrease} in \QLW\ with drying. 
-
-This result is at odds with the gray thinking outlined above, in which drying leads to an increase in \Tone\ and hence an increase in cooling-to-space and hence \QLW. But is it in fact true that a gray model cannot qualitatively reproduce the behavior of Fig. \ref{fig_olr_qlw_window}a? Consider a gray model defined by 
-	\begin{subequations}
-	\begin{align}
-			\der{U}{z} & = - \kappa \rhov (U-\sigma T^4) \\
-			  		& \n \\
-			\der{D}{z} & = \kappa \rhov (D-\sigma T^4) 
-	\end{align}			
-	\label{eqn_gray_model}
-	\end{subequations}
-and the boundary conditions $U = \sigma \Ts^4$ at model bottom and $D=0$ at model top. Setting $\kappa$ to 0.12 $\mathrm{kg/m^2}$ yields a gray OLR equal to the RRTM OLR for unscaled \qv, and we then compute gray cooling and OLR using the same thermodynamic profiles with modified \qv\ profiles as above. The results are shown in Fig. \ref{fig_olr_qlw_window}a, and show that indeed the gray model can exhibit a simultaneous increase in OLR and decrease in \QLW, qualitatively similar to RRTM.
-
-To understand this, we plot $-\ppt F$ profiles for both RRTM and our gray model in Fig. \ref{fig_olr_qlw_window}b,d. Though a prominent emission peak at $T=\Tone$ is evident for each gray $-\ppt F$ profile, and this peak does descend with drying, each peak also has an appreciable width, more and more of which is `submerged' below the surface as RH decreases, causing the eventual decline in $\QLW = \int - \ppt F$.
-
-If the emission peak starts to get cut-off by the surface in this way, it means that the optically thick condition  $\tau \gg 1$ ceases to hold, as confirmed by the $\taus\equiv \tau(\Ts)$ values given in Fig. \ref{fig_olr_qlw_window}d. An unavoidable consequence of this is that the surface emission $\sigma\Ts^4 \exp(-\taus)$ must increase; indeed, over this range of \taus,   $\sigma\Ts^4 \exp(-\taus)$ increases from 1 \Wmsq\ to 140 \Wmsq. One can think of this as a `widening' of the water-vapor window, in a gray setting.
-
-% make the connection to a widening water vapor window.
-The foregoing suggests that the naive gray view mentioned in the introduction is incomplete, because it fails to account for the finite vertical depth of the emission peak at $T=\Tone$, which allows for partial elimination of emission as \Tone\ increases with drying. The foregoing also suggests that the spectral view, in which cooling declines with drying because the water vapor window widens and some atmospheric emission is eliminated, is correct, at least insofar as that same physics manifests in a gray radiation model. 
-
-If this spectral view is correct, then once the water vapor window closes, in either RRTM or our gray model, we should expect to see an \emph{increase} in cooling with drying, due to the increase in \Tone (which would occur independently for each line individually in the spectrally-resolved RRTM calculation). To check this, we perform the same computation as above, but for \Ts=330 K, well above the 310 K at which the water-vapor window closes \citep{goldblatt2013}. 
-
-
-	
 %================%
-% Content 2    %
+% Model construction  %
 %================%
-\section{Content 2}
+\section{The CTS approximation}
+	%\subsection{The verticall
+To understand the differences between \htwo\ and \cotwo\ emission, as well as to analyze the validity of the CTS approximation, we construct a simple grey radiation model to emulate spectrally-resolved radiative transfer for both gases. We consider a single band optical depth $\tau(p)$ (increasing downward) given by
+\beqn
+	\tau(p) = \taus(p/\ps)^\beta
+	\label{tau_p}
+\eeqn
+where $p$ is pressure and subscript `s' denotes surface values. We will consider two cases: $\beta = 1$, corresponding to a well-mixed greenhouse gas such as  \cotwo, and $\beta = 4$, yielding a scale height \comment{define/explain} which is 1/4 that of the atmosphere, or roughly 2 km, comparable to that found for \htwo\   \citep{romps2014}. This difference in $\beta$ will play a critical role, as we will see. We assume a surface temperature $\Ts=300$ K, and constant tropospheric and stratospheric lapse rates of $\gammatr = 6.5$ K/km and $\gammast = -2$ K/km on either side of a tropopause with temperature $\Ttp=200$ K and corresponding  pressure $\ptp = 114$ hPa \comment{confirm}.  Thus  
+\beqn
+	T(p) = \left\{ \begin{array}{cc} \Ts(p/\ps)^{R_d \gammatr/g} & p > \ptp \\
+																		 & \\
+												 \Ttp(p/\ptp)^{R_d \gammast/g} & p < \ptp 
+						\end{array} \right. \quad .
+	\label{T_p}
+\eeqn
+Taking our gray source function $B=\sigma T^4$, Eqns. \eqnref{tau_p} and \eqnref{T_p} then gives us $B(\tau)$, which for both troposphere and stratosphere is of the form
+\beqn
+	B(\tau) \ \sim \  \tau^\alpha, \quad \quad \alpha \equiv \frac{4R_d\Gamma}{g\beta}\ .
+	\label{B_tau}
+\eeqn
+This  is the key quantity in the gray radiative transfer equations \citep{pierrehumbert2010}.  \comment{Comment on importance of alpha.} These equations yield the net upward flux profile
+\beqn
+	F(\tau) = \Bs\exp[-(\taus-\tau)] + \int_\tau^{\taus} B(\tau')\exp[-(\tau'-\tau)] d\tau' - \int_0^\tau B(\tau')\exp[-(\tau-\tau')]d\tau' 
+	\label{F_tau}
+\eeqn 
+The first term gives the surface contribution to the upward flux, the second the atmospheric, while the third gives the downward flux (all of which emanates from the atmosphere). This expression may be differentiated to yield the flux divergence in $\tau$ coordinates, which as shown in Appendix A \comment{construct} can be written
+	\beqn
+		-\ddtau{F}(\tau) = B(\tau)e^{-\tau} \ - \  [\Bs - B(\tau)]\exp[-(\taus - \tau)] \ + \ \SX + \ \AX \ 
+		\label{cts_decomp}
+	\eeqn
+where we define `symmetric exchange' and `anti-symmetric exchange' terms \SX\ and \AX\ as 
+	\beqn 
+		\SX \ \equiv \   -\ \left\{ \begin{array}{cr} \int_0^\tau [B(\tau + x) - 2B(\tau) + B(\tau-x)]e^{-x}\,dx   & \tau < \taus/2 \\
+																															 &  \\	
+												\int_{0}^{\taus-\tau} [B(\tau + x) - 2B(\tau) + B(\tau-x)]e^{-x}\,dx   & \tau > \taus/2 
+							\end{array}   \right.  
+	\eeqn
+and
+	\beqn
+		\AX  \ \equiv \   -\ \left\{ \begin{array}{cr} \int_{\tau}^{\taus-\tau}[B(\tau + x)-B(\tau)]e^{-x}	dx 	& \tau < \taus/2 \\
+																																					& \\
+													 \int_{\taus - \tau}^{\tau}[B(\tau - x)-B(\tau)]e^{-x} 	dx 	& \tau > \taus/2 
+							\end{array}  \right. \quad .
+	\eeqn
+Here $\SX(\tau)$ represents exchange between level $\tau$ and a maximally thick  layer in which it is centered (in $\tau$), while \AX\ represents exchange between level $\tau$ and the remainder of the atmosphere, which will lie entirely at either greater or smaller $\tau$ values. \comment{make cartoon, expand}. 
 
+The $B(\tau)e^{-\tau}$ term in Eqn. \eqnref{cts_decomp} is the `cooling-to-space' (CTS) term, since $e^{-\tau}$ is just the transmissivity to space at level $\tau$. The CTS approximation says that this term dominates and the others can be neglected, to a reasonable approximation. Figure \ref{cts_decomp_taus100} plots profiles of each of these terms for $\beta = 1,4$ and $\taus=100$, a typical value for the bands of interest. Rather than plot $-\pptau F$ we plot the heating rate in K/day \comment{fix sign convention}, which is also proportional to $-\ppp F$. These panels show that indeed the CTS term is a good approximation to the net heating, for both \cotwo\ in the stratosphere and \htwo\ in the troposphere.
 
-%=================================%
-% Content 3   %
-%=================================%
-\section{Content 3 }
+Why does the CTS approximation work? Since heating seems to be concentrated near $\tau=1$ in Fig. \ref{cts_decomp_taus100}, let us analyze the terms in \eqnref{cts_decomp} near this level. For $\taus =100$, the ground exchange term GEX \comment{label above} is negligible. For the CTS term, we have
+\beqn
+\CTS = \frac{B}{e} \quad \mbox{at $\tau=1$} \ .
+\eeqn
+For SX, we approximate the expression in brackets as $x^2\frac{d^2 B}{d \tau^2}$ \comment{comment on this diffusion term} and invoking \eqnref{B_tau} thus obtain
+\beqa
+	\SX & =  & -  \frac{d^2 B}{d \tau^2}(\tau) \int_0^\tau x^2 e^{-x} dx \n \\
+%			& = & \frac{d^2 B}{d \tau^2}(\tau)[2(1-e^{-\tau}) -\tau(\tau+2)e^{-\tau}] \\
+			& \approx & - \frac{\alpha(\alpha-1)}{6}B \quad \mbox{at $\tau=1$} \ .
+\eeqa  
+For \AX\ we similarly approximate the integrand as $x\frac{d B}{d \tau}$, and so
+\beqa
+	\AX & =  & - \frac{d B}{d \tau}(\tau) \int_\tau^{\taus - \tau} x e^{-x} dx \n \\
+%			& = & \frac{d^2 B}{d \tau^2}(\tau)[2(1-e^{-\tau}) -\tau(\tau+2)e^{-\tau}] \\
+			& = & - \frac{2\alpha}{e}B \quad \mbox{at $\tau=1$} \ .
+\eeqa  
+For stratospheric \cotwo\ ($\beta = 1,\  \Gamma = \gammast$) and tropospheric \htwo\ ($\beta = 4,\  \Gamma = \gammatr$), we find $\alpha \approx -0.2,\ 0.2$ respectively.  Thus both the linear rate of change of $B(\tau)$ (proportional to $\alpha$) as well as its curvature (proportional to $\alpha(\alpha-1)$) are small compared to $B$ itself, and thus the CTS term dominates. Note that this domination is facilitated by partial cancellation between \SX\ and \AX, particularly for the $\beta=4$ case. \comment{comment on different shapes of profiles and emission heights? }
 
+While this analysis explains why the CTS approximation works, it also shows how it might break down. For $\beta=1$ and $\taus < 10$, for instance, $\tau=1$ will occur in the troposphere for the  case. There the lapse rate has over 3 times its stratospheric magnitude, increasing $\alpha$ to roughly 3/4 and making \AX\ comparable to \CTS and of opposite sign. \comment{Note that \SX\ depends on curvature, which is very small for this case.} Figure \ref{cts_decomp_taus5} shows the analogs of Fig. \ref{cts_decomp_taus100}, but for $\taus=5$. Indeed we find that the CTS approximation breaks down for $\beta =1$. For $\beta=4$, however, it is still a reasonable approximation (at least away from the surface), because $\alpha$ still has its relatively low value of 0.2.  
 
-%=================%
-% Content 4    %
-%=================%
-\section{Content 4 }
+To more systematically analyze  the validity of the CTS approximation across $(\taus,\beta)$ space, we consider the total atmospheric radiative divergence $Q \equiv \OLR-F(\taus)$ where $\OLR\equiv F(0)$. Evaluating \eqnref{F_tau} at $\tau=0$ gives
+\beqn
+	\OLR = \Bs e^{-\taus} + \int_0^{\taus} B(\tau') e^{-\tau'} d\tau' \ .
+\eeqn
+Since the second term is just the integral of the CTS term, we denote it by \Qcts. Similarly,  Evaluating \eqnref{F_tau} at $\tau=\taus$ gives
+\beqn
+	F(\taus) = \Bs  - \int_0^{\taus} B(\tau') e^{-(\taus-\tau')} d\tau' \ .
+\eeqn
+This gives
+\beqn
+	Q \ = \ \Qcts - (1-e^{-\taus})\Bs  + \int_0^{\taus} B(\tau') e^{-(\taus-\tau')} d\tau' \ .
+\eeqn
+The second and third terms are just the integral of the GEX term, which always heats the atmosphere, so we have
+\beqn
+	Q \ <\  \Qcts \ .
+\eeqn
+If the CTS approximation holds then $Q \approx \Qcts$ \comment{is the converse necessarily true?}.  We assess the degree to which this holds across $\taus-\beta$ space in Fig. \ref{Q_Qcts}, which plots $Q$ and \Qcts\ for $\beta=1,4$ and for optically thin ($\taus = 0.1$) to very optically thick ($\taus=1000$) cases. This figure shows that the CTS approximation holds for $\beta=4$ across our range of optical depths, as expected since $\alpha = 0.2$ throughout. For $\beta=1$, however, the CTS approximation breaks down for $\taus \lesssim 10$ as predicted, since at $\taus \approx 10$ the $\tau \approx 1$ level transitions from the stratosphere, where $\alpha = -1/5$, to the  troposphere where $\alpha = 3/4$.
 
+\section{Stratospheric vs. tropospheric emission}
+Given the above behavior of radiative cooling from  \cotwo\ and \htwo\ lines, how do we understand the preponderance of stratospheric emission from \cotwo\ and tropospheric emission from \htwo? Since the CTS approximation holds across the \taus\ spectrum for $\beta=4$, and since $-\ppp F = - (d\tau/dp)\pptau F$ maximizes around $\tau=1$ in this case (Figs. \ref{cts_decomp_taus100}, \ref{cts_decomp_taus5}) \comment{explain this somewhere}, tropospheric emission from \htwo\  means that active water vapor lines attain $\tau=1$ in the troposphere. Conversely,  For $\beta=1$ with $\tau=1$ in the stratosphere where $\alpha$ is small, the CTS approximation holds and $-\ppp F \sim -\pptau F$ will be significant near $\tau=1$, i.e. in the stratosphere. For  $\tau=1$ in the troposphere the situation is less straightforward, but we expect the \AX\ term to be significant in the lower troposphere (Fig. \ref{cts_decomp_taus5}) \comment{discuss this further}. Thus, a preponderance of stratospheric cooling from \cotwo\ implies that most of its active lines attain $\tau=1$ in the stratosphere. We confirm this difference between the typical $\tau=1$ levels of \htwo\ and \cotwo\ in Figure \ref{tau=1_lbl}, which shows the elevation of the $\tau=1$ level across the LW spectrum for both gases \comment{generate this LBL figure}. Why are the $\tau=1$ levels of these gases distributed so differently?
 
-%===========%
-% Discussion    %		
-%===========%
+One possible answer has to do with spectroscopy and optical depths. Perhaps the \cotwo\ spectrum is populated  much more heavily by higher optical depth lines whose  whose $\tau=1$ levels then lie in the stratosphere, and conversely for the \htwo\ spectrum.  Textbook plots of \cotwo\ and \htwo\ absorption coefficients as a function of wavenumber $\kappa(k)$ \citep{pierrehumbert2010}, however, show that the largest absorption coefficients in both bands is about $10^4\ \mathrm{kg/m^2}$, and that in both  bands $\kappa(k)$ declines exponentially in $k$ from the peak. Thus, the PDF of $\kappa$ values in both these bands should be comparable. Furthermore, the path lengths of \cotwo\ and \htwo\ are comparable (in the neighborhood of $45\ \mathrm{kg/m^2}$), and thus the PDF of $\taus$ values in both bands should be comparable. These claims are confirmed in Figure \ref{taus_pdf}, which shows PDFs of \taus\ for both bands in our standard atmosphere and shows little significant difference in their shape or extent \comment{generate LBL figure, comment on continuum}.
+
+Thus, the differing emission levels of \cotwo\ and \htwo\ are not due to differences in $\kappa$ or \taus\ distributions. Rather, they are due to the fact \cotwo\ is well-mixed ($\beta=1$) and \htwo\ is bottom-heavy ($\beta=4$). This can be seen rather straightforwardly from Eqn. \eqnref{tau_p}, which we invert to find the pressure $\pem$ at which $\tau=1$:
+	\beqn
+		\pem = \frac{\ps}{\taus^{1/\beta}}
+	\eeqn
+We plot this for $\beta=1,4$ as a function of \taus\ in Figure \ref{p1_taus}. This figure shows that when \pem\ values are plotted against a logarithmic \taus\ axis (this is appropriate because $\ln \taus$ should be distributed roughly uniformly w.r.t $k$; see previous paragraph), the majority of \pem\ values for $\beta=1$ appear in the stratosphere, whereas the majority of \pem\ values for $\beta=4$ appear in the stratosphere. 
+
 \section{Summary and discussion}
-Our results can be summarized as follows:
-\begin{itemize}
-	\item 
-	\item
-	\item
-\end{itemize}
 
-
-%===========%
-% Appendix       %		
-%===========%
-
-\section*{Appendix}
-\appendix
-
-
-	%==================%
-	% appendix_1  %
-	%===================%	
-	\section{Appendix 1 title}	 \label{appendix_1}	
-
-
-	%==================%
-	% appendix_2  %
-	%===================%
-	\section{Appendix 2 title} \label{appendix_2}
-	
 	
 %========%
 % Figures    %
 %========%
 \pagebreak
 
-% fig_olr_qlw_window
+%Figure lbl_H
 \begin{figure}[h]
 	\begin{center}
-			\includegraphics[scale=0.7]{../plots/olr_qlw_window.pdf}
-		\caption{Caption here
-		\label{fig_olr_qlw_window}
+			\includegraphics[scale=0.5]{../plots/lbl_H.jpg}
+		\caption{Spectrally-resolved cooling rates. \cotwo\ cooling is concentrated in the stratosphere, while \htwo\ cooling is concentrated in the troposphere. \comment{above figure is a placeholder}
+		\label{lbl_H}
 		}
 	\end{center}
 \end{figure}
 
-%% fig_gray
-%\begin{figure}[h]
-%	\begin{center}
-%			\includegraphics[scale=0.7]{../plots/gray.pdf}
-%		\caption{Caption here
-%		\label{fig_gray}
-%		}
-%	\end{center}
-%\end{figure}
+%Figure lbl_cts
+\begin{figure}[h!]
+	\begin{center}
+			%\includegraphics[scale=0.8]{../plots/OLR_Q.pdf}
+		\caption{Spectrally-resolved CTS. This should show that CTS is a very good approximation to radiative cooling for both the \cotwo\ and \htwo\ bands. 
+		\label{lbl_cts}
+		}
+	\end{center}
+\end{figure}
+
+%Figure cts_decomp_taus100
+\begin{figure}[h!]
+	\begin{center}
+			\includegraphics[scale=0.6]{../plots/cts_decomp_taus100.pdf}
+		\caption{Decomposition of heating rate (positive for cooling, actually) into terms in \eqnref{cts_decomp} for $\beta=1$ (left) and $\beta=4$ (right) for $\taus=100$. Note that in both cases the CTS approximation is accurate.
+		\label{cts_decomp_taus100}
+		}
+	\end{center}
+\end{figure}
+
+%Figure cts_decomp_taus5
+\begin{figure}[h!]
+	\begin{center}
+			\includegraphics[scale=0.6]{../plots/cts_decomp_taus5.pdf}
+		\caption{As in Fig. \ref{cts_decomp_taus100}, but for $\taus=5$. The CTS approximation continues to hold for $\beta=4$, but breaks down for $\beta=1$.
+		\label{cts_decomp_taus5}
+		}
+	\end{center}
+\end{figure}
+
+
+%Figure Q_Qcts
+\begin{figure}[h!]
+	\begin{center}
+			\includegraphics[scale=0.8]{../plots/Q_Qcts.pdf}
+		\caption{Plots of column-integrated cooling $Q$, as well as column-integrated cooling-to-space \Qcts. For $\beta=4$ we have $Q\approx \Qcts$ for all \taus, but for $\beta=1$ the CTS approximation breaks down when $\taus \lesssim 10$. 
+		\label{Q_Qcts}
+		}
+	\end{center}
+\end{figure}
+
+%Figure tau=1_lbl
+\begin{figure}[h!]
+	\begin{center}
+			%\includegraphics[scale=0.8]{../plots/p1_taus.pdf}
+		\caption{Spectrally-resolved plot of elevation of $\tau=1$ for lines in the \cotwo\ and \htwo\ bands. This should show that $\tau=1$ occurs primarily in the stratosphere for the \cotwo\ band and primarily in the troposphere for the \htwo\ band.
+		\label{tau=1_lbl}
+		}
+	\end{center}
+\end{figure}
+
+%Figure taus_pdf
+\begin{figure}[h!]
+	\begin{center}
+			%\includegraphics[scale=0.8]{../plots/p1_taus.pdf}
+		\caption{PDF \taus\ values for \htwo\ and \cotwo\ band. These should show similar distributions for the two bands.
+		\label{taus_pdf}
+		}
+	\end{center}
+\end{figure}
+
+%Figure p1_taus
+\begin{figure}[h!]
+	\begin{center}
+			\includegraphics[scale=0.8]{../plots/p1_taus.pdf}
+		\caption{For $\beta=1$, the majority of \pem\ values (when distributed in $\ln \taus$) are stratospheric, whereas for $\beta=4$ the majority of \pem\ values are tropospheric.
+		\label{p1_taus}
+		}
+	\end{center}
+\end{figure}
 
 
 
+
+\pagebreak
 
 \bibliographystyle{apa}
-\bibliography{/Users/climateloaner/Dropbox/bibtex_mendeley/library}
-%\bibliography{/Users/nadir/Dropbox/bibtex_mendeley/library}
+\bibliography{/Users/nadir/Dropbox/bibtex_mendeley/library}
 
 
 \end{document}
