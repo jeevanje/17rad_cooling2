@@ -12,6 +12,11 @@ k_fit_vr      = vr_data$k_fit
 k_vr	      = max(k_fit_vr)
 kappa_vr      = max(vr_data$kappa_fit)
 l_vr	      = vr_data$lk
+k_fit         = c(k_fit_rot,k_fit_vr[-1])
+nk_fit   	  = length(k_fit)
+dk_fit   	  = k_fit[2]-k_fit[1]
+kappa_simple  = c(kappa_rot*exp(-abs(k_fit_rot -k_rot)/l_rot),
+                   kappa_vr*exp(-abs(k_fit_vr[-1] -k_vr)/l_vr))
 
 # co2
 band_data_gas = band_data[['co2']]
@@ -27,7 +32,7 @@ kappa_R       = max(R_data$kappa_fit)
 l_R  	      = R_data$lk
 
 k_Q  	      = mean(c(k_P,k_R))
-l_Q	      = mean(c(l_P,l_R))		
+l_Q	          = mean(c(l_P,l_R))		
 kappa_Q	      = exp(mean(c(log(kappa_P),log(kappa_R))))
 
 save(list=ls(),file="~/Dropbox/17rad_cooling2/data/band_params.Rdata")

@@ -1,31 +1,138 @@
-%% Draft settings
-\documentclass[10pt]{article}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
-%\usepackage{subfigure}
-\usepackage{subcaption}
-%\usepackage{caption}
-%\usepackage[countmax]{subfloat}
-\usepackage{color}
- \usepackage{lineno}
-\usepackage{simplemargins}
-\usepackage{natbib}
-
-% \linenumbers*[1]
- \usepackage[T1]{fontenc} % For citing barki{\dj}ija
-\setkeys{Gin}{draft=false}
+%% Version 4.3.2, 25 August 2014
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template.tex --  LaTeX-based template for submissions to the 
+% American Meteorological Society
+%
+% Template developed by Amy Hendrickson, 2013, TeXnology Inc., 
+% amyh@texnology.com, http://www.texnology.com
+% following earlier work by Brian Papa, American Meteorological Society
+%
+% Email questions to latex@ametsoc.org.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREAMBLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% Margins
-\setleftmargin{1in}
-\setrightmargin{1in}
-\setbottommargin{1in}
-\settopmargin{1in}
- 
 
-% Standard shortcuts
-\input{/Users/nadir/Dropbox/resources/shortcuts.tex}
+
+%% Start with one of the following:
+% DOUBLE-SPACED VERSION FOR SUBMISSION TO THE AMS
+\documentclass{ametsoc}
+
+% TWO-COLUMN JOURNAL PAGE LAYOUT---FOR AUTHOR USE ONLY
+% \documentclass[twocol]{ametsoc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% To be entered only if twocol option is used
+
+\journal{jcli}
+
+%  Please choose a journal abbreviation to use above from the following list:
+% 
+%   jamc     (Journal of Applied Meteorology and Climatology)
+%   jtech     (Journal of Atmospheric and Oceanic Technology)
+%   jhm      (Journal of Hydrometeorology)
+%   jpo     (Journal of Physical Oceanography)
+%   jas      (Journal of Atmospheric Sciences)	
+%   jcli      (Journal of Climate)
+%   mwr      (Monthly Weather Review)
+%   wcas      (Weather, Climate, and Society)
+%   waf       (Weather and Forecasting)
+%   bams (Bulletin of the American Meteorological Society)
+%   ei    (Earth Interactions)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Citations should be of the form ``author year''  not ``author, year''
+\bibpunct{(}{)}{;}{a}{}{,}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% To be entered by author:
+%Typesetting
+\newcommand{\beqn}{\begin{equation}}
+\newcommand{\eeqn}{\end{equation}}
+\newcommand{\beqa}{\begin{eqnarray}}
+\newcommand{\eeqa}{\end{eqnarray}}
+\newcommand{\beqanonum}{\begin{eqnarray*}}
+\newcommand{\eeqanonum}{\end{eqnarray*}}
+\newcommand{\beqnonum}{\begin{equation*}}
+\newcommand{\eeqnonum}{\end{equation*}}
+\newcommand{\n}{\nonumber}
+\newcommand{\jump}{\vspace{0.5cm}}
+\newcommand{\bbf}{\begin{bf}}
+\newcommand{\ebf}{\end{bf}}
+\newcommand{\eqnref}[1]{(\ref{#1})}
+\newcommand{\defn}[1]{\begin{bf}\emph{#1}\end{bf}}
+\newcommand{\half}{\ensuremath{\textstyle{\frac{1}{2}}}}
+\newcommand{\inverse}{^{-1}}
+\newcommand{\comment}[1]{\textcolor{blue}{[{#1}]}}
+
+% Fundamental  Units
+\newcommand{\second}{\ensuremath{\mathrm{s}}}
+\newcommand{\kg}{\ensuremath{\mathrm{kg}}}
+\newcommand{\meter}{\ensuremath{\mathrm{m}}}
+\newcommand{\Kelvin}{\ensuremath{\mathrm{K}}}
+
+% Derived and combination units
+\newcommand{\km}{\ensuremath{\mathrm{km}}}
+\newcommand{\mm}{\ensuremath{\mathrm{mm}}}
+\newcommand{\micron}{\ensuremath{\mu\mathrm{m}}}
+\newcommand{\Wmsq}{\ensuremath{\mathrm{W/m^2}}}
+\newcommand{\WmsqK}{\ensuremath{\mathrm{W/m^2/K}}}
+\newcommand{\joule}{\ensuremath{\mathrm{J}}}
+\newcommand{\Kinverse}{\ensuremath{\mathrm{K^{-1}}}}
+\newcommand{\cminverse}{\ensuremath{\mathrm{cm^{-1}}}}
+\newcommand{\Pa}{\ensuremath{\mathrm{Pa}}}
+\newcommand{\hPa}{\ensuremath{\mathrm{hPa}}}
+
+% Total derivatives 
+\newcommand{\timeder}{\frac{d}{dt}}
+\newcommand{\der}[2]{\ensuremath{\frac{d #1}{d #2}}}
+\newcommand{\ddtau}[1]{\ensuremath{\frac{d #1}{d\tau}}}
+%\newcommand{\ddp}[1]{\ensuremath{\frac{d #1}{dp}}}
+\newcommand{\dx}{\ensuremath{\frac{d}{dx}}}
+\newcommand{\ddx}{\ensuremath{\frac{d}{dx}}}
+\newcommand{\ddz}{\ensuremath{\frac{d}{dz}}}
+\newcommand{\ddp}{\ensuremath{\frac{d}{dp}}}
+
+% partial derivatives
+%\newcommand{\partialderf}[1]{\frac{\partial}{\partial #1}}
+\newcommand{\partialder}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\ppx}{\ensuremath{\partial_x}}
+\newcommand{\ppy}{\ensuremath{\partial_y}}
+\newcommand{\ppz}{\ensuremath{\partial_z}}
+\newcommand{\ppt}{\ensuremath{\partial_T}}
+\newcommand{\ppp}{\ensuremath{\partial_p}}
+\newcommand{\pptau}{\ensuremath{\partial_\tau}}
+
+% Vectors
+\newcommand{\unitvect}[1]{\ensuremath{\mathbf{\hat{#1}}}}
+\newcommand{\kvec}{\ensuremath{\vec{k}}}
+\newcommand{\uvec}{\ensuremath{\mathbf{u}}}
+\newcommand{\zhat}{\ensuremath{\mathbf{\hat{z}}}}
+\newcommand{\khat}{\ensuremath{\mathbf{\hat{k}}}}
+
+% Constants
+\newcommand{\Rd}{\ensuremath{R_d}}
+\newcommand{\Rv}{\ensuremath{R_v}}
+\newcommand{\Cp}{\ensuremath{C_p}}
+
+% Climate
+\newcommand{\qv}{\ensuremath{q_v}}
+\newcommand{\rhov}{\ensuremath{\rho_v}}
+\newcommand{\qvstar}{\ensuremath{q^*}}
+\newcommand{\Ts}{\ensuremath{T_\mathrm{s}}}
+\newcommand{\Ttp}{\ensuremath{T_\mathrm{tp}}}
+\newcommand{\ps}{\ensuremath{p_s}}
+\newcommand{\cotwo}{\ensuremath{\mathrm{CO_2}}}
+\newcommand{\htwo}{\ensuremath{\mathrm{H_2O}}}
+\newcommand{\olr}{\ensuremath{\mathrm{OLR}}}
+\newcommand{\OLR}{\ensuremath{\mathrm{OLR}}}
+\newcommand{\RH}{\ensuremath{\mathrm{RH}}}
+
+
 
 % radiation shorthand
 \newcommand{\OLRk}{\ensuremath{\mathrm{OLR}_k}}
@@ -84,74 +191,97 @@
 %Variables
 \newcommand{\figurepath}{../figures/}
 
+%% May use \\ to break lines in title:
+
+\title{An Analytical Real Gas Model for Tropospheric Radiative Cooling}
+
+%%% Enter authors' names, as you see in this example:
+%%% Use \correspondingauthor{} and \thanks{Current Affiliation:...}
+%%% immediately following the appropriate author.
+%%%
+%%% Note that the \correspondingauthor{} command is NECESSARY.
+%%% The \thanks{} commands are OPTIONAL.
+
+    %\authors{Author One\correspondingauthor{Author One, 
+    % American Meteorological Society, 
+    % 45 Beacon St., Boston, MA 02108.}
+% and Author Two\thanks{Current affiliation: American Meteorological Society, 
+    % 45 Beacon St., Boston, MA 02108.}}
+
+\authors{Nadir Jeevanjee\correspondingauthor{Nadir Jeevanjee, Geosciences Department, Princeton University, Princeton NJ 08544} and Stephan Fueglistaler\thanks{Geosciences Department, Princeton University, Princeton NJ 08544}}
+
+%% Follow this form:
+    % \affiliation{American Meteorological Society, 
+    % Boston, Massachusetts.}
+
+\affiliation{Princeton University, Princeton, New Jersey}
+
+%% Follow this form:
+    %\email{latex@ametsoc.org}
+
+\email{nadirj@princeton.edu}
+
+%% If appropriate, add additional authors, different affiliations:
+    %\extraauthor{Extra Author}
+    %\extraaffil{Affiliation, City, State/Province, Country}
+
+%\extraauthor{Stephan Fueglistaler}
+%\extraaffil{Princeton University, Princeton, New Jersey}
+
+%% May repeat for a additional authors/affiliations:
+
+%\extraauthor{}
+%\extraaffil{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ABSTRACT
+%
+% Enter your abstract here
+% Abstracts should not exceed 250 words in length!
+%
+% For BAMS authors only: If your article requires a Capsule Summary, please place the capsule text at the end of your abstract
+% and identify it as the capsule. Example: This is the end of the abstract. (Capsule Summary) This is the capsule summary. 
+
+\abstract{Atmospheric radiative cooling is a fundamental aspect of the Earth's greenhouse effect and is intrinsically connected to  atmospheric motions. Clear-sky longwave cooling turns out to be remarkably uniform throughout the troposphere, taking on a characteristic value of roughly 2 K/day. Though these aspects are robustly reproduced by models, an intuitive understanding is lacking. Here we pursue such understanding by building a simple model for real gas (rather than gray gas) clear-sky  radiative cooling. We  focus on \htwo, consider  a single idealized atmospheric column, and employ the line-by-line Reference Forward Model (RFM) for reference and validation.  We  combine the cooling-to-space approximation with simplified greenhouse gas spectroscopy and analytical expressions for optical depth to build a simple, analytical model which reproduces the characteristic cooling  of 2 K/day as well as the relative insensitivity of radiative cooling to relative humidity and temperature. This model expresses cooling rates as a product of the Planck function, an emissivity gradient, and a characteristic spectral width  derived from our simplified spectroscopy. The simple model is then used to investigate  several key aspects of radiative cooling and outgoing longwave radiation (OLR). In particular, we attribute the upper tropospheric kink in radiative cooling to a declining Planck function, verify the \Ts-invariance of \cite{jeevanjee2018},  connect the spectral peak in OLR to the onset of the water vapor window, and attribute the contrast in radiative cooling between \htwo\ and \cotwo\ to differences in both emissivity gradients and characteristic spectral widths. }
 
 \begin{document}
 
-%% ------------------------------------------------------------------------ %%
-%
-%  TITLE
-%
-%% ------------------------------------------------------------------------ %%
-
-
-\title{An Analytical Model for Real Gas Radiative Cooling}
-
-%% ------------------------------------------------------------------------ %%
-%
-%  AUTHORS AND AFFILIATIONS
-%
-%% ------------------------------------------------------------------------ %%
-
-
- \author{Nadir Jeevanjee and Stephan Fueglistaler}
-
+%% Necessary!
 \maketitle
 
-\begin{abstract}
-Atmospheric radiative cooling is a fundamental aspect of the Earth's greenhouse effect and is intrinsically connected to  atmospheric motions. Clear-sky longwave cooling turns out to be remarkably uniform throughout the troposphere, taking on a characteristic value of roughly 2 K/day. Though these aspects are robustly reproduced by models, an intuitive understanding is lacking.
 
-Here we pursue such understanding by building a simple model for real gas (rather than gray gas) clear-sky  radiative cooling. We  focus on \htwo, consider  a single idealized atmospheric column, and employ the line-by-line Reference Forward Model (RFM) for reference and validation.  We  combine the cooling-to-space approximation with simplified greenhouse gas spectroscopy and analytical expressions for optical depth to build a simple, analytical model which reproduces the characteristic cooling  of 2 K/day and as well as the relative insensitivity of radiative cooling to relative humidity and temperature. This model expresses cooling rates as a product of the Planck function, an emissivity gradient, and a characteristic spectral width  derived from our simplified spectroscopy. The simple model is then used to investigate  several key aspects of radiative cooling and outgoing longwave radiation (OLR), including the upper tropospheric kink in radiative cooling, the \Ts-invariance of \cite{jeevanjee2018},  the spectral peak in OLR, and the contrast in radiative cooling between \htwo\ and \cotwo.
-
-
-
-
-%\vspace{0.5cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MAIN BODY OF PAPER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%
-\end{abstract}
-
-
-%% ------------------------------------------------------------------------ %%
-%
-%  TEXT
-%
-%% ------------------------------------------------------------------------ %%
-
-
 \section {Introduction}
 The emergence of a turbulent troposphere in Earth's atmosphere stems from instabilities of the pure radiative equilibrium state (PRE). These instabilities lead to deep convection in the tropics and baroclinic eddies in mid-latitudes, both of which lead to temperature profiles which deviate markedly from those of PRE.  Since PRE is by definition an atmospheric state with zero atmospheric radiative cooling, deviations from PRE inevitably lead to radiative cooling, which is thus tightly coupled to turbulence and the hydrological cycle. Furthermore, the magnitude of this radiative cooling characterizes the large-scale circulation, as clear air subsiding in an environment with lapse-rate $\Gamma \equiv - \der{T}{z}$ and clear-sky net radiative heating rate \chnet\ (K/day, positive for heating)  must subside diabatically in steady-state with pressure velocity $\omegadiab   =  - \rho g\chnet/\Gamma$.
 
 A remarkable feature of \chnet\ and its longwave component \ch\  is that both are  surprisingly uniform throughout the troposphere,  with a typical value of $\ch\approx -2 $K/day  (Fig. \ref{ecmwf_vs_rfm}a; partial compensation by shortwave heating results in $\chnet\approx -1$ K/day, not shown). This value of \ch\ is fairly constant in both latitude and height, which means that apart from perturbations  due to clouds and water vapor variability, the clear-sky troposphere can be considered as diabatically subsiding everywhere at a fairly uniform rate of $\omegadiab\approx\ 30$ hPa/day . It thus seems worthwhile to try and understand why $\ch \approx -2$ K/day, and why this number seems so robust.
 
-For complex systems such as Earth's climate, such an understanding must be comprised of a hierarchy of models \citep{jeevanjee2017a,held2005}. An attempt to construct such a hierarchy for radiative cooling might proceed as follows. We first collapse the cooling distribution in Fig. \ref{ecmwf_vs_rfm}a onto a global radiative cooling profile by taking a meridional average (Fig. \ref{ecmwf_vs_rfm}b, solid line). We then find empirically that this global-mean heating profile can be emulated by that generated by a single-column, line-by-line calculation of radiative cooling from \htwo\ only in an idealized\footnote{Note that this calculation has no \htwo\ continuum or \cotwo\ absorption, which are errors that compensate (section \ref{sec_cont_co2}).} tropical atmosphere using the line-by-line Reference Forward Model (RFM, dashed line of Fig. \ref{ecmwf_vs_rfm}b,  further details in Section \ref{sec_rfm_calcs}).  Though this 1D RFM calculation does a decent job of emulating the global average profile,  even this calculation is too complex to provide much understanding, as it involves the convolution of complex greenhouse gas spectroscopy with non-linear radiative transfer. Turning to simpler models, then, we calculate radiative cooling using a gray radiation model, using the same thermodynamic profiles and absorber concentration as the RFM calculation, but using a non-pressure-broadened gray absorption coefficient tuned to yield the same OLR as the RFM calculation. This gray radiation model turns out to be \emph{too} simple, however;  its radiative cooling profile has too much vertical structure, and its lower-tropospheric heating rates err by a factor of two to three (Fig. \ref{ecmwf_vs_rfm}b, gray line). There is thus a gap between our simulation and understanding of radiative cooling, and it is the goal of this paper to help fill that gap.
+For complex systems such as Earth's climate, such an understanding must be comprised of a hierarchy of models \citep{jeevanjee2017a,held2005}. An attempt to construct such a hierarchy for radiative cooling might proceed as follows. We first collapse the cooling distribution in Fig. \ref{ecmwf_vs_rfm}a onto a global radiative cooling profile by taking a meridional average (Fig. \ref{ecmwf_vs_rfm}b, solid line). We then find empirically that this global-mean heating profile can be emulated by that generated by a single-column, line-by-line calculation of radiative cooling from \htwo\ only in an idealized\footnote{Note that this calculation has no \htwo\ continuum or \cotwo\ absorption, which are errors that compensate (Section \ref{sec_applications}\ref{sec_cont_co2}).} tropical atmosphere using the line-by-line Reference Forward Model (RFM, dashed line of Fig. \ref{ecmwf_vs_rfm}b,  further details in Section \ref{sec_preliminaries}\ref{sec_rfm_calcs}).  Though this 1D RFM calculation does a decent job of emulating the global average profile,  even this calculation is too complex to provide much understanding, as it involves the convolution of complex greenhouse gas spectroscopy with non-linear radiative transfer. Turning to simpler models, then, we calculate radiative cooling using a gray radiation model, using the same thermodynamic profiles and absorber concentration as the RFM calculation, but using a non-pressure-broadened gray absorption coefficient tuned to yield the same outgoing longwave radiation (OLR) as the RFM calculation. This gray radiation model turns out to be \emph{too} simple, however;  its radiative cooling profile has too much vertical structure, and its lower-tropospheric heating rates err by a factor of two to three (Fig. \ref{ecmwf_vs_rfm}b, gray line). There is thus a gap between our simulation and understanding of radiative cooling, and it is the goal of this paper to help fill that gap.
 
 To reduce the complexity of `real gas' (as opposed to gray gas) radiative cooling, we will simplify the radiative transfer using  the cooling-to-space approximation \citep[e.g.][]{petty2006}, and simplify the spectroscopy by approximating the spectrum of mass absorption coefficients $\kappa(k)$ as piecewise exponentials, 
 % justify this theoretically with references?
-as also done in \cite{wilson2012}. These simplifications not only make the real gas radiative transfer analytically tractable, but also lead us to a characteristic spectral width across which any absorption band of a given gas will emit at a given height. This characteristic width provides a crucial  ingredient in understanding \ch, which we can then express  as the product of a Planck function times an optical depth gradient times this width. The resulting \ch\ profiles successfully emulate those produced by RFM, and can then be used to understand the magnitude of \ch\ as well as its  (in)sensitivities to temperature and humidity. We then apply our formalism  to understand the upper tropospheric kink in radiative cooling, the \Ts-invariance of \cite{jeevanjee2018},  the spectral peak in OLR, and the contrast in radiative cooling between \htwo\ and \cotwo. Only clear-sky radiative cooling will be considered here.
+as also done in \cite{wilson2012}. These simplifications not only make the real gas radiative transfer analytically tractable, but also lead us to a characteristic spectral width across which any absorption band of a given gas will emit at a given height. This characteristic width provides a crucial  ingredient in understanding \ch, which we can then express  as the product of a Planck function times an optical depth gradient times this width. The resulting \ch\ profiles successfully emulate those produced by RFM, and can then be used to understand the magnitude of \ch\ as well as its  (in)sensitivities to temperature and humidity. We then apply our formalism  to understand the upper tropospheric kink in radiative cooling (visible in Figure \ref{ecmwf_vs_rfm}b at about 300hPa), the \Ts-invariance of \cite{jeevanjee2018},  the spectral peak in OLR, and the contrast in radiative cooling between \htwo\ and \cotwo. Only clear-sky radiative cooling will be considered here.
 
-\section{Preliminaries}
+%===============%
+% sec_preliminaries  %
+%===============% 
+\section{Preliminaries}\label{sec_preliminaries}
+
 %RFM_calcs
 \subsection{RFM calculations} \label{sec_rfm_calcs}
-We use the Reference Forward Model \citep[RFM,][]{dudhia2017}, a line-by-line, longwave radiative transfer model. We use HITRAN spectroscopic data for the most common isotopologue of \htwo\ from 0--1500 \cminverse, and for our base case consider an idealized atmosphere with $\Ts=300\ \Kelvin$,  a constant lapse rate of $\Gamma= 7\ \Kelvin/\km$ up to to an isothermal stratosphere at $\Tstrat=200$ K, and \RH=0.75 (except where specified). We run RFM at a spectral resolution of 1 \cminverse\ and a vertical resolution of 500 m up to model top at 50 km, and output optical depth, fluxes, heating rates, and absorption coefficients, all as a function of wavenumber and height. For simplicity in comparing to our analytical model below, RFM optical depth calculations assumed a zenith angle of 0, and fluxes and heating rates are computed using a two-stream approximation with a diffusivity factor of $D=1.5$ (rather than RFM's default 4-stream), as well as assuming constant $B(k,T)$ within atmospheric layers.  We omit the water vapor continuum in our base calculation, but consider its effects in Section \ref{sec_cont_co2}.  
+We use the Reference Forward Model \citep[RFM,][]{dudhia2017}, a line-by-line, longwave radiative transfer model. We use HITRAN spectroscopic data for the most common isotopologue of \htwo\ from 0--1500 \cminverse, and for our base case consider an idealized atmosphere with $\Ts=300\ \Kelvin$,  a constant lapse rate of $\Gamma= 7\ \Kelvin/\km$ up to to an isothermal stratosphere at $\Tstrat=200$ K, and \RH=0.75 (except where specified). We run RFM at a spectral resolution of 1 \cminverse\ and a vertical resolution of 500 m below 15 km, 1 km between 15 and 30 km, and 2.5 km up to model top at 50 km. We output optical depth, fluxes, heating rates, and absorption coefficients, all as a function of wavenumber and height. For simplicity in comparing to our analytical model below, RFM optical depth calculations assumed a zenith angle of 0, and fluxes and heating rates are computed using a two-stream approximation with a diffusivity factor of $D=1.5$ (rather than RFM's default 4-stream), as well as assuming constant $B(k,T)$ within atmospheric layers.  In our base calculation we omit the water vapor continuum \citep{shine2012}, not because it is negligible but simply for analytic tractability. In Section \ref{sec_applications} we then turn on RFM's continuum parameterization \citep[MT\_CKD,][]{mlawer2012} and  consider its effects.
 
 % Shape of \chk
 \subsection{The shape of \chk}
 In real gas radiative transfer, clear-sky longwave radiative heating \ch\ is calculated by  integrating the spectrally-resolved heating 
 \beqn
-	\ch_k \ \equiv \ \frac{g}{\Cp} \ppp F_k \quad \text{(K/day/\cminverse)}
+	\ch_k \ \equiv \ \frac{g}{\Cp} \ppp F_k \quad \text{(K/s/\cminverse)}
 	\label{heat_k}
 \eeqn
-where $F_k$ is spectrally-resolved LW flux in $\Wmsq/\cminverse$. Thus,  any understanding of \ch\ must stem from an understanding of \chk. We begin by reviewing the qualitative picture of \chk\  found in, e.g., \cite{clough1992}.
+where $F_k$ is spectrally-resolved net upward LW flux in $\Wmsq/\cminverse$. Thus,  any understanding of \ch\ must stem from an understanding of \chk. We begin by reviewing the qualitative picture of \chk\  found in, e.g., \cite{clough1992}.
 
 
 Figure \ref{h2o_rfm_theory}c shows \chk\ from \htwo\ as computed by RFM on our idealized profile. There is a strong band of cooling for $k< 800\ \cminverse$, and a weaker band for $k > 1200\ \cminverse$. To understand these structures we consider   the optical depth $\tauk$, given by
@@ -184,102 +314,10 @@ where
 		\beta \  \equiv  \ \partialder{\ln \tauk}{\ln p} \ . 
 		\label{beta_def}
 \eeqn
- The function $\tauk \exp(-\tauk)$ in \eqnref{trans_grad} has a relatively sharp peak at $\tauk=1$, and so long as $\beta/p$  has negligible vertical structure in the neighborhood of $\tau=1$, the transmissivity gradient and hence the CTS term will indeed peak at $\tau=1$ (as is approximately true for our gray radiation calculation; gray circle in Fig. \ref{ecmwf_vs_rfm}b). Note also that $\beta/p=\partialder{\ln\tauk}{p}$ is an inverse  `scale pressure' for optical depth, measuring how quickly \tauk\ increases by one $e$-folding, and as such  it simultaneously determines the width and magnitude of the transmissivity gradient. This quantity turns out to differ significantly between \htwo\ and \cotwo, as we will see in Section \ref{sec_co2}. 
+ The function $\tauk \exp(-\tauk)$ in \eqnref{trans_grad} has a relatively sharp peak at $\tauk=1$, and so long as $\beta/p$  has negligible vertical structure in the neighborhood of $\tau=1$, the transmissivity gradient and hence the CTS term will indeed peak at $\tau=1$ (as is approximately true for our gray radiation calculation; gray circle in Fig. \ref{ecmwf_vs_rfm}b). Note also that $\beta/p=\partialder{\ln\tauk}{p}$ is an inverse  `scale pressure' for optical depth, measuring how quickly \tauk\ increases by one $e$-folding, and as such  it simultaneously determines the width and magnitude of the transmissivity gradient. This quantity turns out to differ significantly between \htwo\ and \cotwo, as we will see in Section \ref{sec_applications}\ref{sec_co2}. 
  
  It should be noted here that the $\tau=1$ `law' for radiative cooling is not iron-clad, and can be violated in various ways. First, it will only hold if the \CTS\ term dominates, which is not a given; in PRE, for instance, the temperature profile adjusts itself until the exchange terms exactly cancel the \CTS\ term, as they must. Furthermore,  as emphasized by \cite{huang2014}, the \CTS\ term itself is only defined relative to a vertical coordinate $\xi$ (taken here to be pressure),  and  will only peak at $\tau=1$ if $\tau$ depends on $\xi$ exponentially or with a power law (as with $\xi=z$ or $p$), ensuring that $\partialder{\ln \tauk}{\xi}$ as in \eqnref{trans_grad} has little or no vertical structure. If one takes $\xi=\tau$, for instance, then one obtains $\partialder{\trans_k}{\tau} = e^{-\tau}$ which does not maximize at $\tau=1$. 
  
-
-%
-%To understand the relative magnitude of these terms, we first approximate all finite difference as derivatives, yielding schematically
-%\beqn
-%	\begin{split}
-%		\CTS \ & \ \sim \  B \\
-%		\SX	 \ & \ \sim \ \frac{d^2 B}{d \tau^2} \\
-%		\AX	 \ & \ \sim \ \frac{d B}{d \tau} \\
-%		\GX	 \ & \ \sim \ \frac{d B}{d \tau}  \ .
-%	\end{split}
-%	\label{cts_decomp_ders}
-%\eeqn
-%Thus, the \CTS\ term is distinguished by the fact that it represents one-way exchange to space, and is thus proportional to $B$ rather than a derivative. To better quantify this, we need a mathematical form for $B(\tau)$, which can be obtained by combining our  constant lapse rate atmosphere (with $T\sim p^{\Rd\Gamma/g}$) with the commonly used power-law form for $\tau(p)$
-% \beqn
-% 	\tau = \taus(p/\ps)^\beta 
-%	\label{taup}
-%\eeqn 
-%and the fact that $B\sim T^4$ for a gray gas. Putting this together, we find
-%\beqn
-%	B(\tau) = B(\taus)(\tau/\taus)^\gamma
-%	\label{Btau1}
-%\eeqn
-% where
-%  \beqn
-% 	\gamma \ = \ \frac{4R_d\Gamma}{g\beta} \ .
-%	\label{gamma_gray}
-%\eeqn
-%Thus $\gamma$ determines how rapidly thermal emission varies with optical depth, and from \eqnref{cts_decomp_ders} we see that the exchange terms will be enhanced/suppressed by one or more factors of $\gamma$ relative to the \CTS\ term. The \CTS\ approximation will thus be justified if 
-%\begin{align}
-%	\hspace{6cm}  \gamma  \ll 1 \  \hspace{2cm}  \text{(criterion for CTS approximation) }
-%	\label{cts_criterion}
-%\end{align}
-%(A more careful analysis, which reaches the same conclusion, is given in Appendix \ref{appendix_cts}). Plugging in $\Gamma = 7\ \Kelvin/\km$ and  typical values of $\beta=2$ for a well-mixed gray gas with pressure broadening (P10) and $\beta=4$ for a condensable gas  \citep[e.g.][]{frierson2006,held1982}, we find
-%\beqa
-%\gamma_{\text{well-mixed}}    & = & 0.4 \\
-%\gamma_{\text{condensable}} & = & 0.2  \ .
-%\eeqa
-%Thus the \CTS\ approximation should hold reasonably well  for our gray gas analog of \htwo,  and less so for our \cotwo\ analog, with the difference being due to the differences in the power law exponent $\beta =  d \ln\tau/d \ln p$. In the next section we will compute $\beta$ and $\gamma$ for real \htwo\ and \cotwo, and use these values to  justify the \CTS\ approximation (or not) as well as understand these gases' single-line radiative cooling profiles.
-%
-%%=========%
-%% cts_lbl        %
-%%==========%
-%
-%\subsection{CTS approximation: line-by-line analysis } \label{sec_cts_lbl}
-%The gray analysis performed above may alternately be viewed as an analysis of spectrally resolved radiative cooling at a single wavenumber $k$, except that for the source function $B$ we must use the spectral  Planck function $B(k,T)$, and more importantly we must critically evaluate the appropriateness of the parametrization \eqnref{taup} and our values of $\beta$ against a line-by-line benchmark, which to our knowledge has not been done. 
-%
-%
-%
-%To apply the ideas of the preceding section, we first note that from \eqnref{Btau1} we have
-%\beqa
-%	\gamma  & = &\ \frac{d \ln B}{d\ln \tau} \n \\
-%			   & =   &\left(\frac{d \ln B}{d \ln T}\right) \left(\frac{d \ln T}{d \ln p}\right) \left(\frac{d \ln \tau}{d \ln p}\right)^{-1} \n \\
-%			&  \equiv & \alpha \frac{\Rd \Gamma}{g} \frac{1}{\beta} \label{gamma_real}
-%\eeqa
-%where $\alpha \equiv \frac{d \ln B}{d \ln T}$.  Near 600 \cminverse, a wavenumber relevant for both \htwo\ and \cotwo, $\alpha \approx 3$ (not shown), so we take this as a characteristic value. Note that this is not too far from the gray gas value of $\alpha = (d \ln \sigma T^4/d \ln T) =  4$ (compare Eqns. \eqnref{gamma_gray} and \eqref{gamma_real}). 
-%
-%As for $\beta$, we plot $\frac{d \ln \tau}{d \ln p}$ diagnosed directly from RFM output in Fig. \ref{beta}, and calculate values and uncertainties for $\beta$ as the mean and standard deviation of $\frac{d \ln \tau}{d \ln p}$ restricted to the $\tau=1$ lines. To understand the results, we proceed hierarchically. Fig. \ref{beta}a shows $\frac{d \ln \tau}{d \ln p}$ for a simple case of \cotwo\ only, assuming an isothermal atmosphere at 200 K.  The most common values are those just below 2, with  $\beta=1.7$, reflecting the usual pressure-broadening enhancement of absorption coefficients away from line centers \citep{coakley2014}. Values of $\frac{d \ln \tau}{d \ln p}$ significantly less than 2 or even 1 are evident for some $k$ values, however, reflecting the differing behavior near line center. If we consider \cotwo\ only but with our simplified troposphere, we find that temperature-scaling increases $\beta$ to roughly 2.7 (Fig. \ref{beta}c), so we set 
-%\begin{subequations}
-%	\beqn
-%		\beta_{\cotwo} = 2.7.
-%		\label{beta_co2}
-%	\eeqn
-%
-%For \htwo\ we find that without temperature scaling but with the Clausius-Clapeyron (CC) scaling of \rhov, $\beta = 5$, not far from the $\beta=4$ often assumed in the literature. (Note that stratospheric $\frac{d \ln \tau}{d \ln p} < 2 $ values for \htwo\ are much less common for \htwo\ rather than \cotwo, reflecting the much greater line spacing for \htwo.) Including temperature scaling, however, brings $\beta$ up to 5.7, and we thus set 
-%	\beqn
-%		\beta_{\htwo} = 5.7.
-%		\label{beta_h2o}
-%	\eeqn
-%	\label{beta_vals}
-%\end{subequations}
-%
-%With $\beta$ values in place and with $\Rd \Gamma/g = 0.2$, we find 
-%\begin{subequations}
-%	\begin{align}
-%		\gamma_{\cotwo} & \approx 0.2 \\
-%		\gamma_{\htwo} & \approx 0.1  \ .
-%	\end{align}
-%	\label{gamma_vals}
-%\end{subequations}
-%These values of $\gamma$ are about half of the simple gray values we deduced in \eqnref{gamma_gray}.  Thus the gray theory is not terribly accurate but gets us in the ballpark, for roughly the right reasons, and thus reinforces the conclusion from the the previous section that the CTS approximation should hold well for water vapor, and somewhat less so for \cotwo. 
-%
-%To check this in detail, Fig. \ref{cooling_profiles} shows profiles of each term in \eqnref{cts_decomp} (multiplied by $\frac{g}{\Cp}\der{\tauk}{p}$ to get a heating rate), for both \htwo\ and \cotwo, and for optical depths corresponding to emission levels of 300, 550, and  800 hPa. These profiles were produced by feeding \tauk\ profiles output from RFM into an offline code which numerically evaluates  Eqns. \eqnref{sx1} and \eqnref{ax1} (the CTS and GX terms are straightforwardly evaluated from \eqnref{cts_def} and \eqnref{gx1}). The CTS approximation indeed works remarkably well for \htwo\, and less so for \cotwo\ across the spectrum, due to the differing values of $\gamma$ in \eqnref{gamma_vals}, which themselves result from the differing values of $\beta$ in \eqnref{beta_vals}. Also, the \cotwo\ $\ch_k$  profiles are much broader and have roughly half the amplitude compared to the \htwo\ profiles, as we also saw in Figs. \ref{h2o_rfm_theory}b and \ref{coo_tau_kappa_co2}b; this is again a consequence of the differing $\beta$ values, since the inverse optical depth scale pressure discussed below \eqnref{trans_grad} is here given by
-%\beqn
-%	\der{\ln \tauk}{p} \  \approx \ \frac{\beta }{p} \ .
-%	\label{scale_beta}
-%\eeqn
-%Thus, question \ref{Q_cts} and part of question \ref{Q_contrast} can be answered as follows: The CTS approximations works better for  \htwo\ than for  \cotwo\ because $\beta_{\cotwo} < \beta_{\htwo}$, which also implies that the \cotwo\ weighting function and hence cooling will be weaker and more broadly distributed in the vertical. These different $\beta$ values are ultimately attributable to \cotwo\ being well-mixed versus \htwo\ being condensable and governed by C-C. 
-%
-%With this understanding of radiative cooling from a single line and the CTS approximation in place, we turn to the full spectrum of greenhouse gas radiation in the next section.
-
-%The analytical formalism we develop in the next section will allow us to make this statement precise, and also to estimate $\beta$ analytically. 
-
 %=========%
 % h2o_theory  %
 %==========%
@@ -328,7 +366,7 @@ where $\Tav = (\Ts+\Tstrat)/2$ is an average tropospheric temperature and $D$ is
 \eeqn
 Typical tropospheric values for $\Gamma=7$ K/km are $\beta_{\htwo}=5.5 \pm 1$.
 
-The second (and more important) derived quantity is the wavenumber profile $\konej(p)$, which is the wavenumber in band $j$ (where $j$ denotes either the \rot\ or \vr\  bands from \eqnref{h2o_bands}) which has $\tauk=1$ (and hence cools-to-space) at a given height.  As discussed in Section \ref{sec_tau=1}, these $\tau=1$ contours give the locus of cooling in the $k-p$ plane. We obtain analytical expressions for \konej\  by substituting our simplified $\kappa(k)$ fit  Eqn.  \eqnref{kappa_h2o} into the $\tauk$ formula Eqn. \eqnref{tauk_h2o}, setting $\tauk=1$, and solving for $k$ in each band, yielding
+The second (and more important) derived quantity is the wavenumber profile $\konej(p)$, which is the wavenumber in band $j$ (where $j$ denotes either the \rot\ or \vr\  bands from \eqnref{h2o_bands}) which has $\tauk=1$ (and hence cools-to-space) at a given height.  As discussed in Section \ref{sec_preliminaries}\ref{sec_tau=1}, these $\tau=1$ contours give the locus of cooling in the $k-p$ plane. We obtain analytical expressions for \konej\  by substituting our simplified $\kappa(k)$ fit  Eqn.  \eqnref{kappa_h2o} into the $\tauk$ formula Eqn. \eqnref{tauk_h2o}, setting $\tauk=1$, and solving for $k$ in each band, yielding
  \beqa
 	\begin{split}
 	 	\konerot & = & \krot + \lrot\left[\ln(\kapparot\WVP_0) \    + \ \ln(p/\pref) \  - \ \frac{L}{\Rv T} \right]  \\ 
@@ -336,7 +374,7 @@ The second (and more important) derived quantity is the wavenumber profile $\kon
 	\end{split} \quad .
 	\label{k1_theory}
 \eeqa
-These $\tau=1$ contours  are overlaid over the simple $\tauk$ distribution in Fig. \ref{h2o_rfm_theory}e, and seem to  capture the overall shape and $x$ and $y$ intercepts of the noisier $\tau=1$ contours diagnosed from RFM output (Fig. \ref{h2o_rfm_theory}b). Note that the exponentials in $\kappa_{\htwo}(k)$ and $\exp(-L/\Rv T)$ cancel out in \eqnref{k1_theory}, leaving \konej\ with a strong dependence on $T$ and only a logarithmic dependence on other variables, which will be of significance later.
+These $\tau=1$ contours  are overlaid over the simple $\tauk$ distribution in Fig. \ref{h2o_rfm_theory}e, and capture the overall shape and $x$ and $y$ intercepts of the noisier $\tau=1$ contours diagnosed from RFM output (Fig. \ref{h2o_rfm_theory}b). Note that the exponentials in $\kappa_{\htwo}(k)$ and $\exp(-L/\Rv T)$ cancel out in \eqnref{k1_theory}, leaving \konej\ with a strong dependence on $T$ and only a logarithmic dependence on other variables, which will be of significance later.
 
 With \emph{mise en place}  we can now pursue our goal of an analytical expression for the spectrally integrated heating in band $j$, denoted $\ch_j$. We begin by integrating \eqnref{heat_k} over band $j$, assuming the limits of the integral are implicitly given by  the appropriate wavenumber range from \eqnref{h2o_bands}, and invoking the CTS approximation \eqnref{cts} as well as Eqn.  \eqnref{trans_grad}. This yields
  \beqn
@@ -352,7 +390,7 @@ Note the appearance of the \lj\ parameter here. Plugging this equation into \eqn
 		\ch_j  \ \approx \ - \frac{g}{\Cp}\pi B(\konej,T)\frac{\beta}{p} \lj \ .
 	\label{heat_cts3}
 \eeqn
-Note that $B(\konej,T)$ gives the Planck emission as a function of height \emph{only,} since $\konej$ gives the wavenumber which cools-to-space at a given height (cf. \eqnref{k1_theory}). Section \ref{sec_2k} below will give an explicit evaluation of this formula.
+Note that $B(\konej,T)$ gives the Planck emission as a function of height \emph{only,} since $\konej$ gives the wavenumber which cools-to-space at a given height (cf. \eqnref{k1_theory}). Section \ref{sec_applications}\ref{sec_2k} below will give an explicit evaluation of this formula.
 
 % Interpretation
 \subsection{Interpretation}
@@ -372,17 +410,20 @@ Apart from the factor of $e$, this expression appears in \eqnref{heat_cts3}. Als
 
 As for the factor $\lj e$ in \eqnref{heat_cts4}, it can be interpreted as the characteristic  width of the spectral region at any given height that is cooling to space. For the \htwo\ \rot\ band this gives a width of 165 \cminverse,  in rough eyeball agreement with the width of the active cooling regions in Fig. \ref{h2o_rfm_theory}c,f.  Thus, one interpretation of  \eqnref{heat_cts4} is that radiative heating at a given height  may be interpreted as just spectral Planck emission, times a spectral width,  times an appropriate measure of emissivity,  all evaluated at \konej\ where $\tau_{\konej}=1$. This yields a flux divergence (which in pressure coordinates has units $\Wmsq/\Pa$), which can be multiplied by $g/\Cp$ to get a heating rate in K/day.
  
- \section{Validation and sensitivities}
- Now let us test  whether $\ch_j$ can emulate the heating profiles generated by RFM. Figure \ref{H1d_rfm_cts_theory}a shows  $\sum_j \ch_j$ (as calculated via \eqnref{heat_cts3}) for \htwo, along with \ch\  output directly from RFM, as well as the spectrally integrated CTS approximation \eqnref{cts} using \tauk\ output from RFM. The CTS approximation matches \ch\ quite well throughout most of the troposphere, as is well-known \citep{clough1992,stephens1984,rodgers1966}, though the CTS approximation significantly underestimates cooling near the surface. Since our simple model \eqnref{heat_cts3} is based on the CTS approximation it also underestimates cooling near the surface, as well as  overestimates cooling in the upper troposphere. Also, our simple model collapses all cooling onto the $\tauk=1$ contours shown in Fig. \ref{h2o_rfm_theory}, and the resulting $\ch_{\rot}$ profile thus cuts off abruptly near 200 hPa, rather than smoothly transitioning to lower values near the tropopause (and then back to larger values in the upper stratosphere, as the RFM profiles do). There is a smaller but similar discontinuity near 300 hPa where the $\ch_{\vr}$ contribution drops out. Despite these errors and approximations, however, the simple model nevertheless exhibits the fairly constant $\sim 2$ K/day value produced by more comprehensive calculations, as well as the usual `kink' in the upper troposphere (discussed further in Section \ref{sec_kink} below). Note that no parameters have been tuned to obtain this agreement. 
+ %============%
+ % sec_validation %
+ %============%
+ \section{Validation and sensitivities} \label{sec_validation}
+ Now let us test  whether $\ch_j$ can emulate the heating profiles generated by RFM. Figure \ref{H1d_rfm_cts_theory}a shows  $\sum_j \ch_j$ (as calculated via \eqnref{heat_cts3}) for \htwo, along with \ch\  output directly from RFM, as well as the spectrally integrated CTS approximation \eqnref{cts} using \tauk\ output from RFM. The CTS approximation matches \ch\ quite well throughout most of the troposphere, as is well-known \citep{clough1992,stephens1984,rodgers1966}, though the CTS approximation significantly underestimates cooling near the surface. Since our simple model \eqnref{heat_cts3} is based on the CTS approximation it also underestimates cooling near the surface, as well as  overestimates cooling in the upper troposphere. Also, our simple model collapses all cooling onto the $\tauk=1$ contours shown in Fig. \ref{h2o_rfm_theory}, and the resulting $\ch_{\rot}$ profile thus cuts off abruptly near 200 hPa, rather than smoothly transitioning to lower values near the tropopause (and then back to larger values in the upper stratosphere, as the RFM profiles do). There is a smaller but similar discontinuity near 300 hPa where the $\ch_{\vr}$ contribution drops out. Despite these errors and approximations, however, the simple model nevertheless exhibits the fairly constant $\sim 2$ K/day value produced by more comprehensive calculations, as well as the usual `kink' in the upper troposphere (discussed further in Section \ref{sec_applications}\ref{sec_kink} below). Note that no parameters have been tuned to obtain this agreement. 
  
  To further test Eqn. \eqnref{heat_cts3}, as well as study the sensitivity of \ch\ to the humidity and temperature variations seen across the globe, we perturb our atmospheric column. In one perturbation calculation we change \RH\ from 0.75 to 0.3, and in another we change the lapse rate $\Gamma$ from  7 to 5 K/km.  We  run RFM and also evaluate \eqnref{heat_cts3} on these two perturbed atmospheres, with the results shown in Figs. \ref{H1d_rh_gamma_Ts}a,b  (we cut-off the RFM profiles at the same height that the simple model profiles terminate, for clarity). Both the RFM and simple model profiles show a marked insensitivity to \RH. Both models also show a reduction in cooling in the middle and lower troposphere of roughly $30\%$ with the reduction in $\Gamma$ (in the upper troposphere this signal becomes convolved with that from the differing upper-tropospheric temperatures). These relatively small sensitivities, which are consistent with  the relative uniformity of clear-sky \ch\  across the globe (Fig. \ref{ecmwf_vs_rfm}), can be understood using Eqns. \eqnref{heat_cts3} as well as \eqnref{k1_theory}. These show that changes in \RH\ only affect \konej, decreasing $\WVP_0$ by roughly a factor of two and hence changing the \konej\ by only $\lj\ln 2\approx 35\ \cminverse$, not enough to significantly change the Planck emission $B(\konej,T)$. Changing $\Gamma$, on the other hand,  yields similar changes in  $\konej$ but also has the additional effect of decreasing $\beta$ by roughly $30\%$  (cf. Eqn. \eqnref{beta_h2o}), leading to a similar reduction in \ch. Physically, lowering the vertical temperature gradient  lowers  water vapor emissivity gradients because of Clausius-Clapeyron, which lowers the flux divergence per unit pressure and hence the heating rate. 
 
-As a further  test we consider atmospheric columns with varying $\Ts=(270,280,290,300)$ K, leaving $\RH$ and $\Gamma$ unchanged from the base case. We again run RFM and also evaluate \eqnref{heat_cts3} on these atmospheres, with the results shown in Figs. \ref{H1d_rh_gamma_Ts}c.d. The simple model captures the variations on \ch\ with \Ts, and in particular captures the weakening of the kink in the upper troposphere with decreasing \Ts. This gives some confidence that the simple model exhibits a kink for the right reasons, allowing use to study the kink using the simple model in Section \ref{sec_kink} below.
+As a further  test we consider atmospheric columns with varying $\Ts=(270,280,290,300)$ K, leaving $\RH$ and $\Gamma$ unchanged from the base case. We again run RFM and also evaluate \eqnref{heat_cts3} on these atmospheres, with the results shown in Figs. \ref{H1d_rh_gamma_Ts}c.d. The simple model captures the variations on \ch\ with \Ts, and in particular captures the weakening of the kink in the upper troposphere with decreasing \Ts. This gives some confidence that the simple model exhibits a kink for the right reasons, allowing use to study the kink using the simple model in Section \ref{sec_applications}\ref{sec_kink} below.
 
 %==============%
 % sec_applications %
 %==============%
-\section{Applications} \label{applications}
+\section{Applications} \label{sec_applications}
 
 % 2k
 \subsection{A back-of-the-envelope estimate of \ch} \label{sec_2k}
@@ -417,12 +458,12 @@ Figure \ref{pptf_tinv} shows $\ppt F(T)$ (\Wmsq/K) for our atmospheric columns w
 \eeqn
 which is just \eqnref{heat_cts3} multiplied by $(C_p/g)(dp/dT)$. Though the RFM profiles at various \Ts\ all show the pronounced lower-tropospheric cooling which is neglected by the CTS approximation and hence absent in our simple model, both calculations nevertheless exhibit a high degree of  \Ts-invariance. Together with the results of \cite{cronin2017}, this provides some sense that the \Ts-invariance of $\ppt F$ is robust. Figure \ref{pptf_tinv}  also shows that our simple model captures the relevant physics, which is simply that \eqnref{pptf_simple} is essentially  a function of $T$ alone. The only $p$-dependence in \eqnref{pptf_simple} are the pressure broadening factors in \eqnref{k1_theory} (which were neglected in the argument of JR18), but these  are only logarithmic in $p$ and hence can't compete with the  $T$-dependence stemming from the Planck function and Clausius-Clapeyron.
  
- Another point to make about these profiles is that the flux divergence in temperature coordinates is not roughly constant in height, but is rather monotonic, with no kink in the upper troposphere. Thus the kink in $\ch\sim \ppp F$  results from choosing pressure as the vertical coordinate, with the pressure derivative yielding a $1/p$ factor in \eqnref{heat_cts3} which yields the kink, as discussed above.
+  Another point to make about these profiles is that the flux divergence in temperature coordinates is not roughly constant in height, but is rather monotonic, with no kink in the upper troposphere. Thus the kink in $\ch\sim \ppp F$  results from choosing pressure as the vertical coordinate, with the pressure derivative yielding a $1/p$ factor in \eqnref{heat_cts3} which yields the kink, as discussed above.
  
  
 % OLR
 \subsection{OLR} \label{sec_olrk}
-The formalism developed here can also be applied to estimate the spectrally resolved outgoing longwave radiation $\OLRk \equiv F_k(p=0)$, where we estimate this as simply the Planck function evaluated at an appropriate emission temperature. For tropospheric emission we estimate the emission temperature by setting $\tauk=1$ in  \eqnref{tauk_h2o} and solving for $T$; analytical expressions for the resulting emission temperatures $T_1(k)$ in terms of the Lambert $W$ function are given in Appendix \ref{appendix_T1}. For some $k$, however,  $T_1(k)$ will be undefined because $\tauk<1$ even at the surface; this is the water vapor `window' region $\krot(\Ts) < k < \kvr(\Ts)$, for which we set \OLRk\ equal to surface Planck emission.  Mathematically, our estimate for  \OLRk\ is then 
+The formalism developed here can also be applied to estimate the spectrally resolved outgoing longwave radiation $\OLRk \equiv F_k(p=0)$, where we estimate this as simply the Planck function evaluated at an appropriate emission temperature. For tropospheric emission we estimate the emission temperature by setting $\tauk=1$ in  \eqnref{tauk_h2o} and solving for $T$; analytical expressions for the resulting emission temperatures $T_1(k)$ in terms of the Lambert $W$ function are given in the Appendix. For some $k$, however,  $T_1(k)$ will be undefined because $\tauk<1$ even at the surface; this is the water vapor `window' region $\krot(\Ts) < k < \kvr(\Ts)$, for which we set \OLRk\ equal to surface Planck emission.  Mathematically, our estimate for  \OLRk\ is then 
 \beqn
 	\OLRk \ =  \ \left\{ \begin{array}{cl} \pi B(k,T_1(k)) & \mbox{where $T_1(k)$ is defined} \\
 														\pi B(k,\Ts) & \mbox{where $\krot(\Ts) < k < \kvr(\Ts)$ \quad (window region) \ .} 
@@ -437,7 +478,7 @@ Figure \ref{olr} shows this estimate of \OLRk, along with \OLRk\ as output direc
 \subsection{\cotwo\ } \label{sec_co2}
 As another application of the formalism developed so far, we pursue an idealized calculation of $\tauk$ and \chk\ for \cotwo, analogous to those shown in Fig. \ref{h2o_rfm_theory} for \htwo. This application illustrates the generality of the formalism, and also contrasts the behavior of the two gases.
 
-For this case we run RFM just as described in Section \ref{sec_rfm_calcs}, except our $k$ range is now 500-850 \cminverse, we use a preindustrial \cotwo\ concentration of 280 ppmv, and RFM's $\chi$ factor was used to suppress far-wing absorption of \cotwo. In analogy to  \eqnref{h2o_bands}, we define bands for \cotwo:
+For this case we run RFM just as described in Section \ref{sec_preliminaries}\ref{sec_rfm_calcs}, except our $k$ range is now 500-850 \cminverse, we use a preindustrial \cotwo\ concentration of 280 ppmv, and RFM's $\chi$ factor was used to suppress far-wing absorption of \cotwo. In analogy to  \eqnref{h2o_bands}, we define bands for \cotwo:
 \beqa
 		\begin{split}
 	    		\text{\cotwo\ $P$ band: } && 500 &<\   k\ <\  \kQ\equiv 667.5\ \cminverse \\
@@ -477,32 +518,50 @@ This can be understood from Eqns. \eqnref{cts}-\eqnref{trans_grad}, which tell u
 \subsection{Effects of \htwo\ continuum and \cotwo\ overlap} \label{sec_cont_co2}
 Our calculations so far have neglected the water vapor continuum as well as overlap effects between \htwo\ and \cotwo, both of which are known to affect radiative cooling and OLR. While we do not pursue simple models of these effects here, we should investigate the errors we induce by neglecting them, and explain why our 1D RFM calculation which neglects these effects nonetheless resembles the ECMWF profile in Fig. \ref{ecmwf_vs_rfm}b, which includes them.
 
-We first consider the \htwo\ continuum. Figure \ref{cont_co2_effects}a shows \chk\ from an RFM calculation identical to the base case considered above, but with the continuum turned on \citep[RFM contains a hard-coded version of the MT\_CKD continuum,][]{mlawer2012}. The spectrally integrated \ch\ profile from this case is shown in Fig. \ref{cont_co2_effects}c. The continuum increases \ch\ throughout the troposphere, especially at lower levels. When we then add on the effects of \cotwo\ overlap (Fig. \ref{cont_co2_effects}b,c), however, we find that much of this increase is cancelled due to the presence of strong \cotwo\ lines. From Fig. \ref{cont_co2_effects}c we see that  the only real contrast between our base case and the more realistic case with both continuum and \cotwo\ contributions is at temperatures of 285 or above (thinking here in temperature coordinates). Such temperatures  may not necessarily make a strong contribution to the globally averaged \ch\ profile shown in Fig. \ref{ecmwf_vs_rfm}, which is averaged on pressure levels and thus conflates different temperatures.
+We first consider the \htwo\ continuum. Figure \ref{cont_co2_effects}a shows \chk\ from an RFM calculation identical to the base case considered above, but with the continuum turned on \citep[RFM contains a hard-coded version of the MT\_CKD continuum,][]{mlawer2012}. The spectrally integrated \ch\ profile from this case is shown in Fig. \ref{cont_co2_effects}c. The continuum increases \ch\ throughout the troposphere, especially at lower levels. When we then add on the effects of \cotwo\ overlap (Fig. \ref{cont_co2_effects}b,c), however, we find that much of this increase is cancelled due to the presence of strong \cotwo\ lines. From Fig. \ref{cont_co2_effects}c we see that  the only real contrast between our base case and the more realistic case with both continuum and \cotwo\ contributions is above 850 hPa or so, corresponding to temperatures of 290 or above (thinking here in temperature coordinates). Such temperatures  may not necessarily make a strong contribution to the globally averaged \ch\ profile shown in Fig. \ref{ecmwf_vs_rfm}, which is averaged on pressure levels and thus conflates different temperatures.
 
 %=========%
 % Summary  %
 %=========%
 \section{Summary and discussion} \label{sec_summary}
-By approximating greenhouse gas spectroscopy with piecewise linear functions (Eqns. \eqnref{kappa_h2o} and \eqnref{kappa_co2}) as well as employing analytically expressions for \htwo\ and \cotwo\ optical depth (Eqns. \eqnref{tauk_h2o} and \eqnref{tauk_co2}), we built simple models of spectrally resolved and integrated radiative cooling as well as OLR which roughly emulate the gross behavior of these quantities as simulated by a state-of-the-art, line-by-line radiative transfer scheme (Figs. \ref{h2o_rfm_theory}--\ref{olr}). The simplicity of our models allowed us to answer various questions about the magnitude of radiative cooling (i.e. why 2 K/day), the sensitivity of cooling profiles to perturbations, the nature of the upper-tropospheric kink in \ch\ and the  spectral peak in OLR, \Ts-invariance of $\ppt F$, and the contrast in cooling between \htwo\ and \cotwo.
+By approximating greenhouse gas spectroscopy with piecewise linear functions (Eqns. \eqnref{kappa_h2o} and \eqnref{kappa_co2}) as well as employing analytically expressions for \htwo\ and \cotwo\ optical depth (Eqns. \eqnref{tauk_h2o} and \eqnref{tauk_co2}), we built simple models of spectrally resolved and integrated radiative cooling as well as OLR which roughly emulate the gross behavior of these quantities as simulated by a state-of-the-art, line-by-line radiative transfer scheme (Figs. \ref{h2o_rfm_theory}--\ref{H1d_rh_gamma_Ts}, \ref{pptf_tinv}--\ref{co2_rfm_theory}). The simplicity of our models allowed us to answer various questions about the magnitude of radiative cooling (i.e. why 2 K/day), the sensitivity of cooling profiles to perturbations, the nature of the upper-tropospheric kink in \ch\ and the  spectral peak in OLR, \Ts-invariance of $\ppt F$, and the contrast in cooling between \htwo\ and \cotwo.
 
-Our results also give perspective on the oft-used `Newtonian cooling' approximation to radiative cooling \cite[e.g.][]{fueglistaler2009}. In this picture, net radiative cooling results from temperature perturbations away from a steady-state radiative equilibrium  temperature profile. At the same time, the CTS approximation \eqnref{cts}  suggests that LW cooling is \emph{not} determined relative to any radiative equilibrium profile, but is just given by the Planck function  times an emissivity gradient, which never vanishes. The resolution to this is that in the stratosphere, where Newtonian cooling approximations are often employed, LW cooling is balanced by SW heating, primarily from ozone. Thus the radiative equilibrium of the stratosphere is not a pure radiative equilibrium in the LW (in which the CTS approximation would break down due to cancellation by exchange terms), but rather a balance between the LW and SW. Thus the base state of a Newtonian cooling approximation indeed has significant LW cooling, as implied by \eqnref{cts} and also recognized in earlier literature \citep[e.g.][]{dickinson1973}.
+Our results also give perspective on the oft-used `Newtonian cooling' approximation to radiative cooling \cite[e.g.][]{fueglistaler2009}. In this picture, net radiative cooling results from temperature perturbations away from a steady-state radiative equilibrium  temperature profile. At the same time, the CTS approximation \eqnref{cts}  suggests that LW cooling is \emph{not} determined relative to any radiative equilibrium profile, but is just given by the Planck function  times an emissivity gradient, and thus never vanishes. The resolution to this is that in the stratosphere, where Newtonian cooling approximations are often employed, LW cooling is balanced by SW heating, primarily from ozone. Thus the radiative equilibrium of the stratosphere is not a pure radiative equilibrium in the LW (in which the CTS approximation would break down due to cancellation by exchange terms), but rather a balance between the LW and SW. Thus the base state of a Newtonian cooling approximation indeed has significant LW cooling, as implied by \eqnref{cts} and also recognized in earlier literature \citep[e.g.][]{dickinson1973}.
 
-Our formalism can also be combined with other theories. In section \ref{sec_Ts_invariance} we made contact with the theory of JR18 but there are additional possibilities, such as the recently published semi-analytical formalism of \cite{koll2018}. As a quick example, we make a rough estimate of their parameter $\Tinf\approx 350 \ \Kelvin$, which is the temperature at which the no-continuum water vapor window closes in a saturated, moist-adiabatic atmosphere. To do that within our formalism, we take Eqn. \eqnref{tauk_h2o} and first set $k=1000\ \cminverse$ (center of the window), corresponding via Eqn. \eqnref{kappa_h2o} to a global minimum absorption coefficient $\kappamin\approx2\times 10^{-4}\ \meter^2/\kg$. We also set $p=\pref$ so that we are at the surface, and plug $\RH=1$ and $\Gamma=2.5$ K/km \citep[estimated from the $\Ts=350$ K adiabat in Fig. S1  of ][]{goldblatt2013} into Eqn. \eqnref{WVP0} (keeping $\Tav=250$ K). We then solve the resulting equation for temperature, yielding the  estimate
+Our formalism can also be combined with other theories. In Section \ref{sec_applications}\ref{sec_Ts_invariance} we made contact with the theory of JR18 but there are additional possibilities, such as the recently published semi-analytical formalism of \cite{koll2018}. As a quick example, we make a rough estimate of their parameter $\Tinf\approx 350 \ \Kelvin$, which is the temperature at which the no-continuum water vapor window closes in a saturated, moist-adiabatic atmosphere. To do that within our formalism, we take Eqn. \eqnref{tauk_h2o} and first set $k=1000\ \cminverse$ (center of the window), corresponding via Eqn. \eqnref{kappa_h2o} to a global minimum absorption coefficient $\kappamin\approx2\times 10^{-4}\ \meter^2/\kg$. We also set $p=\pref$ so that we are at the surface, and plug $\RH=1$ and $\Gamma=2.5$ K/km \citep[estimated from the $\Ts=350$ K adiabat in Fig. S1  of ][]{goldblatt2013} into Eqn. \eqnref{WVP0} (keeping $\Tav=250$ K). We then solve the resulting equation for temperature, yielding the  estimate
 \beqn
 	\Tinf \ = \ \frac{L}{\Rv \ln(\kappamin\WVP_0)} \ \approx \ 360 \ \Kelvin,
 	\n
 \eeqn
 in the neighborhood  of  350 K as obtained by \cite{koll2018} with a comprehensive line-by-line calculation.
 
-While such applications are encouraging, the simple model as developed here is still highly idealized and could be further developed in several different directions. Further developments could include incorporating the effects of the \htwo\ continuum and \cotwo\ overlap, as discussed in  Section \ref{sec_cont_co2}. One could also similarly simplify the spectroscopy of other important greenhouse gases like methane and ozone, and thus include their effects in this simple model. With sufficient elaboration, such efforts could lead towards transparent, extremely cheap, reduced-accuracy interactive radiation schemes. This could be done at various levels within the framework presented here, but even the use of the smoothed spectroscopy  alone (without the simplified optical depth expressions which assume constant \RH\ and $\Gamma$) could reduce the cost of existing radiation calculations. For applications where high-accuracy radiation is not required, such as short-term weather forecasting or idealized modeling \citep[e.g. idealized aquaplanets such as that of][]{frierson2006}, the reduction in accuracy may be acceptable.
+While such applications are encouraging, the simple model as developed here is still highly idealized and could be further developed in several different directions. Obvious next steps include incorporating the effects of the \htwo\ continuum and \cotwo\ overlap; including these would enable application of this model to important climate change quantities such as  \cotwo\ forcing and clear-sky Cess sensitivity. One could also similarly simplify the spectroscopy of other important greenhouse gases like methane and ozone, and thus include their effects in this simple model. With sufficient elaboration, such efforts could lead towards transparent, extremely cheap, reduced-accuracy interactive radiation schemes. This could be done at various levels within the framework presented here, but even the use of the smoothed spectroscopy  alone (without the simplified optical depth expressions which assume constant \RH\ and $\Gamma$) could reduce the cost of existing radiation calculations. For applications where high-accuracy radiation is not required, such as short-term weather forecasting or idealized modeling \citep[e.g. idealized aquaplanets such as that of][]{frierson2006}, the reduction in accuracy may be acceptable.
 
 Another extension of this work would be towards less idealized atmospheric profiles. As emphasized by, e.g., \cite{stevens2017},  vertical gradients in \RH\ can have dramatic implications for radiative cooling profiles and their associated  circulations. Similar effects have been studied in the context of radiative instabilities and self-aggregation of convection \citep{beucler2018,beucler2016,emanuel2014}. Extending this work to include non-uniform \RH\ might allow for greater understanding and  ease of modeling of phenomena such as these. 
 
 % Discuss CTS approximation in revision, once have a better sense of sensitivity to vertical grid.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ACKNOWLEDGMENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\acknowledgments
+We thank ECMWF for providing the ERA Interim data. This research was supported by NSF grants AGS-1417659 and AGS-1660538, and NJ was supported by a  Hess fellowship from the Princeton Geosciences department. NJ thanks David Romps for guidance in early stages of this work and for suggesting the delta function approach to integrating Eqn. \eqnref{heat_cts1}. NJ also thanks  Jacob Seeley and Robert Pincus for helpful feedback and encouragement.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPENDIXES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Use \appendix if there is only one appendix.
 \appendix
-\section*{Appendix}
-\section{Emission temperatures for \htwo} \label{appendix_T1}
+
+% Use \appendix[A], \appendix}[B], if you have multiple appendixes.
+%\appendix[A]
+
+%% Appendix title is necessary! For appendix title:
+\appendixtitle{Emission temperatures for \htwo}
+\label{appendix_T1}
 To estimate \OLRk\ we need $\Tone(k)$, the effective emission temperature as a function of wavenumber. We estimate this by  setting $\tauk=1$ in  \eqnref{tauk_h2o} and solving for $T$, where we first substitute in
 \beqn
 	p \ =\ \ps\left(\frac{T}{\Ts}\right)^{g/\Rd\Gamma}  
@@ -517,16 +576,45 @@ where
 \beqnonum
 	\Tstar 	  \ \equiv \ \frac{\Rd \Gamma L}{g \Rv} \ , \hspace{1cm}  \tau_0(k)  \ \equiv \  \WVP_0\kappa(k)\frac{\ps}{\pref}  \ .
 \eeqnonum
-	
-%========%
-% Figures    %
-%========%
 
+%%% Appendix section numbering (note, skip \section and begin with \subsection)
+% \subsection{First primary heading}
+
+% \subsubsection{First secondary heading}
+
+% \paragraph{First tertiary heading}
+
+%% Important!
+%\appendcaption{<appendix letter and number>}{<caption>} 
+%must be used for figures and tables in appendixes, e.g.,
+%
+%\begin{figure}
+%\noindent\includegraphics[width=19pc,angle=0]{figure01.pdf}\\
+%\appendcaption{A1}{Caption here.}
+%\end{figure}
+%
+% All appendix figures/tables should be placed in order AFTER the main figures/tables, i.e., tables, appendix tables, figures, appendix figures.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% REFERENCES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make your BibTeX bibliography by using these commands:
+ \bibliographystyle{ametsoc2014}
+\bibliography{library}
+% \bibliography{references}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Enter tables at the end of the document, before figures.
+%%
+%
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{c | | c | c} 
 							  		  			  & \htwo  & \cotwo \\ \hline \hline
-			$\beta$							  & $\beta_{\htwo} \ = \ 5.5$  & $\beta_{\cotwo} \ = 2$  \\  \hline
+%			$\beta$							  & $\beta_{\htwo} \ = \ 5.5$  & $\beta_{\cotwo} \ = 2$  \\  \hline
 			$k$ (\cminverse)			  & \begin{tabular}{@{}c@{}}\krot = 150 \\ \kvr = 1450  \end{tabular} & \kQ = 667.5  \\  \hline
 			$\kappa\ (\meter^2/\kg)$ & \begin{tabular}{@{}c@{}}\kapparot = 250\\ \kappavr = 10 \end{tabular} & \kappaQ = 175 \\ \hline  
 			$l$ (\cminverse)			  & \begin{tabular}{@{}c@{}}\lrot = 61 \\ \lvr = 42  \end{tabular} & \lQ = 13  \\  \hline
@@ -537,6 +625,32 @@ where
 	\end{center}
 \end{table}
 
+
+%\begin{table}[t]
+%\caption{This is a sample table caption and table layout.  Enter as many tables as
+%  necessary at the end of your manuscript. Table from Lorenz (1963).}\label{t1}
+%\begin{center}
+%\begin{tabular}{ccccrrcrc}
+%\hline\hline
+%$N$ & $X$ & $Y$ & $Z$\\
+%\hline
+% 0000 & 0000 & 0010 & 0000 \\
+% 0005 & 0004 & 0012 & 0000 \\
+% 0010 & 0009 & 0020 & 0000 \\
+% 0015 & 0016 & 0036 & 0002 \\
+% 0020 & 0030 & 0066 & 0007 \\
+% 0025 & 0054 & 0115 & 0024 \\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FIGURES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Enter figures at the end of the document, after tables.
+%%
+%
 % Figure ecmwf_vs_rfm
 \begin{figure}[h]
 	\begin{center}
@@ -576,7 +690,7 @@ where
 %Figure H1d_rh_gamma_Ts
 \begin{figure}[h]
 	\begin{center}
-			\includegraphics[scale=0.6]{../plots/H1d_rh_gamma_Ts}
+			\includegraphics[scale=0.5]{../plots/H1d_rh_gamma_Ts}
 		\caption{\textbf{(a)} Profiles of \ch\ as output from RFM applied to columns with $\RH=0.3$ (blue line) and $\Gamma=5$ K/km (red line). 
 					\textbf{(b)}\ As in (a), but computed from \eqnref{heat_cts3}. 
 					\textbf{(c)}\ As in (a), but for atmospheres with varying \Ts.
@@ -590,7 +704,7 @@ where
 %Figure Planck_k1rot
 \begin{figure}[h]
 	\begin{center}
-			\includegraphics[scale=0.7]{../plots/planck_k1rot}
+			\includegraphics[scale=0.6]{../plots/planck_k1rot}
 		\caption{\textbf{(Left)} The Planck density $\pi B(k,T)$, with $\konerot$ overlaid. \textbf{(Right)} The function $B^*(\konerot,T)$, equal to $B(\konerot,T)$ normalized by its surface value, along with $\beta^*/p^*$, equal to the emissivity gradient from Eqn. \eqnref{heat_cts4} normalized by its surface value.  Note logarithmic $x$-axis. The change in both factors roughly compensate throughout most of the troposphere up until $\approx 300$ hPa or so, where the decline in $B^*(\konej,T)$ is more severe. This yields the well-known kink in \ch. 
 		\label{planck_k1rot}
 		}
@@ -639,11 +753,12 @@ where
 	\end{center}
 \end{figure}
 
-\pagebreak
 
-\bibliographystyle{apa}
-\bibliography{/Users/nadir/Dropbox/resources/bibtex_mendeley/library}
 
+%\begin{figure}[t]
+%  \noindent\includegraphics[width=19pc,angle=0]{figure01.pdf}\\
+%  \caption{Enter the caption for your figure here.  Repeat as
+%  necessary for each of your figures. Figure from \protect\cite{Knutti2008}.}\label{f1}
+%\end{figure}
 
 \end{document}
-
