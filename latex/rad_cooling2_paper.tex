@@ -179,6 +179,7 @@ Here $\trans_k \ \equiv \ \exp(-\tauk)$ is the transmission function and $\pi B(
  		\partialder{\trans_k}{p} \  =  \ -\frac{\beta}{p} \tauk e^{-\tauk} 
 		 \label{trans_grad} 
 \eeqn
+<<<<<<< Updated upstream
 where
 \beqn
 		\beta \  \equiv  \ \partialder{\ln \tauk}{\ln p} \ . 
@@ -200,6 +201,93 @@ where
 %	\end{split}
 %	\label{cts_decomp_ders}
 %\eeqn
+=======
+ The function $\tauk \exp(-\tauk)$ has a relatively sharp peak at $\tauk=1$, and so long as \partialder{\ln\tauk}{p}  has negligible vertical structure in the neighborhood of $\tau=1$, the transmissivity gradient and hence the CTS term will peak 
+at $\tau=1$. Note also that \partialder{\ln\tauk}{p}\ is an inverse  `scale pressure' for optical depth, measuring how quickly \tauk\ increases by one $e$-folding, and that it simultaneously determines the width and magnitude of the transmissivity gradient. This quantity will play a key role in later sections.
+
+Returning to heating rates, we now plot \chcts\ and \chkcts, the spectrally integrated and resolved heating rates calculated using  \eqnref{cts},  in Fig. \ref{coo_tau_kappa_h2o}a,b. Away from the surface, the CTS approximation appears to be quite accurate, as noted by previous studies \citep[e.g.][]{clough1992,rodgers1966}.  In addition, the \CTS\ term has a very simple mathematical structure,  and unlike the exact spectral cooling \eqref{heat_k} does not require an integration of the radiative transfer equations to find $F_k$. The \CTS\ term is thus much simpler to compute and manipulate than the total cooling, an advantage utilized by some GCM radiation parameterizations  \citep[e.g.][]{fels1980}.
+
+The narrative so far ties together various pieces of radiative transfer physics in a satisfying way: spectrally-resolved heating rates \chk\ are dominated by the \CTS\ term \chkcts, which maximizes where $\tauk=1$, the height  of which is determined by \kapparef.  At the same time, however, this narrative does not yet provide a back-of-the-envelope estimate of \ch. Also, we still lack an understanding of why the \CTS\ approximation works so well, and under what conditions we might  expect it to break down.
+
+To bring these questions into focus,  Fig. \ref{coo_tau_kappa_co2} shows plots analogous to that of Fig. \ref{coo_tau_kappa_h2o}, with the same idealized atmosphere except with \cotwo\ rather than \htwo\ as the radiatively active species, with a \cotwo\ concentration of 280 ppmv. The narrative of the previous paragraph largely holds, in that the bands of cooling correspond to $\tauk=1$ levels which themselves are determined by $\kapparef(k)$,  but some differences with the \htwo-only case emerge. Firstly, the mid-tropospheric spectrally integrated heating \ch\ for \cotwo\ is several  times smaller in magnitude than that for \htwo. Though this seems largely due to the width of their respective absorption bands, it is unclear how to make this  quantitative. Furthermore, the widths of these bands cannot be the whole story, as the spectrally-\emph{resolved} heating rates \chk\ for \cotwo\ are roughly half that of \htwo.  Finally, Fig. \ref{coo_tau_kappa_co2}a-c shows that the \CTS\ approximation holds less well for \cotwo\ than for \htwo. The reasons for this are unclear, as to date the CTS approximation seems only to have been justified by numerical experiment, rather than theoretical analysis. 
+
+This review of the physics of radiative cooling has thus raised several questions:
+\begin{enumerate}
+	\item Why is $\ch\sim O(1\ \text{K/day})$? Can this be estimated in a back-of-the-envelope fashion? \label{Q_heating}
+	\item Why does the CTS approximation work, and why does it work better for \htwo\ than \cotwo?	    \label{Q_cts}
+	\item Why is $\ch_k$ twice as large for \htwo\ as for \cotwo, and why is \ch\ several times larger?		\label{Q_contrast}
+\end{enumerate}
+
+The goal of this paper is to answer these questions, by building and using simple radiation models which nonetheless emulate much more comprehensive radiative transfer schemes \citep[see][for further discussion of this approach]{jeevanjee2017a}. Our first task will be to understand the radiative cooling from a single spectral line (Section \ref{sec_single_line}); we do this in both a gray gas and real gas context , with the \CTS\ approximation playing a leading role in both. This single line analysis will yield answers to question \ref{Q_cts}. We then tackle the full spectrum of real gas radiation in Section \ref{sec_cts_theory}, where we combine the \CTS\ approximation with a parameterization of greenhouse gas spectroscopy inspired by that of \cite{wilson2012}. These simplifications will allow us to spectrally integrate the right-hand side of \eqref{cts} and build simple models for $\ch_k$ and \ch, allowing us to answer questions \ref{Q_heating} and \ref{Q_contrast}.
+
+%%================%
+%% Single-line analysis  %
+%%================%
+%\section{Radiative cooling from a single line} \label{sec_single_line}
+%We begin by analyzing radiative cooling from a single line. At first glance, intuition for this quantity  seems difficult to come by, even in a gray gas context, as heating rates are flux divergences (Eqn. \ref{heat}) so one must solve the radiative transfer equations first to obtain both upwards and downwards fluxes, and then differentiate to get the heating rate. This makes radiative cooling, in principle, a non-local quantity. The great simplification of the \CTS\ approximation is that \eqnref{cts} is \emph{local} in the vertical, and thus much simpler to compute and, perhaps, to understand. We will develop a formalism for the \CTS\ approximation and give a brief theoretical justification for it in Section \ref{sec_cts_gray},  deferring full details to Appendix \ref{appendix_cts}. We will then apply the \CTS\ approximation to real gases in Section \ref{sec_cts_lbl}, using it to answer question \ref{Q_cts} and part of \ref{Q_contrast} and also lay the groundwork for the spectral analysis of Section \ref{sec_cts_theory}.
+%
+%%========%
+%% cts_gray   %
+%%=========%
+% 
+%\subsection{The \CTS\ approximation} \label{sec_cts_gray}
+%We use a gray gas model \citep{pierrehumbert2010} to establish our formalism and analyze the \CTS\ approximation, as this model contains the essential physics. For simplicity and clarity we will work with optical depth   as our vertical coordinate, taking care to point out where other coordinates may give differing behavior. 
+%
+%Consider a gray source function $B$ in  \Wmsq,  optical depth $\tau$ increasing downwards towards a surface value of \taus, and net upward flux $F$ satisfying the gray radiative transfer equations. As detailed in Appendix \ref{appendix_cts}, the flux divergence (in $\tau$ coordinates) may be decomposed as 
+%	\beqn
+%		\ddtau{F}(\tau) \ = \ \CTS \ + \ \SX + \ \AX \ + \  \GX \  . 
+%		\label{cts_decomp}
+%	\eeqn
+%These terms are depicted schematically in Fig. \ref{cts_decomp_cartoon}, and can be interpreted as follows. CTS is the `cooling-to-space'  term 
+%	\beqn
+%		\CTS \ \equiv \ - B(\tau) e^{-\tau} 
+%	\label{cts_def}
+%	\eeqn
+%which represents the energy emitted by a layer to outer space (Fig. \ref{cts_decomp_cartoon}a). 
+%% (the \CTS\ approximation is just the claim that this term dominates \eqref{cts_decomp}).
+%% i.e. that
+%%\beqn
+%%	\pptau F \ \approx \ - B(\tau)e^{-\tau} \ .
+%%	\label{cts_approx}
+%%\eeqn
+%%Tthe other terms in \eqref{cts_decomp} are as follows.  
+%The \SX\ term is the `symmetric exchange' term 
+%	\beqn 
+%		\SX \ \equiv \   \ \left\{ \begin{array}{cr} \int_0^\tau [B(\tau + x) - 2B(\tau) + B(\tau-x)]e^{-x}\,dx   & \tau < \taus/2 \\
+%																															 &  \\	
+%												\int_{0}^{\taus-\tau} [B(\tau + x) - 2B(\tau) + B(\tau-x)]e^{-x}\,dx   & \tau > \taus/2 
+%							\end{array}   \right.  
+%			\label{sx1}
+%	\eeqn
+% and represents exchange between level $\tau$ and layers both above and below with equal optical thickness (Fig. \ref{cts_decomp_cartoon}b). Exchange with the colder layer above at $\tau-x$ yields a first-order finite difference $B(\tau-x) - B(\tau)$, and vice-versa for the warmer layer below, yielding the second-order finite difference in \eqnref{sx1}.  \citep[This term  gives rise to the `diffusive' approximation to radiative cooling found in textbooks, e.g.][]{goody1989}. Meanwhile, \AX\ is the `anti-symmetric exchange' term
+%	\beqn
+%		\AX  \ \equiv \  \ \left\{ \begin{array}{cr} \int_{\tau}^{\taus-\tau}[B(\tau + x)-B(\tau)]e^{-x}	dx 	& \tau < \taus/2 \\
+%																																					& \\
+%													 \int_{\taus - \tau}^{\tau}[B(\tau - x)-B(\tau)]e^{-x} 	dx 	& \tau > \taus/2 
+%							\end{array}  \right. \quad 
+%				\label{ax1}
+%	\eeqn
+% which represents exchange between level $\tau$ and that part of the atmosphere not included in \SX, which will lie entirely at either greater or smaller $\tau$ values (Fig. \ref{cts_decomp_cartoon}c). Thus \AX\  contains only a first-order finite difference.
+%Finally,  \GX\ is the `ground-exchange' term
+%\beqn
+%	\GX\  \equiv  \  [B(\Ts) - B(\tau)]\exp[-(\taus - \tau)] \ .
+%	\label{gx1}
+%\eeqn
+%representing exchange between level $\tau$ and the surface (Fig. \ref{cts_decomp_cartoon}c).
+%
+%(As an important aside, note that CTS term \eqref{cts_def} has weighting function $e^{-\tau}$, which on its own does \emph{not} maximize at $\tau=1$; as emphasized by \cite{huang2014}, the  `$\tau=1$ law' arises from considering a flux divergence \emph{relative to a vertical coordinate} $\xi$ (such as $z$ or $p$) on which $\tau$ depends exponentially or with a power law, ensuring that $\partialder{\ln \tauk}{\xi}$ as in \eqnref{trans_grad} has little or no vertical structure.)
+%
+%To understand the relative magnitude of these terms, we first approximate all finite difference as derivatives, yielding schematically
+%\beqn
+%	\begin{split}
+%		\CTS \ & \ \sim \  B \\
+%		\SX	 \ & \ \sim \ \frac{d^2 B}{d \tau^2} \\
+%		\AX	 \ & \ \sim \ \frac{d B}{d \tau} \\
+%		\GX	 \ & \ \sim \ \frac{d B}{d \tau}  \ .
+%	\end{split}
+%	\label{cts_decomp_ders}
+%\eeqn
+>>>>>>> Stashed changes
 %Thus, the \CTS\ term is distinguished by the fact that it represents one-way exchange to space, and is thus proportional to $B$ rather than a derivative. To better quantify this, we need a mathematical form for $B(\tau)$, which can be obtained by combining our  constant lapse rate atmosphere (with $T\sim p^{\Rd\Gamma/g}$) with the commonly used power-law form for $\tau(p)$
 % \beqn
 % 	\tau = \taus(p/\ps)^\beta 
@@ -234,6 +322,10 @@ where
 %\subsection{CTS approximation: line-by-line analysis } \label{sec_cts_lbl}
 %The gray analysis performed above may alternately be viewed as an analysis of spectrally resolved radiative cooling at a single wavenumber $k$, except that for the source function $B$ we must use the spectral  Planck function $B(k,T)$, and more importantly we must critically evaluate the appropriateness of the parametrization \eqnref{taup} and our values of $\beta$ against a line-by-line benchmark, which to our knowledge has not been done. 
 %
+<<<<<<< Updated upstream
+=======
+%For this purpose we use the Reference Forward Model \citep[RFM,][]{dudhia2017}, a flexible, line-by-line, longwave radiative transfer model. We used HITRAN spectroscopic data for \htwo\ from 0--1500 \cminverse\ and \cotwo\ from 500--850 \cminverse, and used an idealized atmospheric profile with $\Ts=300\ \Kelvin$,  a constant lapse rate of $\Gamma= 7\ \Kelvin/\km$ up to to an isothermal stratosphere at $\Tstrat=200$ K, and \RH=0.75 for \htwo\ calculations and a \cotwo\ concentration of 280 ppmv, except where specified. We ran RFM at a spectral resolution of 1 \cminverse\ and output optical depth, heating rates, and absorption coefficients, all as a function of wavenumber and pressure. For simplicity in comparing to our analytical model, optical depth calculations assumed a zenith angle of 0, and heating rates were computed using a two-stream approximation (rather than RFM's default 4-stream) as well as assuming constant $B(k,T)$ within atmospheric layers. Also for simplicity we omitted the water vapor continuum, though the effects of this are explored in Section \ref{sec_real_atm}.  RFM's $\chi$ factor was used to suppress far-wing absorption of \cotwo. 
+>>>>>>> Stashed changes
 %
 %
 %To apply the ideas of the preceding section, we first note that from \eqnref{Btau1} we have
@@ -269,7 +361,11 @@ where
 %\end{subequations}
 %These values of $\gamma$ are about half of the simple gray values we deduced in \eqnref{gamma_gray}.  Thus the gray theory is not terribly accurate but gets us in the ballpark, for roughly the right reasons, and thus reinforces the conclusion from the the previous section that the CTS approximation should hold well for water vapor, and somewhat less so for \cotwo. 
 %
+<<<<<<< Updated upstream
 %To check this in detail, Fig. \ref{cooling_profiles} shows profiles of each term in \eqnref{cts_decomp} (multiplied by $\frac{g}{\Cp}\der{\tauk}{p}$ to get a heating rate), for both \htwo\ and \cotwo, and for optical depths corresponding to emission levels of 300, 550, and  800 hPa. These profiles were produced by feeding \tauk\ profiles output from RFM into an offline code which numerically evaluates  Eqns. \eqnref{sx1} and \eqnref{ax1} (the CTS and GX terms are straightforwardly evaluated from \eqnref{cts_def} and \eqnref{gx1}). The CTS approximation indeed works remarkably well for \htwo\, and less so for \cotwo\ across the spectrum, due to the differing values of $\gamma$ in \eqnref{gamma_vals}, which themselves result from the differing values of $\beta$ in \eqnref{beta_vals}. Also, the \cotwo\ $\ch_k$  profiles are much broader and have roughly half the amplitude compared to the \htwo\ profiles, as we also saw in Figs. \ref{h2o_rfm_theory}b and \ref{coo_tau_kappa_co2}b; this is again a consequence of the differing $\beta$ values, since the inverse optical depth scale pressure discussed below \eqnref{trans_grad} is here given by
+=======
+%To check this in detail, Fig. \ref{cooling_profiles} shows profiles of each term in \eqnref{cts_decomp} (multiplied by $\frac{g}{\Cp}\der{\tauk}{p}$ to get a heating rate), for both \htwo\ and \cotwo, and for optical depths corresponding to emission levels of 300, 550, and  800 hPa. These profiles were produced by feeding \tauk\ profiles output from RFM into an offline code which numerically evaluates  Eqns. \eqnref{sx1} and \eqnref{ax1} (the CTS and GX terms are straightforwardly evaluated from \eqnref{cts_def} and \eqnref{gx1}). The CTS approximation indeed works remarkably well for \htwo\, and less so for \cotwo\ across the spectrum, due to the differing values of $\gamma$ in \eqnref{gamma_vals}, which themselves result from the differing values of $\beta$ in \eqnref{beta_vals}. Also, the \cotwo\ $\ch_k$  profiles are much broader and have roughly half the amplitude compared to the \htwo\ profiles, as we also saw in Figs. \ref{coo_tau_kappa_h2o}b and \ref{coo_tau_kappa_co2}b; this is again a consequence of the differing $\beta$ values, since the inverse optical depth scale pressure discussed below \eqnref{trans_grad} is here given by
+>>>>>>> Stashed changes
 %\beqn
 %	\der{\ln \tauk}{p} \  \approx \ \frac{\beta }{p} \ .
 %	\label{scale_beta}
@@ -281,6 +377,7 @@ where
 %The analytical formalism we develop in the next section will allow us to make this statement precise, and also to estimate $\beta$ analytically. 
 
 %=========%
+<<<<<<< Updated upstream
 % h2o_theory  %
 %==========%
 \section{A simple model for  \htwo\ cooling} \label{sec_h2o_theory}
@@ -296,6 +393,25 @@ To build a simple model for radiative cooling from \htwo,  we must first simplif
 	\label{h2o_bands}
 \eeqa
  We then apply a linear fit to $\ln \kapparef(k)$ within each band  to obtain a piecewise exponential approximation for $\kapparef(k)$:
+=======
+% cts_theory  %
+%==========%
+\section{An analytical model for spectrally-integrated cooling} \label{sec_cts_theory}
+ The previous sections have analyzed the CTS approximation for spectrally-resolved heating $\ch_k$, thus addressing question \ref{Q_cts} posed in the introduction, and also part of question \ref{Q_contrast}. In this section we build on those results and spectrally integrate them to obtain a simple model for spectrally-integrated heating $\ch$, with an eye towards fully answering questions \ref{Q_heating} and \ref{Q_contrast}.
+ 
+ To build a simple model for radiative cooling from real gases, we must first simplify their spectroscopy, i.e. the functional form of their mass absorption coefficients $\kapparef(k)$ (Fig. \ref{kappa}, thin dotted light gray lines). We do this by following \cite{wilson2012} and first coarse-graining $\ln \kapparef(k)$ for each gas over spectral intervals of $10 \ \cminverse$ (Fig. \ref{kappa},  thick dashed dark gray lines). We then define two spectral bands for each gas as follows:
+\begin{subequations}
+	\beqa
+	    	\text{\htwo\ rotation band (\textbf{rot}): } & \krot \equiv 150 & <\  k\  < \ 1000\ \cminverse \\
+    		\text{\htwo\ vibration-rotation band (\textbf{vr}): } & 1000 & < \  k\ <\  \kvr\equiv 1450\ \cminverse \\
+    		\text{\cotwo\ $P$ band: } & 500 &<\   k\ <\  \kQ\equiv 667.5\ \cminverse \\
+    		\text{\cotwo\ $R$ band: } & \kQ &<\   k\ < \  850\ \cminverse 
+	\eeqa
+	\label{band_defs}
+\end{subequations}
+ \citep[here \kQ\ denotes the spectral location of the \cotwo\ $Q$ branch, which lies between the $P$ and $R$ branches but has a much smaller spectral width, e.g.][]{coakley2014}. We than apply a linear fit to $\ln \kapparef(k)$ within each band  to obtain approximations for $\kapparef(k)$:
+ \begin{subequations}
+>>>>>>> Stashed changes
  \beqa
  	\kappa_{\htwo}(k) & \equiv & \left\{ \begin{array}{cr} 
 													\kapparot \exp\left(-\frac{k-\krot}{\lrot}\right) \quad \quad \text{for $k$ in \textbf{rot}}  \\
