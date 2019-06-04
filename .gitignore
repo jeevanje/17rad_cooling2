@@ -1,0 +1,6 @@
+plots/*
+papers/
+src/*.R~
+*/*.png
+*.png
+data/*

@@ -27,7 +27,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% To be entered only if twocol option is used
 
-\journal{jcli}
+\journal{jas}
 
 %  Please choose a journal abbreviation to use above from the following list:
 % 
@@ -151,11 +151,14 @@
 \newcommand{\tauks}{\ensuremath{\tau_{k,s}}}
 \newcommand{\taus}{\ensuremath{\tau_s}}
 \newcommand{\tautilde}{\ensuremath{\tilde{\tau}}}
+\newcommand{\taumax}{\ensuremath{\tau_{\text{max}}}}
+
 \newcommand{\Bs}{\ensuremath{B_s}}
 \newcommand{\CTS}{\ensuremath{\mathrm{CTS}}}
 \newcommand{\mubar}{\ensuremath{\bar{\mu}}}
 \newcommand{\kapparef}{\ensuremath{\kappa_{\mathrm{ref}}}}
 \newcommand{\kappao}{\ensuremath{\kappa_0}}
+\newcommand{\kappaone}{\ensuremath{\kappa_1}}
 \newcommand{\Tref}{\ensuremath{T_{\mathrm{ref}}}}
 \newcommand{\pref}{\ensuremath{p_{\mathrm{ref}}}}
 \newcommand{\WVP}{\ensuremath{\mathrm{WVP}}}
@@ -165,18 +168,18 @@
 \newcommand{\Tone}{\ensuremath{T_1}}
 \newcommand{\Tinf}{\ensuremath{T_\infty}}
 \newcommand{\kappamin}{\ensuremath{\kappa_{\mathrm{min}}}}
-\newcommand{\omegadiab}{\ensuremath{\omega_{\mathrm{diabatic}}}}
+\newcommand{\omegadiab}{\ensuremath{\omega_{\mathrm{d}}}}
 
 
 
 % kappa param variables
 \newcommand{\kapparot}{\ensuremath{\kappa_{\mathrm{rot}}}}
-\newcommand{\kappavr}{\ensuremath{\kappa_{\mathrm{vr}}}}
+\newcommand{\kappavr}{\ensuremath{\kappa_{\text{v-r}}}}
 \newcommand{\kappaQ}{\ensuremath{\kappa_Q}}
 \newcommand{\krot}{\ensuremath{k_\mathrm{rot}}}
-\newcommand{\kvr}{\ensuremath{k_\mathrm{vr}}}
+\newcommand{\kvr}{\ensuremath{k_\text{v-r}}}
 \newcommand{\konerot}{\ensuremath{k_{1,\mathrm{rot}}}}
-\newcommand{\konevr}{\ensuremath{k_{1,\mathrm{vr}}}}
+\newcommand{\konevr}{\ensuremath{k_{1,\text{v-r}}}}
 \newcommand{\kQ}{\ensuremath{k_Q}}
 \newcommand{\koneP}{\ensuremath{k_{1,P}}}
 \newcommand{\koneR}{\ensuremath{k_{1,R}}}
@@ -184,17 +187,17 @@
 \newcommand{\lrot}{\ensuremath{l_\mathrm{rot}}}
 \newcommand{\lvr}{\ensuremath{l_\mathrm{vr}}}
 \newcommand{\lQ}{\ensuremath{l_{Q}}}
-\newcommand{\vr}{\ensuremath{\mathbf{vr}}}
-\newcommand{\rot}{\ensuremath{\mathbf{rot}}}
-
+\newcommand{\vr}{\ensuremath{\textbf{v-r}}}
+\newcommand{\rot}{\ensuremath{\textbf{rot}}}
+%  NOTE: Change vr to v-r?
 
 %Variables
-\newcommand{\figurepath}{../plots/}
-%\newcommand{\figurepath}{./}
+%\newcommand{\figurepath}{../plots/}
+\newcommand{\figurepath}{./}
 
 %% May use \\ to break lines in title:
 
-\title{An Analytical Real Gas Model for Tropospheric Radiative Cooling}
+\title{Simple Spectral Models for Atmospheric Radiative Cooling}
 
 %%% Enter authors' names, as you see in this example:
 %%% Use \correspondingauthor{} and \thanks{Current Affiliation:...}
@@ -243,7 +246,8 @@
 % For BAMS authors only: If your article requires a Capsule Summary, please place the capsule text at the end of your abstract
 % and identify it as the capsule. Example: This is the end of the abstract. (Capsule Summary) This is the capsule summary. 
 
-\abstract{Atmospheric radiative cooling is a fundamental aspect of the Earth's greenhouse effect and is intrinsically connected to  atmospheric motions. Clear-sky longwave cooling turns out to be remarkably uniform throughout the troposphere, taking on a characteristic value of roughly 2 K/day. Though these aspects are robustly reproduced by models, an intuitive understanding is lacking. \linebreak Here we pursue such understanding by building a simple model for real gas (rather than gray gas) clear-sky  radiative cooling. We  focus on \htwo, consider  a single idealized atmospheric column, and employ the line-by-line Reference Forward Model (RFM) for reference and validation.  We  combine the cooling-to-space approximation with simplified greenhouse gas spectroscopy and analytical expressions for optical depth to build a simple, analytical model which reproduces the characteristic cooling  of 2 K/day as well as the relative insensitivity of radiative cooling to relative humidity and temperature. This model expresses cooling rates as a product of the Planck function, an emissivity gradient, and a characteristic spectral width  derived from our simplified spectroscopy. The simple model is then used to investigate  several key aspects of radiative cooling and outgoing longwave radiation (OLR). In particular, we attribute the upper tropospheric kink in radiative cooling to a declining Planck function, verify the \Ts-invariance of \cite{jeevanjee2018},  connect the spectral peak in OLR to the onset of the water vapor window, and attribute the contrast in radiative cooling between \htwo\ and \cotwo\ to differences in both emissivity gradients and characteristic spectral widths. }
+\abstract{Atmospheric radiative cooling is a fundamental aspect of the Earth's greenhouse effect, and is intrinsically connected to  atmospheric motions. At the same time, basic aspects of longwave radiative cooling, such as its characteristic value of 2 K/day, its sharp decline (or `kink') in the upper troposphere, and the large values of \cotwo\ cooling in the stratosphere, are difficult to understand intuitively or estimate with pencil-and-paper. Here we pursue such understanding by building simple spectral (rather than gray) models for clear-sky  radiative cooling.  We construct these models by combining the cooling-to-space approximation with simplified greenhouse gas spectroscopy and analytical expressions for optical depth, and we validate these simple models with line-by-line calculations.  \\ We find that cooling rates can be expressed as a product of the Planck function, a vertical emissivity gradient, and a characteristic spectral width derived from our simplified spectroscopy. This expression allows for a pencil-and-paper estimate of the 2 K/day tropospheric cooling rate, as well as an explanation of enhanced \cotwo\ cooling rates in the stratosphere. We also use these models to attribute the upper tropospheric kink in radiative cooling to a decline in spectrally integrated transmissivity gradients. 
+ }
 
 \begin{document}
 
@@ -256,76 +260,114 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \section {Introduction}
-The emergence of a turbulent troposphere in Earth's atmosphere stems from instabilities of the pure radiative equilibrium state (PRE). These instabilities lead to deep convection in the tropics and baroclinic eddies in mid-latitudes, both of which lead to temperature profiles which deviate markedly from those of PRE.  Since PRE is by definition an atmospheric state with zero atmospheric radiative cooling, deviations from PRE inevitably lead to radiative cooling, which is thus tightly coupled to turbulence and the hydrological cycle. Furthermore, the magnitude of this radiative cooling characterizes the large-scale circulation, as clear air subsiding in an environment with lapse-rate $\Gamma \equiv - \der{T}{z}$ and clear-sky net radiative heating rate \chnet\ (K/day, positive for heating)  must subside diabatically in steady-state with pressure velocity $\omegadiab   =  - \rho g\chnet/\Gamma$.
+Atmospheric radiative cooling is a fundamental aspect of Earth's greenhouse effect, and is intrinsically connected to atmospheric motions. Although  radiative equilibrium  states with no atmospheric cooling are possible in principle, on Earth such states are unstable; this leads to a turbulent troposphere with deep convection in the tropics and baroclinic eddies in mid-latitudes, both of which lead to non-radiative-equilibrium temperature profiles which exhibit radiative cooling.
 
-A remarkable feature of \chnet\ and its longwave component \ch\  is that both are  surprisingly uniform throughout the troposphere,  with a typical value of $\ch\approx -2 $K/day  (Fig. \ref{ecmwf_vs_rfm}a; partial compensation by shortwave heating results in $\chnet\approx -1$ K/day, not shown). This value of \ch\ is fairly constant in both latitude and height, which means that apart from perturbations  due to clouds and water vapor variability, the clear-sky troposphere can be considered as diabatically subsiding everywhere at a fairly uniform rate of $\omegadiab\approx\ 30$ hPa/day . It thus seems worthwhile to try and understand why $\ch \approx -2$ K/day, and why this number seems so robust.
+This tight coupling between radiative cooling, turbulence, and the hydrological cycle has many consequences. Perhaps foremost,  radiative cooling characterizes the large-scale circulation, as the diabatic vertical velocity with which clear air subsides is given by  $\omegadiab   =  -\rho g\chnet/\Gamma$ \citep[e.g.][here \chnet\ is clear-sky net radiative heating rate  in K/day, positive for heating, and all other symbols have their usual meaning]{mapes2001}. 
+This clear-sky subsidence velocity turns out to be remarkably uniform across the globe, because \ch\ is; indeed, a latitude-height distribution of the clear-sky, longwave only heating  \ch\ (Figure \ref{ecmwf_vs_rfm}a, taken from ECMWF reanalysis) shows that throughout most of the troposphere, $\ch  =  -2 \pm 0.5 $ K/day. (Inclusion of shortwave heating from water vapor results in a \chnet\ of roughly  -1 K/day, not shown.) Despite the robustness of this value, however, we cannot estimate \ch\ from first principles:\footnote{Given the average outgoing longwave radiation (OLR) of $240\ \Wmsq$ and a tropospheric mass of $\sim\ 8000\ \kg/\meter^2$, one can estimate a global average \ch\  as $\ch \approx - (240\ \Wmsq)/(8\times 10^3\ \kg/\meter^2 \cdot 1000\ \joule/\kg/\Kelvin) = - 2.5 \times 10^{-5} \ \Kelvin/\second = -2.5$ K/day. This calculation cannot tell us about the latitude-height distribution of \ch, however, and moreover assumes that all OLR emanates from the atmosphere, an  assumption which is reasonable  in the global mean but does not hold locally \citep[][]{costa2012}.} 
+gray models are insufficient for this task (as discussed below), leaving only comprehensive radiative transfer schemes as a means for calculating \ch.
 
-For complex systems such as Earth's climate, such an understanding must be comprised of a hierarchy of models \citep{jeevanjee2017a,held2005}. An attempt to construct such a hierarchy for radiative cooling might proceed as follows. We first collapse the cooling distribution in Fig. \ref{ecmwf_vs_rfm}a onto a global radiative cooling profile by taking a meridional average (Fig. \ref{ecmwf_vs_rfm}b, solid line). We then find empirically that this global-mean heating profile can be emulated by that generated by a single-column, line-by-line calculation of radiative cooling from \htwo\ only in an idealized\footnote{Note that this calculation has no \htwo\ continuum or \cotwo\ absorption, which are errors that compensate (Section \ref{sec_applications}\ref{sec_cont_co2}).} tropical atmosphere using the line-by-line Reference Forward Model (RFM, dashed line of Fig. \ref{ecmwf_vs_rfm}b,  further details in Section \ref{sec_preliminaries}\ref{sec_rfm_calcs}).  Though this 1D RFM calculation does a decent job of emulating the global average profile,  even this calculation is too complex to provide much understanding, as it involves the convolution of complex greenhouse gas spectroscopy with non-linear radiative transfer. Turning to simpler models, then, we calculate radiative cooling using a gray radiation model, using the same thermodynamic profiles and absorber concentration as the RFM calculation, but using a non-pressure-broadened gray absorption coefficient tuned to yield the same outgoing longwave radiation (OLR) as the RFM calculation. This gray radiation model turns out to be \emph{too} simple, however;  its radiative cooling profile has too much vertical structure, and its lower-tropospheric heating rates err by a factor of two to three (Fig. \ref{ecmwf_vs_rfm}b, gray line). There is thus a gap between our simulation and understanding of radiative cooling, and it is the goal of this paper to help fill that gap.
+Another consequence of the coupling between radiative cooling and turbulence is that wherever radiative cooling declines in the upper troposphere, latent heating by convection and baroclinic eddies must follow suit. To get a feel for this, we collapse the ECMWF cooling distribution in Fig. \ref{ecmwf_vs_rfm}a onto a global radiative cooling profile by taking a meridional average (Fig. \ref{ecmwf_vs_rfm}b, solid line). This profile has a characteristic value of -2 K/day through most of the troposphere, and also exhibits the well-known `kink' around 200 hPa; this kink is significant, as it has been argued to constrain  the altitude of clouds associated with both tropical convection \citep[i.e. the FAT hypothesis,][]{hartmann2002,hartmann2001} as well as extratropical baroclinic eddies \citep{thompson2017}.\footnote{For a recent critique of these arguments, however, see  \cite{seeley2019b}.}
+ Despite its importance, however, the kink has so far only been attributed qualitatively to a decline in 'water vapor emissivity', a notion which has not been made precise or quantified. Also, above the kink one sees \ch\  declining towards zero, but then rebounding sharply in the stratosphere. It is well known that this strong stratospheric cooling emanates from  \cotwo\ molecules, not \htwo\  \citep[e.g][]{zhu1992, manabe1964}, but we lack a simple explanation for how \cotwo\ cooling rates can be many times larger in the stratosphere than the troposphere, despite comparable temperature ranges in the two regions.  % we only seek to explain how \cotwo\ cooling can rise behaves the way it does in the observed stratosphere, which in particular has weak lapse rates such that the cooling-to-space approximation used below is valid \citep{jeevanjee2019b}. 
+% The question of how these stratospheric lapse rates are themselves determined, as a balance between longwave \cotwo\ cooling and shortwave ozone heating, is a separate and more profound one which we do not treat here.}
 
-To reduce the complexity of `real gas' (as opposed to gray gas) radiative cooling, we will simplify the radiative transfer using  the cooling-to-space approximation \citep[e.g.][]{petty2006}, and simplify the spectroscopy by approximating the spectrum of mass absorption coefficients $\kappa(k)$ as piecewise exponentials, 
-% justify this theoretically with references?
-as also done in \cite{wilson2012}. These simplifications not only make the real gas radiative transfer analytically tractable, but also lead us to a characteristic spectral width across which any absorption band of a given gas will emit at a given height. This characteristic width provides a crucial  ingredient in understanding \ch, which we can then express  as the product of a Planck function times an optical depth gradient times this width. The resulting \ch\ profiles successfully emulate those produced by RFM, and can then be used to understand the magnitude of \ch\ as well as its  (in)sensitivities to temperature and humidity. We then apply our formalism  to understand the upper tropospheric kink in radiative cooling (visible in Figure \ref{ecmwf_vs_rfm}b at about 300hPa), the \Ts-invariance of \cite{jeevanjee2018},  the spectral peak in OLR, and the contrast in radiative cooling between \htwo\ and \cotwo. Only clear-sky radiative cooling will be considered here.
+There are thus three basic questions we can ask about the \ch\ profile shown in Fig. \ref{ecmwf_vs_rfm}b:
+\begin{enumerate}
+	\item \label{Q2k} Why does it take on a characteristic value of - 2 K/day, and why is this value relatively robust across  the troposphere?
+	\item \label{Qkink} What causes the kink around 200 hPa?
+	\item \label{Qstrat} Why is \cotwo\ cooling enhanced in the stratosphere relative to the troposphere?\footnote{Note that the strong longwave stratospheric cooling rates  are themselves fixed by the need to balance strong shortwave heating by ozone, so this question is really about how \cotwo\ exhibits such strong cooling in a stratosphere  which is not significantly warmer than the troposphere.}
+\end{enumerate}
+
+The goal of this paper is to shed light on these questions. To do so, we will need to bridge the gap between the complex radiative transfer calculations used  in Fig. \ref{ecmwf_vs_rfm}  and  intuitive gray models, which are still used in atmospheric modeling (see Section \ref{sec_summary}) but are \emph{too} simple in the sense that they do not reproduce the phenomena of interest. To bring this into focus, we first emulate the ECMWF \ch\ profile in Fig. \ref{ecmwf_vs_rfm}b with the \ch\ profile generated by an idealized,
+%\footnote{This calculation has no \htwo\ continuum or \cotwo\ absorption, omissions which are discussed in Appendix\ref{sec_cont_co2}.}
+ single-column calculation of radiative cooling from \htwo\ only in a constant lapse rate and constant relative humidity tropical atmosphere, using the line-by-line Reference Forward Model (RFM, dashed line of Fig. \ref{ecmwf_vs_rfm}b;  further details in Section \ref{sec_preliminaries}\ref{sec_rfm_calcs}). This heavily idealized single column  RFM calculation does a good job of emulating the tropospheric global average ECMWF profile. Despite the relative simplicity of this RFM calculation, however, it is still too complex to provide much understanding, as it still convolves intricate greenhouse gas spectroscopy with non-linear radiative transfer. 
+
+If we instead turn to  a gray radiation model tuned to yield the same column-integrated cooling as the RFM profile,\footnote{More precisely, we use the same thermodynamic profiles and absorber concentration as the RFM calculation, but use a non-pressure-broadened gray absorption coefficient tuned to yield the same column-integrated radiative cooling (of roughly 170 \Wmsq) as the RFM calculation.} we find instead that the gray model cannot emulate the RFM and ECMWF profiles: the gray radiative cooling profile has far too much vertical structure, and its upper-tropospheric heating rates err by a factor of three or more (Fig. \ref{ecmwf_vs_rfm}b, gray line; see also Fig. S1 of \cite{seeley2019b}). There is thus indeed a gap between our simulation and understanding of radiative cooling, and answering the questions posed above will require bridging this gap.
+
+% add table of approximations
+To accomplish this we will consider spectral radiation, but will simplify greenhouse gas spectroscopy by approximating the spectrum of mass absorption coefficients $\kappa(k)$ of our greenhouse gases as piecewise exponentials, as also done in \cite{wilson2012}. We will also simplify the radiative transfer using  the cooling-to-space approximation \citep[e.g.][]{jeevanjee2019b,petty2006, green1967,rodgers1966}. These simplifications lead to a succession of simple spectral models, the SSM2D and SSM1D, constructed in Section \ref{sec_h2o_theory}. These models exhibit the phenomena of interest in questions 1-3 above but are analytically tractable, and are thus used  to address those questions in Sections \ref{sec_interpretation} --  \ref{sec_co2}.
 
 %===============%
 % sec_preliminaries  %
 %===============% 
 \section{Preliminaries}\label{sec_preliminaries}
+Before building models of radiative cooling, we detail the line-by-line calculations which we use as a benchmark, and also review the qualitative picture of spectrally-resolved radiative cooling found in, e.g., \cite{harries2008,clough1992}.
+
 %RFM_calcs
 \subsection{RFM calculations} \label{sec_rfm_calcs}
-We use the Reference Forward Model \citep[RFM,][]{dudhia2017}, a line-by-line, longwave radiative transfer model. We use HITRAN spectroscopic data for the most common isotopologue of \htwo\ from 0--1500 \cminverse, and for our base case consider an idealized atmosphere with $\Ts=300\ \Kelvin$,  a constant lapse rate of $\Gamma= 7\ \Kelvin/\km$ up to to an isothermal stratosphere at $\Tstrat=200$ K, and \RH=0.75 (except where specified). We run RFM at a spectral resolution of 1 \cminverse\ and a vertical resolution of 500 m below 15 km, 1 km between 15 and 30 km, and 2.5 km up to model top at 50 km. We output optical depth, fluxes, heating rates, and absorption coefficients, all as a function of wavenumber and height. For simplicity in comparing to our analytical model below, RFM optical depth calculations assumed a zenith angle of 0, and fluxes and heating rates are computed using a two-stream approximation with a diffusivity factor of $D=1.5$ (rather than RFM's default 4-stream), as well as assuming constant $B(k,T)$ within atmospheric layers.  In our base calculation we omit the water vapor continuum \citep{shine2012}, not because it is negligible but simply for analytic tractability. In Section \ref{sec_applications} we then turn on RFM's continuum parameterization \citep[MT\_CKD,][]{mlawer2012} and  consider its effects.
+All line-by-line calculations in this paper are performed with the Reference Forward Model \citep[RFM,][]{dudhia2017}. We use HITRAN2016 spectroscopic data for the most common isotopologue of \htwo\ and \cotwo\ from 10--1500 \cminverse and 500-850 \cminverse\ respectively. For our BASE case we consider an idealized atmosphere with \htwo\ as the only greenhouse gas, surface temperature $\Ts=300\ \Kelvin$,  a constant lapse rate of $\Gamma= 7\ \Kelvin/\km$ up to to an isothermal stratosphere at $\Tstrat=200$ K, and a vertically uniform relative humidity of \RH=0.75. We run RFM at a spectral resolution of 0.1 \cminverse\ and a uniform vertical resolution of 100 m up to model top at 50 km. We output optical depth, fluxes, heating rates, and absorption coefficients, all as a function of wavenumber and height. For simplicity in comparing to our analytical model below, RFM optical depth is calculated along a vertical path (zenith angle of zero), and fluxes and heating rates are computed using a two-stream approximation (rather than RFM's default four-stream) with a diffusivity factor of $D=1.5$ [as specified in \cite{dudhia2017}, following \cite{clough1992}].\footnote{For reproducibility, note also that we run RFM with the BFX flag disabled. This means the Planck function $B(k,T)$ is assumed constant within an  RFM vertical grid cell, rather than assuming a sub-grid vertical variation of the Planck function which is linear in height. Here $k$ denotes wavenumber.}  In BASE  we omit the water vapor continuum \citep{shine2012}, not because it is negligible but simply for analytic tractability. The effects of the water vapor continuum, as parameterized in RFM \citep[using the MT\_CKD continuum,][]{mlawer2012} are considered in Appendix A.
 
 % Shape of \chk
 \subsection{The shape of \chk}
-In real gas radiative transfer, clear-sky longwave radiative heating \ch\ is calculated by  integrating the spectrally-resolved heating 
+The object of interest in this paper is the clear-sky longwave radiative heating \ch. But, \ch\ is simply the spectral integral of  the spectrally-resolved heating 
 \beqn
 	\ch_k \ \equiv \ \frac{g}{\Cp} \ppp F_k \quad \text{(K/s/\cminverse)}
 	\label{heat_k}
 \eeqn
-where $F_k$ is spectrally-resolved net upward LW flux in $\Wmsq/\cminverse$. Thus,  any understanding of \ch\ must stem from an understanding of \chk. We begin by reviewing the qualitative picture of \chk\  found in, e.g., \cite{clough1992}.
+where $F_k$ is spectrally-resolved net upward LW flux in $\Wmsq/\cminverse$. Thus,  any understanding of \ch\ must stem from an understanding of \chk, and in the next section we will indeed begin by building a simple quantitative model for \chk.  In the meantime, however, it will be useful to review the qualitative physics of \chk, following e.g.  \cite{harries2008,clough1992}.
 
-
-Figure \ref{h2o_rfm_theory}c shows \chk\ from \htwo\ as computed by RFM on our idealized profile. There is a strong band of cooling for $k< 800\ \cminverse$, and a weaker band for $k > 1200\ \cminverse$. To understand these structures we consider   the optical depth $\tauk$, given by
+Figure \ref{h2o_rfm_theory}c shows \chk\ from BASE as computed by RFM. There is a strong band of cooling for $k< 800\ \cminverse$, and a weaker band for $k > 1200\ \cminverse$. To understand these structures, we consider   the optical depth $\tauk$, measured from $p=0$  and given by
 \beqn
 	\tauk(p) \ \equiv  \ \int_0^p \, \underbrace{\kappa(k,T,p')}_{\meter^2/\kg} \underbrace{\qv \frac{dp'}{g}}_{\kg/\meter^2}\ .
 	\label{tauk}
 \eeqn
-Here \qv\ is water vapor specific humidity (kg/kg) and the mass absorption coefficient $\kappa$ ($\kg/\meter^2$) depends not only on $k$ but also on $T$ and $p$,  due to temperature-scaling and pressure broadening \citep[][]{pierrehumbert2010}. All other symbols have their usual meaning. Note that since $\kappa$ is an effective area per unit mass, and the rest of the integrand in \eqnref{tauk} is just the mass per unit area of absorber above level $p$ (i.e. the path length), $\tauk$ can be interpreted as the effective area of absorbers above level $p$ per unit (geometric) area.
+Here \qv\ is water vapor specific humidity (kg/kg) and the mass absorption coefficient $\kappa$ ($\kg/\meter^2$) depends not only on wavenumber $k$ but also on $T$ and $p$,  due to temperature-scaling and pressure broadening \citep[][]{pierrehumbert2010}. All other symbols have their usual meaning. Note that since $\kappa$ is an effective area per unit mass, and since the rest of the integrand in \eqnref{tauk} is just the mass per unit area of absorber above level $p$ (i.e. the path length), $\tauk$ can be interpreted as the effective area of absorbers above level $p$ per unit geometric area.
 
- The spectral distribution of optical depth as output from RFM is shown in Fig. \ref{h2o_rfm_theory}b, which also plots the $\tauk=1$ levels for each $k$. The two diagonal bands in the \chk\ plot correspond to two diagonal $\tauk=1$ bands, which is where we expect emission at a given $k$ to maximize \citep[e.g.][we discuss the basis for this `$\tau=1$ law' below]{petty2006}. The shape of these $\tauk=1$ bands in the $k-p$ plane can themselves be understood in terms of reference absorption coefficients 
+ The spectral distribution of optical depth as output from RFM is shown in Fig. \ref{h2o_rfm_theory}b, which also plots the $\tauk=1$ levels for each $k$. The two diagonal bands in the \chk\ plot correspond to two diagonal $\tauk=1$ bands, which is where we expect emission to space at a given $k$ to maximize [\cite{jeevanjee2019b,wallace2006,petty2006}; see also  Fig. \ref{ecmwf_vs_rfm}b, and Section \ref{sec_preliminaries}\ref{sec_tau=1} below]. The shape of these $\tauk=1$ bands in the $k-p$ plane can themselves be understood in terms of reference absorption coefficients 
  \beqn
   \kapparef(k)\ \equiv  \ \kappa(k,\Tref,\pref)
   \eeqn
-  where we take $(\Tref,\pref)=(300\ \Kelvin, 1\ \text{atm})$. These coefficients, also output from RFM, are shown in  Fig. \ref{h2o_rfm_theory}a. The two $\tauk=1$ bands  in Fig. \ref{h2o_rfm_theory}b correspond to the two absorption bands evident in the \kapparef\ plot: the pure rotation band ($k < 1000\ \cminverse$), and vibration-rotation band ($1000 < k< 1450 \ \cminverse$). By \eqref{tauk}, where \kapparef\ is relatively large then $\tauk=1$  occurs at relatively low pressures,  and vice-versa, so that plots of \kapparef\ and $\tauk=1$ levels must necessarily have the same shape, which then also manifest in the \chk\ field, all of which can be seen in the top row of Fig. \ref{h2o_rfm_theory}. 
+  where we take $(\Tref,\pref)=(300\ \Kelvin, 1\ \text{atm})$. These coefficients, also output from RFM, are shown in  Fig. \ref{h2o_rfm_theory}a. The two $\tauk=1$ bands  in Fig. \ref{h2o_rfm_theory}b correspond to the two absorption bands evident in the \kapparef\ plot: the pure rotation band ($k < 1000\ \cminverse$), and the vibration-rotation band ($1000 < k< 1450 \ \cminverse$). By \eqref{tauk}, where \kapparef\ is relatively large then $\tauk=1$  occurs at relatively high altitudes,  and vice-versa, so that plots of \kapparef\ and $\tauk=1$ levels must necessarily have the same shape. This shape also manifests in the \chk\ field. These multiple manifestations of \htwo\ spectroscopy  can all be seen in the top row of Fig. \ref{h2o_rfm_theory}. 
 
 % \tau=1
-\subsection{The `$\tau=1$ law' and the cooling-to-space approximation} \label{sec_tau=1}
-The $\tau=1$ law that we invoked above, however, strictly speaking applies only to the emission of OLR (or `cooling-to-space'), not radiative heating rates \emph{per se}; this is because  the latter includes not just cooling-to-space but also radiative exchange between atmospheric layers as well as the surface. However, it has been shown that these `exchange terms' are often negligible \citep{clough1992,rodgers1966}, so that radiative cooling may indeed be approximated solely by the cooling-to-space term. This leads to the  \emph{cooling-to-space approximation} \citep[e.g.][section 10.4]{petty2006}:  
+\subsection{The cooling-to-space approximation and the transmissivity gradient} \label{sec_tau=1}
+Strictly speaking, the $\tau=1$ law  invoked above  applies only to the emission of OLR (or `cooling-to-space'), not radiative heating rates \emph{per se}. This is because  the latter includes not just cooling-to-space, but also radiative exchange between atmospheric layers as well as the surface \citep{green1967}. However,  these `exchange terms' are often negligible \citep{jeevanjee2019b,clough1992,rodgers1966}, so radiative cooling may indeed be approximated solely by the cooling-to-space term. This yields the  \emph{cooling-to-space approximation} 
 \beqn
 	\ppp F_k \ \approx \   \pi B(k,T) \partialder{\trans_k}{p} \  .
 	\label{cts}
 \eeqn
-Here $\trans_k \ \equiv \ \exp(-\tauk)$ is the transmission function and $\pi B(k,T) \partialder{\trans_k}{p}$ is the cooling-to-space (or CTS) term in pressure coordinates, representing the differential contribution of an atmospheric layer to the \OLR\ at wavenumber $k$. In the CTS approximation then, spectrally-resolved radiative flux divergence is  simply Planck emission $\pi B(k,T)$ times a transmissivity gradient, the latter of which also serves as a weighting function since for optically thick wavenumbers its characteristic width and magnitude are constrained by $\int\ppp\trans_k \, dp = 1$. That the CTS term  maximizes at $\tau=1$ can be shown by  writing this transmissivity gradient as 
- \beqn
- 		\partialder{\trans_k}{p} \  =  \ -\frac{\beta}{p} \tauk e^{-\tauk} 
-		 \label{trans_grad} 
-\eeqn
-where
+Here $\trans_k \ \equiv \ \exp(-\tauk)$ is the transmission function and $\pi B(k,T) \partialder{\trans_k}{p}$ is the cooling-to-space (or CTS) term in pressure coordinates. This is  the differential contribution of an atmospheric layer to the \OLR\ at wavenumber $k$, and is given by Planck emission $\pi B(k,T)$ times the transmissivity gradient $\ppp \trans_k$.
+
+%That the CTS term  maximizes near $\tau=1$ can be shown in a few different ways. For gases obeying $\tau \sim p^\beta$, setting $\partial^2_p \trans_k = 0$  shows that $\ppp \trans_k$ maximizes at 
+%\beqn
+%	\taumax \ = \  \frac{\beta-1}{\beta} \ .
+%	\label{eqn_taumax}
+%\eeqn
+% This will be close to one, so long as $(\beta-1) \gtrsim 1$. For \cotwo, its well-mixed distribution plus pressure broadening combine to give $\beta=2$ \citep[e.g.][or Eqn. \eqnref{tauk_co2} below]{pierrehumbert2010}, and hence $\taumax=1/2$ . For \htwo, its optical depth is not quite of the form $\tau \sim p^\beta$, but the 
+ 
+How should one think about and evaluate the transmissivity gradient in \eqnref{cts}? For this purpose it is convenient to define the optical depth exponent $\beta$, 
 \beqn
 		\beta \  \equiv  \ \partialder{\ln \tauk}{\ln p} \ . 
 		\label{beta_def}
 \eeqn
- The function $\tauk \exp(-\tauk)$ in \eqnref{trans_grad} has a relatively sharp peak at $\tauk=1$, and so long as $\beta/p$  has negligible vertical structure in the neighborhood of $\tau=1$, the transmissivity gradient and hence the CTS term will indeed peak at $\tau=1$ (as is approximately true for our gray radiation calculation; gray circle in Fig. \ref{ecmwf_vs_rfm}b). Note also that $\beta/p=\partialder{\ln\tauk}{p}$ is an inverse  `scale pressure' for optical depth, measuring how quickly \tauk\ increases by one $e$-folding, and as such  it simultaneously determines the width and magnitude of the transmissivity gradient. This quantity turns out to differ significantly between \htwo\ and \cotwo, as we will see in Section \ref{sec_applications}\ref{sec_co2}. 
+We will see below that $\beta$ is constant for \cotwo, and roughly constant for \htwo.
+%This is no longer strictly constant in the vertical, but is still approximately so for tropospheric \htwo, with typical values of  $\beta \approx 5.5 \pm 1$ [Eqn. \eqnref{beta_h2o} below]. This yields $\taumax \approx 0.8$, again close to 1.  
+We can use $\beta$ to write the transmissivity gradient as 
+ \beqn
+ 		\partialder{\trans_k}{p} \  =  \ -\frac{\beta}{p} \tauk e^{-\tauk}  \ .
+		 \label{trans_grad} 
+\eeqn
+The factor $\beta/p=\ppp\ln\tauk$  is an inverse  `scale pressure' for optical depth, and measures the rate at which  \tauk\ increases by one $e$-folding. The other factor  $\tauk e^{-\tauk}$ is a kind of `weighting function' which peaks at $\tauk=1$, thus giving rise to  the $\tau=1$ law.  [Strictly speaking one also needs to worry about vertical variations in $1/p$ as well as the Planck function, but these turn out to be secondary, \cite{jeevanjee2019b}.] Thus, the peak magnitude of \eqnref{trans_grad} can be estimated by evaluation  at $\tauk=1$:
+\beqn
+	\left. \partialder{\trans_k}{p} \right |_{\tauk=1}  \ =  \ -\ \frac{1}{e}\frac{\beta}{p} \ .
+	\label{trans_grad_tau1}
+\eeqn
+ We thus have the key result that $\beta/p$ governs the peak magnitude of the transmissivity gradient. As such, this quantity will appear frequently  throughout this paper.\footnote{This is one reason why we choose to write \eqnref{trans_grad} in its particular form, with a mix of $p$ and $\tauk$ coordinates. Another reason is that the form \eqnref{trans_grad} is amenable to the analytical spectral integration we perform in Section \ref{sec_h2o_theory}\ref{sec_h2o_integrated}.} 
+In particular, the variations in $\beta/p$ between  \cotwo\ and \htwo, and between troposphere and stratosphere, will  play a significant role in answering question 3 in Section \ref{sec_co2}. 
  
- It should be noted here that the $\tau=1$ `law' for radiative cooling is not iron-clad, and can be violated in various ways. First, it will only hold if the \CTS\ term dominates, which is not a given; in PRE, for instance, the temperature profile adjusts itself until the exchange terms exactly cancel the \CTS\ term, as they must. Furthermore,  as emphasized by \cite{huang2014}, the \CTS\ term itself is only defined relative to a vertical coordinate $\xi$ (taken here to be pressure),  and  will only peak at $\tau=1$ if $\tau$ depends on $\xi$ exponentially or with a power law (as with $\xi=z$ or $p$), ensuring that $\partialder{\ln \tauk}{\xi}$ as in \eqnref{trans_grad} has little or no vertical structure. If one takes $\xi=\tau$, for instance, then one obtains $\partialder{\trans_k}{\tau} = e^{-\tau}$ which does not maximize at $\tau=1$. 
+ As a caveat, note that even though the CTS approximation and the accompanying $\tau=1$ law appear to hold quite well for Earth's atmosphere, these rules are not entirely general. The CTS approximation fails in pure gray radiative equilibrium (which has zero radiative cooling everywhere), and turns out to also depend on the choice of vertical coordinate. These issues, as well as criteria for the CTS approximation (and the $\tau=1$ law) to hold,  are the subject of the companion paper   \cite{jeevanjee2019b}.
  
+% will only hold if the \CTS\ approximation \eqnref{cts} does, which is not a given; in gray PRE, for instance, $\ppp F \equiv 0$ and the temperature profile adjusts itself until the exchange terms exactly cancel the \CTS\ term \citep[see][for a detailed analysis of this case]{jeevanjee2019b}. Furthermore, even if the CTS approximation does hold, the \CTS\ term contains the transmissivity gradient, which itself is only defined relative to a vertical coordinate $\xi$ [taken to be pressure in \eqnref{cts}]. The transmissivity gradient  will only peak near $\tau=1$ if the optical depth exponent $\der{\ln\tau}{\ln \xi}$ is significantly greater than 1. If one takes $\xi=\tau$, for instance, then $\der{\ln\tau}{\ln \xi} = 1 $ and the transmissivity gradient is $\partialder{\trans_k}{\xi} = e^{-\tau}$, which does not maximize at $\tau=1$.  This coordinate-dependence of the `$\tau=1$ law'  is also discussed in greater detail in \cite{jeevanjee2019b}.
+% 
 %=========%
 % h2o_theory  %
 %==========%
-\section{A simple model for  \htwo\ cooling} \label{sec_h2o_theory}
+\section{Simple spectral models for  \htwo\ cooling} \label{sec_h2o_theory}
 
 % h2o_spectral
-\subsection{Spectrally-resolved cooling \chk} \label{sec_h2o_spectral}
-To build a simple model for radiative cooling from \htwo,  we must first simplify its spectroscopy, i.e. the functional form of its mass absorption coefficients $\kapparef(k)$ (Fig. \ref{h2o_rfm_theory}a). We do this by following \cite{wilson2012} and first coarse-graining $\ln \kapparef(k)$ over spectral intervals of $10 \ \cminverse$. We then delineate the  \htwo\ rotation band (\rot) and vibration-rotation band (\vr)  as
+\subsection{SSM2D: a model for spectrally-resolved cooling \chk} \label{sec_h2o_spectral}
+We begin by building a simple model for spectrally and vertically resolved heating rates \chk, focusing for the moment on \htwo. Since the model has two resolved dimensions ($k$ and $p$), we will refer to it as our two-dimensional simple spectral model (SSM2D).
+
+The first step in building the SSM2D for \htwo\ is to simplify \htwo\ spectroscopy, i.e. the functional form of \htwo\ mass absorption coefficients $\kapparef(k)$ (Fig. \ref{h2o_rfm_theory}a). We do this by following \cite{wilson2012} and first coarse-graining $\ln \kapparef(k)$ over spectral intervals of $10 \ \cminverse$ (note that this is already what is plotted in Fig. \ref{h2o_rfm_theory}a). We then delineate the  \htwo\ rotation band (\rot) and vibration-rotation band (\vr)  as
 \beqa
 	\begin{split}
 	    \rot :  & & \krot \equiv 150 & <\  k\  < \ 1000\ \cminverse \\
@@ -336,37 +378,45 @@ To build a simple model for radiative cooling from \htwo,  we must first simplif
  We then apply a linear fit to $\ln \kapparef(k)$ within each band  to obtain a piecewise exponential approximation for $\kapparef(k)$:
  \beqa
  	\kappa_{\htwo}(k) & \equiv & \left\{ \begin{array}{cr} 
-													\kapparot \exp\left(-\frac{k-\krot}{\lrot}\right) \quad \quad \text{for $k$ in \textbf{rot}}  \\
-												    \kappavr \exp\left(-\frac{\kvr-k}{\lvr}\right)   \quad \quad \text{for $k$ in \textbf{vr} .}
+													\kapparot \exp\left(-\frac{k-\krot}{\lrot}\right) \quad \quad \text{for $k$ in \rot}  \\
+												    \kappavr \exp\left(-\frac{\kvr-k}{\lvr}\right)   \quad \quad \text{for $k$ in \vr} .
 												      \end{array} \right.          
 \label{kappa_h2o}
  \eeqa
-This approximation is shown in Fig. \ref{h2o_rfm_theory}d, and by construction emulates the gross behavior of $\kapparef(k)$. The parameters $\ln\kapparot$ and $\ln \kappavr$ are obtained as the maxima of the corresponding straight line fits, and $\lrot$ and $\lvr$ as the corresponding slopes. These parameter values are tabulated in Table \ref{band_params}. Note that the $l$ parameters have units of \cminverse, and describe how fast $\kapparef$ exponentially declines with $k$.
+%This approximation is shown in Fig. \ref{h2o_rfm_theory}d, and by construction emulates the gross behavior of $\kapparef(k)$ while neglecting all the fine-scale variability in $\kapparef(k)$. 
+The parameters $\ln\kapparot$ and $\ln \kappavr$ are obtained as the maxima of the corresponding straight line fits, and $\lrot$ and $\lvr$ as the corresponding slopes. These parameter values are tabulated in Table \ref{band_params}, which also includes other symbol definitions. The $l$ parameters have units of \cminverse, and describe how fast $\kapparef$ exponentially declines with $k$. These parameters, and their analogs for \cotwo, will play a crucial role in what follows.
  
-With the simplified absorption spectra \eqref{kappa_h2o} in hand we can now construct simplified expressions for \htwo\  optical depth \tauk. This is done using the analytical expression for water vapor path from  \cite{koll2018} and  including an approximate pressure-broadening factor $p/\pref$ (but still neglecting temperature scaling), which yields
+With the simplified absorption spectra \eqref{kappa_h2o} in hand we can now construct simplified expressions for \htwo\  optical depth \tauk. This is done using the analytical expression for water vapor path from SI eqn. 2 of  \cite{koll2018}, except we consider an unsaturated atmosphere, replace the $T$ factor out front with an average tropospheric temperature $\Tav = (\Ts+\Tstrat)/2$ (results are not sensitive to this approximation), and consider an arbitrary lapse rate $\Gamma$. Combining this expression for water vapor path with an approximate pressure-broadening factor $p/\pref$  yields
 \begin{align}
 	 \tauk & = \kappa_{\htwo}(k)\frac{p}{\pref}\WVP_0 \exp\left(-\frac{L}{\Rv T}\right) \ .
 	\label{tauk_h2o} 
 \end{align}
-Here $\WVP_0$ has units of water vapor path and is given by
+Here $\WVP_0\exp(-L/\Rv T)$ is the water vapor path ($\kg/\meter^2$), where $\WVP_0$ is a constant given by
 \beqn
-	\WVP_0\equiv D \frac{\Tav \RH p_v^\infty}{\Gamma L}\ ,  
+	\WVP_0\equiv D \frac{\Tav \RH p_v^\infty}{\Gamma L}\  . 
 	\label{WVP0}
 \eeqn
-where $\Tav = (\Ts+\Tstrat)/2$ is an average tropospheric temperature and $D$ is our diffusivity factor of 1.5. 
+ Here $D$ is our diffusivity factor of 1.5 and $p_v^\infty=2.5\times 10^{11}\ \Pa$ is a reference value for the saturation vapor pressure $p^*_v$, satisfying $p^*_v(T) = p^\infty_v \exp(-L/\Rv T)$.
 %\comment{Nadir: Ensure consistency of \Tav\ vs. $T$ in all numeric calculations} !!!
- The optical depth distribution \eqnref{tauk_h2o} is shown in Fig. \ref{h2o_rfm_theory}e. While it does not capture the fine structure in the RFM output (by construction), it does seem to capture the gross optical depth distributions. As a further test of \eqnref{tauk_h2o}, we may plug it into the CTS approximation \eqnref{cts} to obtain a spectrally simplified \chk, shown in Fig. \ref{h2o_rfm_theory}f. Our simplified \chk\ captures the broad characteristics of the \chk\ produced by RFM, though its peak values are somewhat larger. This is not surprising however, as our simple model ignores all but the largest scale variations in $\kappa(k)$. The finer scale variations we neglect serve to `smear out'  cooling in  the $k-p$ plane, such that the cooling around a given $(k,p)$ occurs over a larger $(k,p)$ range in RFM than in our simple model, and must thus have a smaller magnitude in RFM. We will see below that we nonetheless get reasonable values for the spectrally integrated cooling \ch. Taken as a whole, then, Figure \ref{h2o_rfm_theory} shows that our simple model seems to capture the gross behavior of our spectrally-resolved RFM calculations, using as input parameters only the $\kappa$ and $l$ parameters listed in Table \ref{band_params}.
 
+% The optical depth distribution \eqnref{tauk_h2o} is shown in Fig. \ref{h2o_rfm_theory}e. While it does not capture the fine structure in the RFM output (by construction), it does seem to capture the gross optical depth distributions.
+  Substituting \eqnref{tauk_h2o} into the CTS approximation \eqnref{cts} then yields an approximation for  \chk. This \chk, along with the fitted $\kappa_{\htwo}$ of \eqnref{kappa_h2o} and optical depth  \tauk\ of \eqnref{tauk_h2o}, constitute the SSM2D. These fields are shown in the bottom row of Fig. \ref{h2o_rfm_theory}, directly underneath their RFM counterparts. For all three fields the SSM2D captures the gross behavior of the RFM calculation.
+  
+ At the same time, of course, the SSM2D neglects all  fine-scale spectral structure. One drawback of this is that the SSM2D  overestimates the peak values of \chk\  (Fig. \ref{h2o_rfm_theory}c,f). This  occurs because the fine-scale structure in the RFM calculation, when combined with a coarse-graining into 10 \cminverse\ bins as we have done here, yields a \chk\ field which is `smeared out' in  the $k-p$ plane, such that the cooling around a given $(k,p)$ occurs over a larger $(k,p)$ range in RFM than in the SSM2D, and must thus have a smaller magnitude in RFM. 
+ 
+ Upon spectral  integration, however, such errors cancel, and the SSM2D will produce reasonable values for the spectrally integrated cooling \ch, as we will see below. Given this, the SSM2D could be used at this point to try and answer questions 1-3 posed above. However, further insight can be gained by making additional approximations and analytically integrating the \chk\ field over wavenumber space. We turn to this next.
+ 
+ 
 % h2o_integrated
-\subsection{Spectrally-integrated cooling \ch} \label{sec_h2o_integrated}
- We now construct a simple model for spectrally integrated cooling \ch, with an eye towards capturing and understanding the typical value of $\ch\approx -2$ K/day. This will require two further derived quantities. The first is an expression for $\beta$ for \htwo, which we obtain by substituting our expression \eqnref{tauk_h2o} for $\tauk$  into the definition \eqnref{beta_def} of $\beta$:
+\subsection{SSM1D: a model for spectrally-integrated cooling \ch} \label{sec_h2o_integrated}
+ We now construct a 1D simple spectral model (SSM1D) for spectrally integrated cooling \ch. Our starting point will be the SSM2D for \chk, which itself is still  too complicated to be analytically integrated over wavenumber space, so further approximations will be required. (The SSM1D will thus  \emph{not} be equivalent to simply integrating the SSM2D numerically over wavenumber space, though we will employ this latter quantity later on as well.)  To proceed we need two more derived quantities. The first is an expression for $\beta$ for \htwo, which we obtain by substituting our expression \eqnref{tauk_h2o} for $\tauk$  into the definition \eqnref{beta_def} of $\beta$:
 \beqn
 	\beta_{\htwo} \ = \ 1+ \frac{L}{\Rv T}\frac{\Gamma \Rd}{g} \ .
 	\label{beta_h2o}
 \eeqn
-Typical tropospheric values for $\Gamma=7$ K/km are $\beta_{\htwo}=5.5 \pm 1$.
+Typical tropospheric values\footnote{In the tropics, where $\Gamma$ is set by the moist adiabat and is roughly  4 K/km near the surface and 9 K/km in the upper troposphere, the variation in $\beta$ is larger: $\beta_{\htwo}\approx5.5 \pm 2$.} for $\Gamma=7$ K/km are $\beta_{\htwo}=5.5 \pm 1$.
 
-The second (and more important) derived quantity is the wavenumber profile $\konej(p)$, which is the wavenumber in band $j$ (where $j$ denotes either the \rot\ or \vr\  bands from \eqnref{h2o_bands}) which has $\tauk=1$ (and hence cools-to-space) at a given height.  As discussed in Section \ref{sec_preliminaries}\ref{sec_tau=1}, these $\tau=1$ contours give the locus of cooling in the $k-p$ plane. We obtain analytical expressions for \konej\  by substituting our simplified $\kappa(k)$ fit  Eqn.  \eqnref{kappa_h2o} into the $\tauk$ formula Eqn. \eqnref{tauk_h2o}, setting $\tauk=1$, and solving for $k$ in each band, yielding
+The second (and more important) derived quantity is the wavenumber profile $\konej(p)$, which parameterizes the $\tauk=1$ contour in the $k-p$ plane for band $j$ and hence gives the corresponding locus of cooling in the $k-p$ plane (here $j$ denotes either the \rot\ or \vr\  bands from \eqnref{h2o_bands}). We obtain analytical expressions for \konej\  by substituting $\kappa_{\htwo}$ from  Eqn.  \eqnref{kappa_h2o} into the $\tauk$ formula Eqn. \eqnref{tauk_h2o}, setting $\tauk=1$, and solving for $k$ in each band, yielding
  \beqa
 	\begin{split}
 	 	\konerot & = & \krot + \lrot\left[\ln(\kapparot\WVP_0) \    + \ \ln(p/\pref) \  - \ \frac{L}{\Rv T} \right]  \\ 
@@ -374,111 +424,127 @@ The second (and more important) derived quantity is the wavenumber profile $\kon
 	\end{split} \quad .
 	\label{k1_theory}
 \eeqa
-These $\tau=1$ contours  are overlaid over the simple $\tauk$ distribution in Fig. \ref{h2o_rfm_theory}e, and capture the overall shape and $x$ and $y$ intercepts of the noisier $\tau=1$ contours diagnosed from RFM output (Fig. \ref{h2o_rfm_theory}b). Note that the exponentials in $\kappa_{\htwo}(k)$ and $\exp(-L/\Rv T)$ cancel out in \eqnref{k1_theory}, leaving \konej\ with a strong dependence on $T$ and only a logarithmic dependence on other variables, which will be of significance later.
+These $\tau=1$ contours  are overlaid over the simple $\tauk$ distribution in Fig. \ref{h2o_rfm_theory}e, and capture the overall shape and $x$ and $y$ intercepts of the noisier $\tau=1$ contours diagnosed from RFM output (Fig. \ref{h2o_rfm_theory}b). Note that the exponentials in $\kappa_{\htwo}(k)$ and $\exp(-L/\Rv T)$ cancel out in \eqnref{k1_theory}, leaving \konej\ with a strong dependence on $T$ and only a logarithmic dependence on other variables, which will be of significance in Section \ref{sec_validation}.
 
-With \emph{mise en place}  we can now pursue our goal of an analytical expression for the spectrally integrated heating in band $j$, denoted $\ch_j$. We begin by integrating \eqnref{heat_k} over band $j$, assuming the limits of the integral are implicitly given by  the appropriate wavenumber range from \eqnref{h2o_bands}, and invoking the CTS approximation \eqnref{cts} as well as Eqn.  \eqnref{trans_grad}. This yields
+With these ingredients in place  we now obtain an analytical approximation for the spectrally integrated heating in band $j$, denoted $\ch_j$. We begin by integrating \eqnref{heat_k}  over band $j$ at a given $p$, assuming the limits of the spectral integral are implicitly given by  the appropriate wavenumber range from \eqnref{h2o_bands}. We also  invoke the CTS approximation \eqnref{cts} as well as Eqn.  \eqnref{trans_grad}. This yields
  \beqn
 \ch_j \ =   \ -  \frac{g}{\Cp}\frac{\beta}{p}\int dk\,  \pi B(k,T)\, \tauk \exp(-\tauk) \ .
 	\label{heat_cts1}
 \eeqn
- To evaluate this integral we note that $\int_0^\infty d\tauk\,\tauk\exp(-\tauk)=1$ and that $\tauk\exp(-\tauk)$ peaks at $\tauk=1$, with corresponding $k$ value $\konej$. This suggests that we might approximate $\tauk\exp(-\tauk)$ by the Dirac delta function $\delta(\tauk -1)$. This can be plugged into \eqnref{heat_cts1} once we convert this to a delta function in $k$-coordinates, using the appropriate chain rule \citep[e.g.][]{gasiorowicz2003} as well as Eqns. \eqref{tauk_h2o} and \eqnref{kappa_h2o}:
+ To evaluate this integral, recall that the function $\tauk\exp(-\tauk)$ peaks at $\tauk=1$ (with corresponding $k$ value $\konej$), and that its integral $\int_0^\infty d\tauk\,\tauk\exp(-\tauk)=1$.  These properties are shared by the Dirac delta function $\delta(\tauk -1)$, so we might approximate $\tauk\exp(-\tauk)$ by $\delta(\tauk -1)$. This approximation can be applied to \eqnref{heat_cts1} once we convert $\delta(\tauk -1)$ to a delta function in $k$-coordinates, using the appropriate chain rule \citep[e.g.][]{gasiorowicz2003} as well as Eqns. \eqref{tauk_h2o} and \eqnref{kappa_h2o}:
     \begin{align*}
                \delta(\tau_k- 1) \ = \ \left|\partialder{\tau_k}{k}(\konej)\right|\inverse\!\!\delta(k-\konej) \ = \ \lj\,  \delta(k-\konej)  \ .
       \end{align*}
-Note the appearance of the \lj\ parameter here. Plugging this equation into \eqnref{heat_cts1} and performing the now trivial spectral integration yields finally our desired expression for band-wise integrated radiative cooling,
+Note the appearance of the \lj\ parameter here, which we comment on further below. Plugging this last equation into \eqnref{heat_cts1} and performing the now trivial spectral integration yields finally our desired approximation expression for band-wise integrated radiative cooling,
 \beqn
 		\ch_j  \ \approx \ - \frac{g}{\Cp}\pi B(\konej,T)\frac{\beta}{p} \lj \ .
 	\label{heat_cts3}
 \eeqn
-Note that $B(\konej,T)$ gives the Planck emission as a function of height \emph{only,} since $\konej$ gives the wavenumber which cools-to-space at a given height (cf. \eqnref{k1_theory}). Section \ref{sec_applications}\ref{sec_2k} below will give an explicit evaluation of this formula.
+Note that $B(\konej,T)$ gives the Planck emission as a function of height \emph{only,} since $\konej$ [cf. \eqnref{k1_theory}] is a function of height which gives the wavenumber which cools-to-space at a given height . Equation \eqnref{heat_cts3}, along with its inputs \eqnref{beta_h2o} and \eqnref{k1_theory}, constitute the SSM1D.  
+
+%===============%
+ % sec_interpretation %
+ %==============%
+ \section{Interpretation and estimation} \label{sec_interpretation}
 
 % Interpretation
-\subsection{Interpretation}
-Equation \eqnref{heat_cts3} is a central result of this paper. How should we interpret it? We know from \eqnref{cts} that the CTS term is just Planck emission times the transmissivity gradient $\partialder{\trans_k}{p}$. Using Eqn. \eqnref{trans_grad} we evaluate this gradient at  $\tauk=1$, yielding
-\beqn
-	\left. \partialder{\trans_k}{p} \right |_{\tauk=1}  \ =  \ -\ \frac{1}{e}\frac{\beta}{p} \ .
-	\label{trans_grad_tau1}
-\eeqn
-Apart from the factor of $e$, this expression appears in \eqnref{heat_cts3}. Also, we will argue momentarily  that the transmissivity gradient can equivalently be interpreted as  the  `emissivity-to-space' gradient; when combined with \eqnref{trans_grad_tau1}, this allows us to write \eqnref{heat_cts3} as 
+\subsection{Interpretation} \label{sec_interp}
+The SSM1D  \eqnref{heat_cts3} is a central result of this paper. How should we interpret it? From \eqnref{trans_grad_tau1} we know that the $\beta/p$ factor in \eqnref{heat_cts3} is closely related to the transmissivity gradient $\ppp \trans_k$ evaluated at $\tauk=1$. Furthermore, $-\ppp \trans_k$ can be interpreted as  the `emissivity-to-space' gradient: for an atmospheric layer of thickness $\Delta p$ we can interpret $-\Delta p\ppp \trans_k  = \Delta p (d \tauk/dp)\trans_k$ as its `emissivity to space', since $\Delta p(d \tauk/dp)$ gives the absolute  emissivity of the layer and $\trans_k$ is the fraction of emitted radiation that escapes to space. Thus $-\ppp \trans_k$ is the emissivity-to-space gradient (in pressure coordinates). This suggests that we re-write \eqnref{heat_cts3} as 
 	\beqn
-		\ch_j \ = \ -\frac{g}{\Cp} \underbrace{\pi B(\konej,T)}_{\substack{ \text{Planck } \\ \text{emission}\\(\Wmsq/\cminverse) } }
-					   \underbrace{\left(\frac{1}{e}\frac{\beta}{p}\right)}_{\substack{ \text{emissivity} \\ \text{gradient}  \\ (1/\Pa) } } 
-					   \underbrace{(\lj e)}_{\substack{  \text{spectral} \\ \text{width} \\ (\cminverse) } }    \; .
+		\ch_j \ = \ -\frac{g}{\Cp} \underbrace{\pi B(\konej,T)}_{\substack{ \text{Planck } \\ \text{emission}\\(\Wmsq/\cminverse)}}\,
+					   \underbrace{\left(\frac{1}{e}\frac{\beta}{p}\right)}_{\substack{ \text{emissivity} \\ \text{gradient}  \\ (1/\Pa) } } \,
+					   \underbrace{(\lj e)}_{\substack{  \text{spectral} \\ \text{width $\Delta k$} \\ (\cminverse) } }    \; .
 		\label{heat_cts4}
 	\eeqn
- To interpret the transmissivity gradient factor in this way, note that for an atmospheric layer of thickness $\Delta p$ we can interpret $-\Delta p\der{\trans_k}{p}  = \Delta p (d \tauk/dp)\trans_k$ as its `emissivity to space', since $\Delta p(d \tauk/dp)$ gives the absolute  emissivity of the layer and $\trans_k$ is the fraction of emitted radiation that escapes to space. Thus $-\der{\trans_k}{p}$ can be interpreted as the emissivity-to-space gradient (in pressure coordinates). 
 
-As for the factor $\lj e$ in \eqnref{heat_cts4}, it can be interpreted as the characteristic  width of the spectral region at any given height that is cooling to space. For the \htwo\ \rot\ band this gives a width of 165 \cminverse,  in rough eyeball agreement with the width of the active cooling regions in Fig. \ref{h2o_rfm_theory}c,f.  Thus, one interpretation of  \eqnref{heat_cts4} is that radiative heating at a given height  may be interpreted as just spectral Planck emission, times a spectral width,  times an appropriate measure of emissivity,  all evaluated at \konej\ where $\tau_{\konej}=1$. This yields a flux divergence (which in pressure coordinates has units $\Wmsq/\Pa$), which can be multiplied by $g/\Cp$ to get a heating rate in K/day.
+The factor $\lj e$ in \eqnref{heat_cts4} can be interpreted as an `effective emitting width' $\Delta k$, i.e. as the  width of the spectral region at any given height that is cooling to space. For the \htwo\ \rot\ band we find $\Delta k = \lrot e \approx  165\ \cminverse$,  in rough eyeball agreement with the width of the active cooling regions in Fig. \ref{h2o_rfm_theory}c,f. That $\lj$ simultaneously gives the inverse decay rate of $\kappa(k)$ [Eqn. \eqnref{kappa_h2o}] as well as the effective emitting width $\Delta k$ may seem mysterious first, but is consistent in that a larger decay rate for $\kappa(k)$ implies a narrower peak of $\tauk e^{-\tauk}$ in $k$-coordinates in \eqnref{heat_cts1}, and hence a smaller $\Delta k$.
+
+In summary, then, Eqn.  \eqnref{heat_cts4} says that radiative heating at a given height may be interpreted as spectral Planck emission, times a spectral width,  times an appropriate measure of emissivity,  all evaluated at \konej\ where $\tau_{\konej}=1$. This yields a flux divergence (which in pressure coordinates has units $\Wmsq/\Pa$), which can be multiplied by $g/\Cp$ to get a heating rate in K/day.
  
- %============%
- % sec_validation %
- %============%
- \section{Validation and sensitivities} \label{sec_validation}
- Now let us test  whether $\ch_j$ can emulate the heating profiles generated by RFM. Figure \ref{H1d_rfm_cts_theory}a shows  $\sum_j \ch_j$ (as calculated via \eqnref{heat_cts3}) for \htwo, along with \ch\  output directly from RFM, as well as the spectrally integrated CTS approximation \eqnref{cts} using \tauk\ output from RFM. The CTS approximation matches \ch\ quite well throughout most of the troposphere, as is well-known \citep{clough1992,stephens1984,rodgers1966}, though the CTS approximation significantly underestimates cooling near the surface. Since our simple model \eqnref{heat_cts3} is based on the CTS approximation it also underestimates cooling near the surface, as well as  overestimates cooling in the upper troposphere. Also, our simple model collapses all cooling onto the $\tauk=1$ contours shown in Fig. \ref{h2o_rfm_theory}, and the resulting $\ch_{\rot}$ profile thus cuts off abruptly near 200 hPa, rather than smoothly transitioning to lower values near the tropopause (and then back to larger values in the upper stratosphere, as the RFM profiles do). There is a smaller but similar discontinuity near 300 hPa where the $\ch_{\vr}$ contribution drops out. Despite these errors and approximations, however, the simple model nevertheless exhibits the fairly constant $\sim 2$ K/day value produced by more comprehensive calculations, as well as the usual `kink' in the upper troposphere (discussed further in Section \ref{sec_applications}\ref{sec_kink} below). Note that no parameters have been tuned to obtain this agreement. 
- 
- To further test Eqn. \eqnref{heat_cts3}, as well as study the sensitivity of \ch\ to the humidity and temperature variations seen across the globe, we perturb our atmospheric column. In one perturbation calculation we change \RH\ from 0.75 to 0.3, and in another we change the lapse rate $\Gamma$ from  7 to 5 K/km.  We  run RFM and also evaluate \eqnref{heat_cts3} on these two perturbed atmospheres, with the results shown in Figs. \ref{H1d_rh_gamma_Ts}a,b  (we cut-off the RFM profiles at the same height that the simple model profiles terminate, for clarity). Both the RFM and simple model profiles show a marked insensitivity to \RH. Both models also show a reduction in cooling in the middle and lower troposphere of roughly $30\%$ with the reduction in $\Gamma$ (in the upper troposphere this signal becomes convolved with that from the differing upper-tropospheric temperatures). These relatively small sensitivities, which are consistent with  the relative uniformity of clear-sky \ch\  across the globe (Fig. \ref{ecmwf_vs_rfm}), can be understood using Eqns. \eqnref{heat_cts3} as well as \eqnref{k1_theory}. These show that changes in \RH\ only affect \konej, decreasing $\WVP_0$ by roughly a factor of two and hence changing the \konej\ by only $\lj\ln 2\approx 35\ \cminverse$, not enough to significantly change the Planck emission $B(\konej,T)$. Changing $\Gamma$, on the other hand,  yields similar changes in  $\konej$ but also has the additional effect of decreasing $\beta$ by roughly $30\%$  (cf. Eqn. \eqnref{beta_h2o}), leading to a similar reduction in \ch. Physically, lowering the vertical temperature gradient  lowers  water vapor emissivity gradients because of Clausius-Clapeyron, which lowers the flux divergence per unit pressure and hence the heating rate. 
-
-As a further  test we consider atmospheric columns with varying $\Ts=(270,280,290,300)$ K, leaving $\RH$ and $\Gamma$ unchanged from the base case. We again run RFM and also evaluate \eqnref{heat_cts3} on these atmospheres, with the results shown in Figs. \ref{H1d_rh_gamma_Ts}c.d. The simple model captures the variations on \ch\ with \Ts, and in particular captures the weakening of the kink in the upper troposphere with decreasing \Ts. This gives some confidence that the simple model exhibits a kink for the right reasons, allowing use to study the kink using the simple model in Section \ref{sec_applications}\ref{sec_kink} below.
-
-%==============%
-% sec_applications %
-%==============%
-\section{Applications} \label{sec_applications}
-
-% 2k
+ % 2k
 \subsection{A back-of-the-envelope estimate of \ch} \label{sec_2k}
- We now use \eqnref{heat_cts3} to make a back-of-the-envelope estimate of \ch, as follows.   Taking $(T,p)=(260\ \Kelvin,500\ \hPa)$, which corresponds to $\konerot=500\ \cminverse$ and $\konevr=1350\ \cminverse$, we find
+ A primary motivation for developing the SSM1D is to address question \ref{Q2k} from the introduction and make a back-of-the-envelope estimate of \ch, which we now do.   We first take a mid-tropospheric $(T,p)=(260\ \Kelvin,500\ \hPa)$, which corresponds to $\konerot=500\ \cminverse$ and $\konevr=1350\ \cminverse$, and evaluate $\pi B(\konej,T)$:
 \beqa
 	 \pi B(\konerot,260\ \Kelvin) & \approx & 0.3 \ \Wmsq/\cminverse \n \\ 
 	 \pi B(\konevr,260\ \Kelvin)  & \approx  & 0.05 \ \Wmsq/\cminverse \n \ .
 \eeqa 
 Thus \vr\ Planck emission is roughly 1/6 of that for \rot, which explains why the cooling in the \vr\ band in Fig. \ref{h2o_rfm_theory}c,f is much smaller than that in the \rot\ band. We thus neglect $\ch_\vr$ for this estimate, and  also take $\beta_\htwo \approx 5$. We then have
-\beqanonum
-	\ch & \approx & \ch_\rot \\
-		  & \approx &- \frac{g}{\Cp}\pi B(\konerot,T)\, \lrot \frac{\beta_{\htwo}}{p} \\
-		  & \approx &- \left(\frac{10\ \frac{\meter}{\second^2}}{10^3 \frac{\joule}{\kg\ \Kelvin}}\right) \left(0.3 \ \Wmsq/\cminverse\right)(60 \ \cminverse)\left(\frac{5}{5\times 10^4 \ \Pa}\right) \\
-		  & \approx & - \left(\frac{10\ \frac{\meter}{\second^2}}{10^3 \frac{\joule}{\kg\ \Kelvin}}\right)(20\ \Wmsq)\left(\frac{1}{10^4\ \Pa}\right)  \\
-		  & = & -\ 2 \times 10^{-5}\ \Kelvin/\second \\
-		  & \approx & -\ 2\ \text{K/day} \ .
-\eeqanonum
- Thus the formula \eqnref{heat_cts3} indeed gives us a way to quickly estimate \ch, using only fundamental constants,  a typical value of the Planck function, and the single RFM-derived parameter \lrot, which characterizes  water vapor spectroscopy.
+\beqn
+	\begin{split}
+  		\ch & \approx \ - \frac{g}{\Cp}\pi B(\konerot,T)\, \lrot \frac{\beta_{\htwo}}{p} \\
+     		  & \approx \ - \left(10^{-4}\frac{\Kelvin/\second}{\Wmsq/\hPa}\right)(20\ \Wmsq)\left(\frac{1}{100\ \hPa}\right)  \\
+    			  & = \ -\ 2 \times 10^{-5}\ \Kelvin/\second \\
+    		  	  & \approx \ -\ 2\ \text{K/day} \ .
+	\end{split}
+	 \label{2k_est}
+\eeqn
+ Thus the SSM1D indeed allows us to quickly estimate the characteristic value  $\ch \approx -2$ K/day, using only fundamental constants, the atmospheric lapse rate (used in $\beta$), a typical value of the Planck function, and the RFM-derived parameter \lrot, which characterizes  water vapor spectroscopy. 
 
-% Kink
-\subsection{The upper-tropospheric kink} \label{sec_kink}
-  Both RFM and  our simple model \eqnref{heat_cts3} reproduce the well-known relatively sharp kink in \ch\ in the upper troposphere, which has been attributed to a decline in water vapor emissivity\footnote{Note that this notion is not very well-defined for a real gas, as the emissivity or transmissivity is a function of wavenumber.} driven by a drop off in \qv, and which has served as the basis for the Fixed Anvil Temperature hypothesis \citep[FAT; e.g.][]{hartmann2002, hartmann2001}. To the degree that \eqnref{heat_cts3} captures this for the right reasons, however, the kink is \emph{not} a result of \qv\ declining to levels too low to efficiently cool to space. Rather, Eqn. \eqnref{heat_cts3} tells us that vertical variations in \ch\ stem from the $\beta/p$ factor, which increases by several fold as one ascends through the troposphere, and the Planck function $B(\konerot,T)$, which decreases by several fold (Fig. \ref{planck_k1rot}; we continue to neglect the \vr\ band). These two effects largely compensate throughout most of the troposphere, with both quantities changing  slowly in the lower troposphere and more rapidly higher up. This compensation ends at  300 hPa, however, when the declining Planck function wins out, yielding the kink. According to our simple model, then, it is the decline of the Planck function (due to both declining temperatures and wavenumbers) which is responsible for the upper tropospheric decline in cooling, rather than any Clausius-Clapeyron driven decline in \qv\ and emissivity.
+%============%
+ % sec_validation %
+ %============%
+\section{Validation and parameter sensitivities} \label{sec_validation}
+ 
+  We now seek to evaluate  the SSM2D and SSM1D  \ch\ profiles against the RFM benchmark, as well as gain insight into why the -2 K/day value seems relatively robust across the troposphere (Fig. \ref{ecmwf_vs_rfm}a and question 1 above). To this end,  Figure \ref{H1d_validation} shows  $\ch_{\rot} + \ch_{\vr}$ as calculated via RFM, SSM2D, and SSM1D.  The SSM profiles (1D and 2D) track each other closely but  underestimate cooling near the surface, an error due to the CTS approximation \citep[][]{jeevanjee2019b}.  The SSM profiles also overestimate cooling in the upper atmosphere and underestimate cooling in the stratosphere, another drawback of our simplified spectroscopy \eqnref{kappa_h2o} which doesn't account for the strongly absorbing wavenumbers near the center of spectral lines deep in the rotation band ($k<300 \cminverse$ or so), which emit from the stratosphere rather than the troposphere.  Despite these errors and approximations, however, the  tropospheric SSM profiles lie in the characteristic $\sim 2 \pm 0.5 $ K/day range produced by comprehensive radiation calculations. The SSM profiles also both seem to reproduce the upper tropospheric kink, which was the subject of question \ref{Qkink} above, and to which we return in  Section \ref{sec_kink} below.
+
+% Since our simple model \eqnref{heat_cts3} is based on the CTS approximation it also underestimates cooling near the surface, as well as  overestimates cooling in the upper troposphere. Also, our simple model collapses all cooling onto the $\tauk=1$ contours shown in Fig. \ref{h2o_rfm_theory}, and the resulting $\ch_{\rot}$ profile thus cuts off abruptly near 200 hPa, rather than smoothly transitioning to lower values near the tropopause (and then back to larger values in the upper stratosphere, as the RFM profiles do). There is a smaller but similar discontinuity near 300 hPa where the $\ch_{\vr}$ contribution drops out.  
+ 
+ To further test the SSM1D,  as well as understand the sensitivity of \ch\ to humidity and temperature variations, we perturb our atmospheric column. In one perturbation calculation we change \RH\ from 0.75 to 0.3, and in another we change the lapse rate $\Gamma$ from  7 to 5 K/km.  We  run RFM and also evaluate the SSM1D on these two perturbed atmospheres, with the results shown in Figs. \ref{H1d_rh_gamma_Ts}a,b  (we cut-off the RFM profiles at the same height that the SSM1D profiles go to zero, for clarity). Both the RFM and simple model profiles show a marked insensitivity to \RH. Both models also show a reduction in cooling in the middle and lower troposphere of roughly $30\%$ with the reduction in $\Gamma$ (in the upper troposphere this signal becomes convolved with that from the differing upper-tropospheric temperatures). These relatively small sensitivities, which are consistent with  the relative uniformity of clear-sky \ch\  across the globe (Fig. \ref{ecmwf_vs_rfm}), can be understood using Eqns. \eqnref{heat_cts3} as well as \eqnref{k1_theory}. These show that the change in \RH\ only affects \konej, decreasing $\WVP_0$ by roughly a factor of two and hence changing the \konej\ by only $\lj\ln 2\approx 35\ \cminverse$, not enough to significantly change the Planck emission $B(\konej,T)$. Changing $\Gamma$  yields similarly small changes in  $\konej$ but also has the additional effect of decreasing $\beta$; this is not negligible but is still a small change of roughly $30\%$  (cf. Eqn. \eqnref{beta_h2o}), leading to a similar reduction in \ch\ (physically, reducing the vertical temperature gradient  lowers  water vapor emissivity gradients because of Clausius-Clapeyron, which lowers the flux divergence per unit pressure and hence the heating rate). Taken together, then, neither these \RH\ or $\Gamma$ variations (which are typical of such variations across the globe) significantly change the characteristic value of \ch, because they are unable to significantly change Planck emission or vertical emissivity gradients (as encapsulated in $\beta$). This provides some insight into question \ref{Q2k} above. At the same time, of course, these perturbations are highly idealized, a point we return to in Section \ref{sec_summary}.
+
+The final parameter to vary is \Ts, which we vary across $\Ts=(270,280,290,300)$ K, leaving $\RH$ and $\Gamma$ unchanged from BASE. The comparison of \ch\ for these atmospheres is shown in Figs. \ref{H1d_rh_gamma_Ts}c,d. The RFM and the SSM1D \ch\ profiles behave similarly, with both weakening  from roughly  -2 K/day to roughly -1 K/day at  $\Ts=270$ K. To the extent that the SSM1D captures this for the right reasons, Eqn. \eqnref{heat_cts3} tells us that this must be due to a weakening Planck function (which, at fixed $p$, is being evaluated at both lower $k$ and lower $T$ as \Ts\ decreases). Both the RFM and SSM1D profiles also decrease in vertical extent with decreasing \Ts, due to shoaling of the troposphere. These behaviors are also evident in the ECMWF \ch\ distribution in Fig. \ref{ecmwf_vs_rfm}a, particularly in the southern (winter) hemisphere. 
+
+The foregoing explains to some degree the magnitude of latitudinal variations in \ch, but does not explain the vertical uniformity of  \ch\ profiles evident in Fig. \ref{ecmwf_vs_rfm}. Some insight into this can also be gained from the SSM1D \eqnref{heat_cts3}, which tells us that this uniformity is largely coincidental, and arises from a cancellation between increasing  transmissivity gradients (as encapsulated in $\beta/p$) and a declining Planck function $\pi B(\konej,T)$. This suggests there is no fundamental constraint that \ch\ be uniform in the vertical, and indeed the SSM1D profile in Fig. \ref{H1d_validation} is noticeably less uniform than RFM. Furthermore, even simply changing the lapse rate $\Gamma$ is sufficient to make \ch\ notably less uniform, in both RFM and the SSM1D (Fig. \ref{H1d_rh_gamma_Ts}). 
+
+  At the same time, all of these profiles are much more vertically uniform than that due to a grey model (Fig. \ref{ecmwf_vs_rfm}b); this is simply because a gray model can only reach $\tau=1$ at one height, around which cooling will be concentrated, whereas real greenhouse gas spectroscopy yields a distribution of $\tau=1$ heights (Fig. \ref{h2o_rfm_theory}), and hence more uniformly distributed cooling. 
   
-% Ts-invariance
-\subsection{\Ts-invariance of $\ppt F$} \label{sec_Ts_invariance}
-It was recently pointed out in \cite{jeevanjee2018} (hereafter JR18) that radiative flux divergences, when computed in temperature coordinates, exhibit a certain invariance with respect to \Ts: the $\ppt F(T)$ profiles for various \Ts\ all collapse onto a common curve, where the curve simply extends to larger $T$ as \Ts\ increases. This `\Ts-invariance' of $\ppt F$ has implications for column-integrated cooling and precipitation change (JR18), so it seems worth verifying that \Ts-invariance also holds for the idealized radiative cooling considered here, and that our simple model also captures it.
-
-Figure \ref{pptf_tinv} shows $\ppt F(T)$ (\Wmsq/K) for our atmospheric columns with variable \Ts, as computed by RFM and also via 
+%========%
+% sec_kink %
+%========%
+\section{The upper-tropospheric kink} \label{sec_kink}
+  We now turn to question \ref{Qkink} above, about the origin of the upper tropospheric kink in \ch. By Eqn. \eqnref{cts}, the two places to look for an explanation are the Planck function $B(k,T)$ and  the transmissivity gradient $\ppp \trans_k$. Postponing discussion of $B(k,T)$ for the moment, we begin by  plotting $\ppp \trans_k$ for the \rot\ band in the upper troposphere for BASE in Fig. \ref{kink_breakdown}a. From this plot, however, it is not obvious why \ch\ exhibits a kink at roughly 250 hPa; to the contrary,  the characteristic value of $\ppp \trans_k$ actually \emph{increases} with height, in accordance with \eqnref{trans_grad_tau1}. 
+  
+Of course, \ch\ involves a spectral integral, so we consider the integrated transmissivity gradient
 \beqn
-		\ppt F  \ \approx \ - \pi B(\konej,T)\frac{1}{T}\left(\frac{L}{\Rv T}+\frac{g}{\Rd\Gamma}\right) \lj \ 
-	\label{pptf_simple}
-\eeqn
-which is just \eqnref{heat_cts3} multiplied by $(C_p/g)(dp/dT)$. Though the RFM profiles at various \Ts\ all show the pronounced lower-tropospheric cooling which is neglected by the CTS approximation and hence absent in our simple model, both calculations nevertheless exhibit a high degree of  \Ts-invariance. Together with the results of \cite{cronin2017}, this provides some sense that the \Ts-invariance of $\ppt F$ is robust. Figure \ref{pptf_tinv}  also shows that our simple model captures the relevant physics, which is simply that \eqnref{pptf_simple} is essentially  a function of $T$ alone. The only $p$-dependence in \eqnref{pptf_simple} are the pressure broadening factors in \eqnref{k1_theory} (which were neglected in the argument of JR18), but these  are only logarithmic in $p$ and hence can't compete with the  $T$-dependence stemming from the Planck function and Clausius-Clapeyron.
+	\overline{\ppp \trans_k} \ \equiv \  \int_0^{1000\ \cminverse} dk\  \ppp \trans_k \ .
+	\label{int_trans}
+\eeqn 
+ Figure \ref{kink_breakdown}b confirms that this quantity does indeed exhibit a kink at the right height, and that this feature is reproduced by the SSM2D. Since transmissivity gradients can also be interpreted as emissivity-to-space gradients (Section \ref{sec_interpretation}), this upper-tropospheric kink in $\overline{\ppp \trans_k}$  can also be thought of as a precise quantification of the `declining water vapor emissivity' referred to in the FAT literature. Also, the kink in $\overline{\ppp \trans_k}$ tells us that additional variations in $B(k,T)$ are not required to produce the kink in $\ch_{\rot}$:  if $B(k,T)$ were a constant function, $\ch_{\rot}$ would  be proportional to $\overline{\ppp \trans_k}$ (by the CTS approximation) and hence would also exhibit a kink, without variations in $B(k,T)$.  
+
+  %  This kink is evident in all the RFM and SSM1D profiles shown so far. Inspection of \eqnref{heat_cts3} shows that the only factor in the SSM1D that can decline with height is $B(\konej,T)$, so this factor must be responsible for the kink in the SSM1D. Is this also true in RFM?
+%  
+%  To check this we perform a mechanism-denial experiment, PLANCK\_CONST, in which we keep all atmospheric variables the same as in BASE, but set $T=300$ K throughout the entire atmosphere, and also change RFM's Planck function to a $k$-independent  $B' \equiv \sigma T^4/(\pi \, 1500\ \cminverse)$. We do this without changing the \qv\ or $p$ profiles (thus \RH\ is no longer constant in the vertical). These modifications make the Planck function constant in $k$ and $p$, and should thus eliminate the kink in the SSM1D.  If the SSM1D is capturing the kink correctly, the kink should also disappear in the RFM-calculated \ch.
+%  
+%Figure \ref{planck_const}a shows that, on the contrary, the upper-tropospheric kink in PLANCK\_CONST disappears only for the SSM1D, but remains for RFM and the SSM2D. It is thus not the Planck function which is responsible for the kink.
+%%The SSM1D model indeed produces no kink besides its abrupt drop to 0 at the tropopause, but this is in contrast to RFM and the SSM, both of which \emph{continue} to exhibit a kink roughly 100 hPa ($\sim 3$ km) below the tropopause. 
+%What is the mechanism, then? Note that since $B'$ is constant, the CTS approximation \eqnref{cts} becomes an identity (because all exchange terms are zero) and hence the profiles in Figure \ref{planck_const}a are, up to rescaling, just integrated transmissivity gradients
+%\beqn
+%\overline{\ppp \trans_k} \ \equiv \  \int_0^{1000\ \cminverse} dk\  \ppp \trans_k \ .
+%\eeqn
+%Thus, Fig. \ref{planck_const}a tells us there is an upper-tropospheric kink in $\overline{\ppp \trans_k}$ (note that this $\overline{\ppp \trans_k}$ profile is the same as in the BASE case, as \qv\ is unchanged).  Since transmissivity gradients can also be interpreted as emissivity-to-space gradients (Section \ref{sec_interpretation}), this upper-tropospheric kink in $\overline{\ppp \trans_k}$  can also be thought of as a precise quantification of the `declining water vapor emissivity' referred to in the FAT literature.
  
-  Another point to make about these profiles is that the flux divergence in temperature coordinates is not roughly constant in height, but is rather monotonic, with no kink in the upper troposphere. Thus the kink in $\ch\sim \ppp F$  results from choosing pressure as the vertical coordinate, with the pressure derivative yielding a $1/p$ factor in \eqnref{heat_cts3} which yields the kink, as discussed above.
- 
- 
-% OLR
-\subsection{OLR} \label{sec_olrk}
-The formalism developed here can also be applied to estimate the spectrally resolved outgoing longwave radiation $\OLRk \equiv F_k(p=0)$, where we estimate this as simply the Planck function evaluated at an appropriate emission temperature. For tropospheric emission we estimate the emission temperature by setting $\tauk=1$ in  \eqnref{tauk_h2o} and solving for $T$; analytical expressions for the resulting emission temperatures $T_1(k)$ in terms of the Lambert $W$ function are given in the Appendix. For some $k$, however,  $T_1(k)$ will be undefined because $\tauk<1$ even at the surface; this is the water vapor `window' region $\krot(\Ts) < k < \kvr(\Ts)$, for which we set \OLRk\ equal to surface Planck emission.  Mathematically, our estimate for  \OLRk\ is then 
+We may thus conclude that the kink in \ch\ stems from the kink in $\overline{\ppp \trans_k}$. But what, then,  causes the kink in $\overline{\ppp \trans_k}$? Since the integrand in \eqnref{int_trans} is not decreasing with height,  a plausible alternative hypothesis is that the kink is due to  changes in the spectral range over which $\ppp \trans_k$ is significant, i.e. changes in  the effective emitting width $\Delta k$. We quantified this earlier in Section \ref{sec_interpretation} as a constant $\Delta k = \lj e$ for the SSM1D, but now generalize it for application to RFM and the SSM2D as simply the range of wavenumbers for which $e^{-e/2} < \tauk < e^{e/2}$ :
 \beqn
-	\OLRk \ =  \ \left\{ \begin{array}{cl} \pi B(k,T_1(k)) & \mbox{where $T_1(k)$ is defined} \\
-														\pi B(k,\Ts) & \mbox{where $\krot(\Ts) < k < \kvr(\Ts)$ \quad (window region) \ .} 
-								\end{array}						
-					   \right .
-	\label{eqn_olrk}
+	\Delta k \ \equiv \  \int_0^{1000\ \cminverse} dk\, \ch(\tauk-e^{-e/2})\ch(e^{e/2}-\tauk)
+	\label{eqn_deltak}
 \eeqn
-Figure \ref{olr} shows this estimate of \OLRk, along with \OLRk\ as output directly from RFM. The above estimate, while crude, quantitatively captures the gross spectral shape of RFM's \OLRk. Furthermore, it gives us some insight into this shape, as follows. Both the RFM and simple model \OLRk\ curves peak at the beginning of the window region, $\krot(\Ts) \approx 750\ \cminverse$, and the simple  \OLRk\ estimate in particular has a cusp. This is because beyond $\krot(\Ts)$,   the emission temperature is no longer increasing with $k$ but rather becomes constant at \Ts,  allowing the explicit $k$-dependence of $B(k,T)$ to take over and cause an immediate and sharp decline in \OLRk. Thus the peak in \OLRk\ is not pegged to the $k$-maximum of $B(k,T)$ for some $T$, as might be suspected (in fact, $B(k,300\ \Kelvin)$ maximizes at a lower wavenumber of  $k\approx 590\ \cminverse$), but is rather pegged to the onset of the water vapor window. Adding the \htwo\ continuum to our RFM calculation does not change this conclusion (Fig. \ref{olr}, dotted line).
+Here \ch\ is the Heaviside step function, and the range of $\tauk$ values is chosen such that $\Delta k$ indeed yields the SSM1D value of $\lrot e\approx 165\ \cminverse$  almost everywhere when calculated for the SSM2D using \eqnref{tauk_h2o}. Profiles of $\Delta k$ for RFM, the SSM2D and SSM1D are shown in Fig. \ref{kink_breakdown}b.  Both RFM and SSM2D exhibit a kink in their $\Delta k$ profiles at the same height at which their respective \ch\ kinks occur. This is consistent with the hypothesis that  the kink is caused by a decline in integrated transmissivity gradient $\overline{\ppp \trans_k}$, which itself is caused by a decline in effective emitting width $\Delta k$. 
 
+% in a continuous way, because it collapses all cooling onto the $\tauk=1$ contour and does not allow emissivity-to-space to be distributed in the vertical.
 
-% CO2
-\subsection{\cotwo\ } \label{sec_co2}
-As another application of the formalism developed so far, we pursue an idealized calculation of $\tauk$ and \chk\ for \cotwo, analogous to those shown in Fig. \ref{h2o_rfm_theory} for \htwo. This application illustrates the generality of the formalism, and also contrasts the behavior of the two gases.
+What about the kink in Fig. \ref{H1d_validation} in the SSM1D \ch\ profile? In the SSM1D [Eqn. \ref{heat_cts4}], $\overline{\ppp \trans_k} = \beta_{\htwo}\lrot/p$ and $\Delta k = \lrot e$, both of which match the SSM2D in the lower troposphere but neither of which features a kink (Fig. \ref{kink_breakdown}b,c, solid red line).  According to Eqn. \eqnref{heat_cts3}, then, the kink in the SSM1D \ch\ profile in Fig. \ref{H1d_validation} must then stem from an upper-tropospheric decline in $\pi B(\konerot,T)$, which as we argued above is not necessary for a kink in the SSM2D or in RFM. This suggests that the SSM1D, by not allowing $\Delta k$ to vary, is too simple to accurately model the kink in \ch.
 
-For this case we run RFM just as described in Section \ref{sec_preliminaries}\ref{sec_rfm_calcs}, except our $k$ range is now 500-850 \cminverse, we use a preindustrial \cotwo\ concentration of 280 ppmv, and RFM's $\chi$ factor was used to suppress far-wing absorption of \cotwo. In analogy to  \eqnref{h2o_bands}, we define bands for \cotwo:
+% It should be noted that in the SSM1D $\Delta k = \lrot e$ wherever the SSM1D is defined (cf. Eqn. \eqnref{heat_cts3}), and hence the SSM1D cannot capture  this continuous decline in $\Delta k$ (and hence $\overline{\ppp \trans_k}$). That the SSM1D nonetheless exhibits a kink  in Fig. \ref{H1d_validation} must thus be seen as a coincidence
+%arising from additional, compensating errors. This additional error seems to be that in deriving \eqnref{heat_cts3} we assumed that for all relevant $p$, the optical depth at the edge of the \rot\ band $\tau_{\krot}(p) \gg 1$. From  Fig. \ref{h2o_rfm_theory}e, however, we see that this assumption breaks down for altitudes near 200 hPa and above.
+
+It should also be noted that the agreement in the troposphere between the RFM and SSM2D profiles in Fig. \ref{kink_breakdown}b,c benefits to some degree from compensation between the SSM2D's neglect of wavenumbers below $\krot = 150\ \cminverse$ and its enhancement of bin-averaged $\ppp \trans_k$ (and hence \chk, Fig. \ref{h2o_rfm_theory}c,f) due to its neglect of fine-scale structure. These errors do not affect the conclusion, however, that both RFM and the SSM2D exhibit kinks due ultimately to declines in $\Delta k$.
+ 
+%========%
+% sec_co2  %
+%========%
+\section{\cotwo\ } \label{sec_co2}
+Having addressed questions \ref{Q2k} and \ref{Qkink} from the introduction,  we now turn to question \ref{Qstrat} concerning the stratospheric enhancement of \cotwo\ cooling rates. Addressing this question requires applying our formalism to \cotwo, which we do now.
+
+For \cotwo\ cooling we run RFM just as described in Section \ref{sec_preliminaries}\ref{sec_rfm_calcs}, except our $k$ range is now 500-850 \cminverse, we use a preindustrial \cotwo\ concentration of 280 ppmv, and RFM's $\chi$ factor \citep[from ][]{cousin1985} is used to suppress far-wing absorption of \cotwo. In analogy to  \eqnref{h2o_bands}, we begin by defining bands for \cotwo:
 \beqa
 		\begin{split}
 	    		\text{\cotwo\ $P$ band: } && 500 &<\   k\ <\  \kQ\equiv 667.5\ \cminverse \\
@@ -486,58 +552,89 @@ For this case we run RFM just as described in Section \ref{sec_preliminaries}\re
 		\end{split}
 		\label{co2_bands}
 \eeqa
- \citep[here \kQ\ denotes the spectral location of the main \cotwo\ $Q$ branch, which lies between its associated $P$ and $R$ branches but has a much smaller spectral width, e.g.][]{coakley2014}. This band structure can be seen in $\kapparef(k)$ as output from RFM, shown in Figure \ref{co2_rfm_theory}a. We then coarse-grain $\ln \kapparef(k)$ over spectral intervals of $10 \ \cminverse$ and apply a linear fit to $\ln \kapparef(k)$ within each band. These linear fits give very similar slopes and maxima, so we combine the two fits into the single expression 
+ \citep[here \kQ\ denotes the spectral location of the main \cotwo\ $Q$ branch, which lies between its associated $P$ and $R$ branches but has a much smaller spectral width, e.g.][]{coakley2014}. This band structure can be seen in $\kapparef(k)$ as output from RFM, shown in Figure \ref{co2_rfm_theory}a. We then again coarse-grain $\ln \kapparef(k)$ over spectral intervals of $10 \ \cminverse$ and apply a linear fit to $\ln \kapparef(k)$ within each band. These linear fits give very similar slopes and maxima, so we combine the two fits into a single expression for simplified reference absorption coefficients
   \beqn
  	\kappa_{\cotwo}(k)  \equiv   \kappaQ \exp\left(-\frac{|k-\kQ|}{\lQ}\right) \quad \quad \text{for $k$ in $P$ or $R$,}   			
 	\label{kappa_co2}  
 \eeqn
  %\eqnref{kappa_co2}, yielding a   approximation for $\kapparef(k)$:
- where $\ln \kappaQ$ and  \lQ\ are averages of the maxima and slopes from the $P$ and $R$ bands. These parameter values are also tabulated in Table \ref{band_params}, and the corresponding fits are shown in  Fig. \ref{co2_rfm_theory}c. Note that \cotwo's $\lQ$ parameter, which governs its characteristic spectral width, is roughly 1/5 of \lrot,  which says that at any given level \cotwo\ emits in a much narrower spectral range than \htwo. 
+ where $\ln \kappaQ$ and  \lQ\ are averages of the maxima and slopes from the $P$ and $R$ bands. These parameter values are also tabulated in Table \ref{band_params}. Note that \cotwo's $\lQ$ parameter is much smaller than that for \htwo, a point to which we return below.
+% , which governs its effective emitting width, is roughly 1/5 of \lrot,  which says that at any given level \cotwo\ emits in a much narrower spectral range than \htwo. 
 
-With Eqn.  \eqref{kappa_co2} in hand we now construct simplified expressions for  \cotwo\ optical depth. Evaluating  \eqnref{tauk} with pressure broadening but no temperature scaling and constant \cotwo\ concentration $q$ (rather than variable \qv) yields
+Next we obtain expressions for \cotwo\ optical depth. Evaluating  \eqnref{tauk} with pressure broadening (but no temperature scaling) and constant \cotwo\ concentration $q$ (rather than variable \qv) yields
 \beqn
 	\quad \tauk  = \kappa_{\cotwo}(k)\frac{qp^2}{2g\pref}   \ .
 	\label{tauk_co2}
 \eeqn
- A comparison between these optical depth distributions and those output from RFM are given in Fig.  \ref{co2_rfm_theory}b,d. As for \htwo, our approximations do not capture the fine structure in the RFM output but do capture the gross optical depth distribution. Note also that Eqns. \eqnref{tauk_co2} and \eqnref{beta_def} imply 
+% A comparison between these optical depth distributions and those output from RFM are given in Fig.  \ref{co2_rfm_theory}b,d. As for \htwo, our approximations do not capture the fine structure in the RFM output but do capture the gross optical depth distribution. 
+ Note that Eqns. \eqnref{tauk_co2} and \eqnref{beta_def} imply 
  \beqn
  	\beta_{\cotwo} \ = \ 2 \ ,
 	\n
 \eeqn
 a value 2-3 times smaller than that for \htwo\ (cf Eqn. \eqnref{beta_h2o}).
 
-We can now plug \eqnref{tauk_co2} into \eqnref{cts} to obtain a spectrally simplified \chk, shown in Fig. \ref{co2_rfm_theory}f. As for \htwo, our simplified \chk\ captures the broad characteristics of the \chk\ produced by RFM, including the relatively large values of \chk\ in the stratosphere. From Eqns. \eqnref{cts} and \eqnref{trans_grad} with $\beta_{\cotwo}=2$  we see that this stratospheric enhancement of \chk\ must stem from the low values of $p$ in \eqnref{trans_grad}. Another view of this is that any wavenumber whose $\tauk=1$ level is at low $p$ must have a high $\kapparef$ and hence high optical depth and transmissivity gradients.
+We can now substitute \eqnref{tauk_co2} into \eqnref{cts} to obtain a spectrally simplified \chk. This, along with the expressions \eqnref{kappa_co2} for $\kappa_{\cotwo}$ and \eqnref{tauk_co2}, constitute the SSM2D for \cotwo. These fields, along with their RFM counterparts, are shown in Fig. \ref{co2_rfm_theory}. As for \htwo, the SSM2D captures the broad characteristics of the \chk\ produced by RFM, though again without fine-scale structure. 
 
-It is also worth noting that the tropospheric \chk\ values for \cotwo\ are roughly 2-3 smaller than those for the \htwo\ \rot\ band. 
-This can be understood from Eqns. \eqnref{cts}-\eqnref{trans_grad}, which tell us that this is due to the factor of 2-3 difference in $\beta$ between the two gases. In other words, because \cotwo\ optical depth does not increase with pressure as fast as \htwo, its cooling at any given wavenumber is more spread out in the vertical and is thus smaller. This decrease in \chk\ is compounded by \cotwo's smaller value of $l$, which as pointed out above means that the effective width with which it cools any given layer is $\lQ e \approx 35 \ \cminverse$, roughly 1/5 the characteristic width of \htwo. This small width can be confirmed by inspection of Figs. \ref{co2_rfm_theory}c,f, and implies that spectrally-integrated radiative cooling \ch\ from \cotwo\ will only be a fraction of that from \htwo. We could push further and construct idealized \cotwo\ \ch\ profiles  (as we did for \htwo), but due to their relative insignificance in the troposphere we stop here. 
+In particular, the SSM2D reproduces the stratospheric enhancement of \chk\ exhibited by RFM (Fig. \ref{co2_rfm_theory}c,f). From Eqns. \eqnref{cts} and \eqnref{trans_grad} with $\beta_{\cotwo}=2$  we see that this high-altitude enhancement of \chk\  stems from the high-altitude enhancement of $\beta/p$.  But, what is the meaning of this $\beta/p$ factor? We know that $\beta/p = \left. \der{\tauk}{p}\right|_{\tauk=1}$, but why is this optical depth gradient enhanced at low $p$? To understand this, note that by \eqnref{tauk} we have $\der{\tauk}{p} = \kappa(k,T,p)q/g$. If we set  $\tauk=1$ in  \eqnref{tauk_co2}, and solve for the (absolute, not reference) absorption coefficient $\kappa_1$ emitting at a given $p$, we find 
+\beqn
+	\kappa_1 \ = \ \frac{2g}{qp}.
+	\label{eqn_kappaone}
+\eeqn
+ Thus, at lower pressures this `effective absorption coefficient' is stronger, and in fact  scales as $1/p$. (Note also that substituting \eqnref{eqn_kappaone} into $\kappa q/g$ yields precisely $\beta_{\cotwo}/p$, as it must.) This $1/p$ scaling is confirmed in Fig. \ref{kappaone}, which plots Eqn. \eqref{eqn_kappaone} as well as \kappaone\ diagnosed directly from RFM by averaging the absolute absorption coefficients at each height over the same wavenumbers  contributing to $\Delta k$ in Eqn. \eqnref{eqn_deltak}. Physically, $\left.\chk\ \right|_{\tauk=1}$ is enhanced at low $p$  because wavenumbers with such strong $\kappa$ can cool a unit mass of air at a much higher rate than the more weakly absorbing wavenumbers which reach $\tauk=1$ at higher $p$.  This explanation differs from some previously proposed, such as those based on decreased pressure broadening \citep[][pg. 317]{petty2006} or \htwo-\cotwo\ overlap \citep[][]{zhu1992}.
 
-%============%
-% sec_cont_co2  %
-%============%
-	
-\subsection{Effects of \htwo\ continuum and \cotwo\ overlap} \label{sec_cont_co2}
-Our calculations so far have neglected the water vapor continuum as well as overlap effects between \htwo\ and \cotwo, both of which are known to affect radiative cooling and OLR. While we do not pursue simple models of these effects here, we should investigate the errors we induce by neglecting them, and explain why our 1D RFM calculation which neglects these effects nonetheless resembles the ECMWF profile in Fig. \ref{ecmwf_vs_rfm}b, which includes them.
 
-We first consider the \htwo\ continuum. Figure \ref{cont_co2_effects}a shows \chk\ from an RFM calculation identical to the base case considered above, but with the continuum turned on \citep[RFM contains a hard-coded version of the MT\_CKD continuum,][]{mlawer2012}. The spectrally integrated \ch\ profile from this case is shown in Fig. \ref{cont_co2_effects}c. The continuum increases \ch\ throughout the troposphere, especially at lower levels. When we then add on the effects of \cotwo\ overlap (Fig. \ref{cont_co2_effects}b,c), however, we find that much of this increase is cancelled due to the presence of strong \cotwo\ lines. From Fig. \ref{cont_co2_effects}c we see that  the only real contrast between our base case and the more realistic case with both continuum and \cotwo\ contributions is above 850 hPa or so, corresponding to temperatures of 290 or above (thinking here in temperature coordinates). Such temperatures  may not necessarily make a strong contribution to the globally averaged \ch\ profile shown in Fig. \ref{ecmwf_vs_rfm}, which is averaged on pressure levels and thus conflates different temperatures.
+We are now also in a position to explain why tropospheric \cotwo\ cooling rates are negligible compared to \htwo. We noted above that $\beta_{\cotwo}$ is 2-3 times smaller than $\beta_{\htwo}$, which by Eqns. \eqnref{cts}-\eqnref{trans_grad} tells us that  tropsopheric \chk\ will also be 2-3 times smaller for \cotwo\ (cf.  Figs. \ref{h2o_rfm_theory},\ref{co2_rfm_theory}). In other words, because \cotwo\ optical depth does not increase with pressure as fast as \htwo, its cooling at any given wavenumber is more spread out in the vertical and is thus smaller. This decrease in \chk\ is compounded by \cotwo's smaller effective emitting width $\Delta k$, which is roughly $\lQ e \approx 35 \ \cminverse$, approximately 1/5 that of \htwo\ (cf. Figs. \ref{h2o_rfm_theory}, \ref{co2_rfm_theory}). Together, these two effects imply that spectrally-integrated radiative cooling \ch\ from \cotwo\ will only be a fraction of that from \htwo. Due to its relative insignificance in the troposphere, then, we resist the temptation to construct an SSM1D for \cotwo, though it is straightforward from here.
 
+
+ %==============%
+% sec_applications %
+%==============%
+%\section{Further applications} \label{sec_applications}
+ 
+% Ts-invariance
+%\subsection{\Ts-invariance of $\ppt F$} \label{sec_Ts_invariance}
+%It was recently pointed out in \cite{jeevanjee2018} (hereafter JR18) that radiative flux divergences, when computed in temperature coordinates, exhibit a certain invariance with respect to \Ts: the $\ppt F(T)$ profiles for various \Ts\ all collapse onto a common curve, where the curve simply extends to larger $T$ as \Ts\ increases. This `\Ts-invariance' of $\ppt F$ has implications for column-integrated cooling and precipitation change (JR18), so it seems worth verifying that \Ts-invariance also holds for the idealized radiative cooling considered here, and that our simple model also captures it.
+%
+%\comment{I think this figure may have a bug. See plot\_pptf\_tinv.R} Figure \ref{pptf_tinv} shows $\ppt F(T)$ (\Wmsq/K) for our atmospheric columns with variable \Ts, as computed by RFM and also via 
+%\beqn
+%		\ppt F  \ \approx \ - \pi B(\konej,T)\frac{1}{T}\left(\frac{L}{\Rv T}+\frac{g}{\Rd\Gamma}\right) \lj \ 
+%	\label{pptf_simple}
+%\eeqn
+%which is just \eqnref{heat_cts3} multiplied by $(C_p/g)(dp/dT)$. Though the RFM profiles at various \Ts\ all show the pronounced lower-tropospheric cooling which is neglected by the CTS approximation and hence absent in our simple model, both calculations nevertheless exhibit a high degree of  \Ts-invariance. Together with the results of \cite{cronin2017}, this provides some sense that the \Ts-invariance of $\ppt F$ is robust. Figure \ref{pptf_tinv}  also shows that our simple model captures the relevant physics, which is simply that \eqnref{pptf_simple} is essentially  a function of $T$ alone. The only $p$-dependence in \eqnref{pptf_simple} are the pressure broadening factors in \eqnref{k1_theory} (which were neglected in the argument of JR18), but these  are only logarithmic in $p$ and hence can't compete with the  $T$-dependence stemming from the Planck function and Clausius-Clapeyron.
+ 
+%  Another point to make about these profiles is that the flux divergence in temperature coordinates is not roughly constant in height, but is rather monotonic, with no kink in the upper troposphere. Thus the kink in $\ch\sim \ppp F$  results from choosing pressure as the vertical coordinate, with the pressure derivative yielding a $1/p$ factor in \eqnref{heat_cts3} which yields the kink, as discussed above.
+ 
+ 
 %=========%
 % Summary  %
 %=========%
 \section{Summary and discussion} \label{sec_summary}
-By approximating greenhouse gas spectroscopy with piecewise linear functions (Eqns. \eqnref{kappa_h2o} and \eqnref{kappa_co2}) as well as employing analytically expressions for \htwo\ and \cotwo\ optical depth (Eqns. \eqnref{tauk_h2o} and \eqnref{tauk_co2}), we built simple models of spectrally resolved and integrated radiative cooling as well as OLR which roughly emulate the gross behavior of these quantities as simulated by a state-of-the-art, line-by-line radiative transfer scheme (Figs. \ref{h2o_rfm_theory}--\ref{H1d_rh_gamma_Ts}, \ref{pptf_tinv}--\ref{co2_rfm_theory}). The simplicity of our models allowed us to answer various questions about the magnitude of radiative cooling (i.e. why 2 K/day), the sensitivity of cooling profiles to perturbations, the nature of the upper-tropospheric kink in \ch\ and the  spectral peak in OLR, \Ts-invariance of $\ppt F$, and the contrast in cooling between \htwo\ and \cotwo.
+Our main results can be summarized as follows:
+\begin{itemize}
+	\item The characteristic \ch\ value of  -2 K/day can be obtained as the product of the Planck function, a vertical emissivity gradient, and an effective emitting width, all of which can be estimated via the SSM1D [Eqn. \eqnref{2k_est}]. This characteristic value is relatively insensitive to typical \RH\ and $\Gamma$ variations, but is sensitive to \Ts\ (Fig. \ref{H1d_rh_gamma_Ts}).
+	\item  The upper-tropospheric kink in \ch\ is due to a decline in integrated transmissivity gradient $\overline{\ppp \trans_k}$, which is itself caused by a decline in effective emitting width $\Delta k$ (Fig. \ref{kink_breakdown}). 
+	\item The stratospheric enhancement of \cotwo\ cooling is due to the $1/p$ factor in the transmissivity gradient \eqnref{trans_grad}. This $1/p$ factor itself can be traced to the strength of the effective absorption coefficients which emit from a given height [Eqn. \eqnref{eqn_kappaone} and Fig. \ref{kappaone}].		
+\end{itemize}
 
-Our results also give perspective on the oft-used `Newtonian cooling' approximation to radiative cooling \cite[e.g.][]{fueglistaler2009}. In this picture, net radiative cooling results from temperature perturbations away from a steady-state radiative equilibrium  temperature profile. At the same time, the CTS approximation \eqnref{cts}  suggests that LW cooling is \emph{not} determined relative to any radiative equilibrium profile, but is just given by the Planck function  times an emissivity gradient, and thus never vanishes. The resolution to this is that in the stratosphere, where Newtonian cooling approximations are often employed, LW cooling is balanced by SW heating, primarily from ozone. Thus the radiative equilibrium of the stratosphere is not a pure radiative equilibrium in the LW (in which the CTS approximation would break down due to cancellation by exchange terms), but rather a balance between the LW and SW. Thus the base state of a Newtonian cooling approximation indeed has significant LW cooling, as implied by \eqnref{cts} and also recognized in earlier literature \citep[e.g.][]{dickinson1973}.
+This work could be generalized and extended in various ways. One extension would be to use the SSM1D, which by providing $\tauk=1$ contours identifies an emission height for each wavenumber $k$, to generate an estimate for spectrally-resolved OLR. A first attempt at this for \htwo\ only, without the continuum, is given in Appendix B and Fig. \ref{olr}. Further work could incorporate idealized models of  \htwo-\cotwo\ overlap, as well as the \htwo\ continuum, for estimation of both \ch\ and OLR. One could also formulate a simplified spectroscopy akin to \eqnref{kappa_h2o} and \eqnref{kappa_co2}  for other important greenhouse gases such as methane and ozone, and thus incorporate those gases into the SSMs.
 
-Our formalism can also be combined with other theories. In Section \ref{sec_applications}\ref{sec_Ts_invariance} we made contact with the theory of JR18 but there are additional possibilities, such as the recently published semi-analytical formalism of \cite{koll2018}. As a quick example, we make a rough estimate of their parameter $\Tinf\approx 350 \ \Kelvin$, which is the temperature at which the no-continuum water vapor window closes in a saturated, moist-adiabatic atmosphere. To do that within our formalism, we take Eqn. \eqnref{tauk_h2o} and first set $k=1000\ \cminverse$ (center of the window), corresponding via Eqn. \eqnref{kappa_h2o} to a global minimum absorption coefficient $\kappamin\approx2\times 10^{-4}\ \meter^2/\kg$. We also set $p=\pref$ so that we are at the surface, and set $\RH=1$. We also need an appropriate value for the average lapse rate $\Gamma$, which depends on \Ts. For the purposes of evaluating $\Gamma$ only, we set $\Ts=350$ in the formula for $z(T)$ for a moist adiabat given in Eqn. (11) of \cite{romps2016cape}, differentiate to obtain $dT/dz$, and then take a vertical average in temperature coordinates between 200 and 350 K, yielding $\Gamma=2.0$ K/km. Plugging this into Eqn. \eqnref{WVP0} (keeping $\Tav=250$ K) and solving the resulting equation for temperature yields the  estimate
-\beqn
-	\Tinf \ = \ \frac{L}{\Rv \ln(\kappamin\WVP_0)} \ \approx \ 353 \ \Kelvin,
-	\n
-\eeqn
-very close to the 350 K obtained by \cite{koll2018} with a comprehensive line-by-line calculation. 
+Another direction for future work would be to investigate the radiative cooling profiles of less idealized atmospheres, and in particular atmospheres with non-uniform \RH\ profiles, as non-uniform \RH\   can significantly affect radiative cooling. For example,  \cite{seeley2019b} found that the kink disappeared in cloud-resolving radiative-convective equilibrium simulations at \Ts\ of 270 K and colder, but further investigation showed that the kink re-appeared when the simulated \RH\ profiles were replaced with a uniform \RH\ profile (not shown). Observations of non-uniform \RH\ profiles are discussed in \cite{stevens2017},  who focused on strong vertical \RH\ gradients observed in the subtropics and   emphasized  the implications of these \RH\ gradients for radiative cooling profiles and the  associated circulations. Similar effects have also been studied in the context of radiative instabilities and self-aggregation of convection \citep{beucler2018,beucler2016,emanuel2014}. Extending the present work to include non-uniform \RH\ might allow for greater understanding and  ease of modeling of phenomena such as these. 
 
-While such applications are encouraging, the simple model as developed here is still highly idealized and could be further developed in several different directions. Obvious next steps include incorporating the effects of the \htwo\ continuum and \cotwo\ overlap; including these would enable application of this model to important climate change quantities such as  \cotwo\ forcing and clear-sky Cess sensitivity. One could also similarly simplify the spectroscopy of other important greenhouse gases like methane and ozone, and thus include their effects in this simple model. With sufficient elaboration, such efforts could lead towards transparent, extremely cheap, reduced-accuracy interactive radiation schemes. This could be done at various levels within the framework presented here, but even the use of the smoothed spectroscopy  alone (without the simplified optical depth expressions which assume constant \RH\ and $\Gamma$) could reduce the cost of existing radiation calculations. For applications where high-accuracy radiation is not required, such as short-term weather forecasting or idealized modeling \citep[e.g. idealized aquaplanets such as that of][]{frierson2006}, the reduction in accuracy may be acceptable.
+While the primary goal of this work was to shed light on questions 1-3 posed in the introduction, an ancillary benefit was the development of the SSMs, which might be thought of as filling in the intermediate rungs of a `radiation hierarchy', with gray models on the bottom rung and line-by-line codes like RFM at the top. Moving between these rungs to generate and test hypotheses exemplifies the `hierarchical' approach to climate science, which has been much discussed recently but also goes back decades \citep{maher2019,jeevanjee2017a,polvani2017, held2005, hoskins1983,schneider1974}. 
 
-Another extension of this work would be towards less idealized atmospheric profiles. As emphasized by, e.g., \cite{stevens2017},  vertical gradients in \RH\ can have dramatic implications for radiative cooling profiles and their associated  circulations. Similar effects have been studied in the context of radiative instabilities and self-aggregation of convection \citep{beucler2018,beucler2016,emanuel2014}. Extending this work to include non-uniform \RH\ might allow for greater understanding and  ease of modeling of phenomena such as these. 
+Another use of these simple models is to make back-of-the-envelope calculations, as we did in Section \ref{sec_interpretation}\ref{sec_2k}. Another example is as follows. The maximum value \kapparot\ of $\kappa_{\htwo}$ in the \rot\ band (cf. Eqn. \eqnref{kappa_h2o}) can be inverted  to yield the minimum water vapor path $\WVP_{\mathrm{min}}$ required to `activate' the \rot\ band, in the sense of creating a swath of wavenumbers of width $\Delta k = \lrot e$  which are cooling to space. Setting $\kappa_{\htwo} = \kapparot$ and $p=100$ hPa in \eqnref{tauk_h2o}  and solving for this water vapor path yields $\WVP_{\mathrm{min}} = 0.04\ \kg/\meter^2$. This can be compared with a stratospheric water vapor path of $0.005 \ \kg/\meter^2$  (assuming a stratospheric mass of  $2000\ \kg/\meter^2$ and a specific humidity of 4 ppmv). This suggests that stratospheric \htwo\ cooling is in a different regime wherein cooling is only occurring from narrower spectral regions near line centers, as indeed suggested by Fig. \ref{kink_breakdown}c and evident in Fig. \ref{h2o_rfm_theory}c. 
+
+The intermediate complexity  SSMs  could also be used  to augment or replace gray models where they are still used for research purposes, as the distortions of the gray approximation evident  in Fig. \ref{ecmwf_vs_rfm}b suggest that inferences drawn from gray radiation models, as well as fluid-dynamical models coupled to them, may not be reliable \citep[e.g.][]{tan2019}.\footnote{Also note that the gray model in Fig. \ref{ecmwf_vs_rfm}b,  tuned to exhibit the same 170 \Wmsq\ column-integrated cooling as RFM, also yields an OLR of 170 \Wmsq. This is a serious underestimate of RFM's OLR value of  325 \Wmsq.} Gray models are in use in both astronomy \citep[e.g.][]{parmentier2014,rauscher2012,robinson2012,heng2011} as well as terrestrial atmospheric sciences, particularly as radiation schemes for idealized aquaplanet models [e.g. \cite{vallis2015, frierson2006};  see  \cite{maher2019} and  \cite{jeevanjee2017a} for further references to gray radiation aquaplanet studies]. The SSMs could prove useful as alternative, cheap, clear-sky radiation schemes which still only depend on a few parameters (cf. Table \ref{band_params}) but are nonetheless spectral  and avoid the distortions of the gray approximation.
+
+
+
+%Our formalism can also be combined with other theories. In Section \ref{sec_applications}\ref{sec_Ts_invariance} we made contact with the theory of JR18 but there are additional possibilities, such as the recently published semi-analytical formalism of \cite{koll2018}. As a quick example, we make a rough estimate of their parameter $\Tinf\approx 350 \ \Kelvin$, which is the temperature at which the no-continuum water vapor window closes in a saturated, moist-adiabatic atmosphere. To do that within our formalism, we take Eqn. \eqnref{tauk_h2o} and first set $k=1000\ \cminverse$ (center of the window), corresponding via Eqn. \eqnref{kappa_h2o} to a global minimum absorption coefficient $\kappamin\approx2\times 10^{-4}\ \meter^2/\kg$. We also set $p=\pref$ so that we are at the surface, and set $\RH=1$. We also need an appropriate value for the average lapse rate $\Gamma$, which depends on \Ts. For the purposes of evaluating $\Gamma$ only, we set $\Ts=350$ in the formula for $z(T)$ for an undilute moist adiabat given in  \cite[][Eqn. (11) with $a=0$]{romps2016cape}, differentiate to obtain $dT/dz$, and then take a vertical average in temperature coordinates between 200 and 350 K, yielding $\Gamma=2.0$ K/km. Plugging this into Eqn. \eqnref{WVP0} (keeping $\Tav=250$ K) and solving the resulting equation for temperature yields the  estimate
+%\beqn
+%	\Tinf \ = \ \frac{L}{\Rv \ln(\kappamin\WVP_0)} \ \approx \ 353 \ \Kelvin,
+%	\n
+%\eeqn
+%very close to the 350 K obtained by \cite{koll2018} with a comprehensive line-by-line calculation. 
 
 % Applications to Q, P feedbacks ala Dinh and Fueglistaler, Fast response to CO2, etc.
 
@@ -549,22 +646,28 @@ Another extension of this work would be towards less idealized atmospheric profi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \acknowledgments
-We thank ECMWF for providing the ERA Interim data. This research was supported by NSF grants AGS-1417659 and AGS-1660538, and NJ was supported by a  Hess fellowship from the Princeton Geosciences department. NJ thanks David Romps for guidance in early stages of this work and for suggesting the delta function approach to integrating Eqn. \eqnref{heat_cts1}. NJ also thanks  Jacob Seeley and Robert Pincus for helpful feedback and encouragement. RFM output and R scripts used in producing this manuscript are available at  https://github.com/jeevanje/17rad\_cooling2.git.
+We thank ECMWF for providing the ERA Interim data. This research was supported by NSF grants AGS-1417659 and AGS-1660538, and NJ was supported by a  Hess fellowship from the Princeton Geosciences department. NJ thanks David Romps for guidance in early stages of this work and for suggesting the delta function approach to integrating Eqn. \eqnref{heat_cts1}. NJ also thanks Jacob Seeley and Robert Pincus for discussions, feedback, and encouragement, as well as three anonymous reviewers for helpful and detailed reviews. RFM output and R scripts used in producing this manuscript are available at  https://github.com/jeevanje/17rad\_cooling2.git.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % APPENDIXES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Use \appendix if there is only one appendix.
-\appendix
+%\appendix
 
 % Use \appendix[A], \appendix}[B], if you have multiple appendixes.
-%\appendix[A]
 
-%% Appendix title is necessary! For appendix title:
-\appendixtitle{Emission temperatures for \htwo}
-\label{appendix_T1}
-To estimate \OLRk\ we need $\Tone(k)$, the effective emission temperature as a function of wavenumber. We estimate this by  setting $\tauk=1$ in  \eqnref{tauk_h2o} and solving for $T$, where we first substitute in
+% sec_cont_co2  	
+\appendix[A] \label{sec_cont_co2}
+\appendixtitle{Sensitivity to \htwo\ continuum and \cotwo\ overlap} 
+The RFM  calculations in the main text  neglected the water vapor continuum as well as overlap effects between \htwo\ and \cotwo, both of which are known to affect radiative cooling and OLR. While we do not pursue simple models of these effects, this appendix investigates the errors induced by neglecting them, and discusses why our 1D RFM calculation which neglects these effects nonetheless resembles the ECMWF profile in Fig. \ref{ecmwf_vs_rfm}b, which includes them.
+
+We first consider the \htwo\ continuum. Figure \ref{cont_co2_effects}a shows \chk\ from an RFM calculation identical to BASE, but with the continuum turned on \citep[RFM contains a hard-coded version of the MT\_CKD continuum,][]{mlawer2012}. The spectrally integrated \ch\ profile from this case is shown in Fig. \ref{cont_co2_effects}c. The continuum increases \ch\ throughout the troposphere, especially at lower levels. When we then add on the effects of \cotwo\ overlap (Fig. \ref{cont_co2_effects}b,c), however, we find that much of this increase is cancelled due to the presence of \cotwo. From Fig. \ref{cont_co2_effects}c we see that  the only real contrast between our base case and the more realistic case with both continuum and \cotwo\ contributions is for pressures greater than  850 hPa or so, corresponding to temperatures of 290 or above (thinking here in temperature coordinates). Such temperatures  may not necessarily make a strong contribution to the globally averaged \ch\ profile shown in Fig. \ref{ecmwf_vs_rfm}, which is averaged on pressure levels and thus conflates different temperatures.
+
+% appendix_OLR
+\appendix[B] \label{appendix_OLR}
+\appendixtitle{OLR} 
+The formalism developed here can also be applied to estimate the spectrally resolved outgoing longwave radiation $\OLRk \equiv F_k(p=0)$, where we estimate this as simply the Planck function evaluated at an effective emission temperature $\Tone(k)$. We estimate this by  setting $\tauk=1$ in  \eqnref{tauk_h2o} and solving for $T$, where we first substitute in
 \beqn
 	p \ =\ \ps\left(\frac{T}{\Ts}\right)^{g/\Rd\Gamma}  
 	\n
@@ -578,6 +681,20 @@ where
 \beqnonum
 	\Tstar 	  \ \equiv \ \frac{\Rd \Gamma L}{g \Rv} \ , \hspace{1cm}  \tau_0(k)  \ \equiv \  \WVP_0\kappa(k)\frac{\ps}{\pref}  \ .
 \eeqnonum
+
+ For some $k$, however,  $T_1(k)$ will be undefined because $\tauk<1$ even at the surface; this is the water vapor `window' region $\krot(\Ts) < k < \kvr(\Ts)$, for which we set \OLRk\ equal to surface Planck emission.  Mathematically, our estimate for  \OLRk\ is then 
+\beqn
+	\OLRk \ =  \ \left\{ \begin{array}{cl} \pi B(k,T_1(k)) & \mbox{where $T_1(k)$ is defined} \\
+														\pi B(k,\Ts) & \mbox{where $\krot(\Ts) < k < \kvr(\Ts)$ \quad (window region) \ .} 
+								\end{array}						
+					   \right .
+	\label{eqn_olrk}
+\eeqn
+Figure \ref{olr} shows this estimate of \OLRk, along with \OLRk\ as output directly from RFM. The estimate \eqnref{eqn_olrk}, while crude, quantitatively captures the gross spectral shape of RFM's \OLRk. Furthermore, it gives us some insight into this shape, as follows. Both the RFM and simple model \OLRk\ curves peak at the beginning of the window region, $\krot(\Ts) \approx 750\ \cminverse$, and the simple  \OLRk\ estimate in particular has a cusp. This is because beyond $\krot(\Ts)$,   the emission temperature is no longer increasing with $k$ but rather becomes constant at \Ts,  allowing the explicit $k$-dependence of $B(k,T)$ to take over and cause an immediate and sharp decline in \OLRk. Thus the peak in \OLRk\ is caused by a temperature driven increase for $k<\krot(\Ts)$ and a $k$-driven decrease for $k>\krot(\Ts)$.  Adding the \htwo\ continuum to our RFM calculation does not change this picture (Fig. \ref{olr}, dotted line). This peak is typically obscured in more realistic calculations by the strong 667 \cminverse\ \cotwo\ absorption feature, but understanding the \htwo-only case seems like a prerequisite for understanding these more realistic cases, which could be pursued along similar lines.
+
+
+
+
 
 %%% Appendix section numbering (note, skip \section and begin with \subsection)
 % \subsection{First primary heading}
@@ -603,7 +720,7 @@ where
 % Make your BibTeX bibliography by using these commands:
  \bibliographystyle{ametsoc2014}
 \bibliography{library}
-% \bibliography{references}
+%\bibliography{/Users/nadir/Dropbox/resources/bibtex_mendeley/library.bib}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -612,16 +729,33 @@ where
 %% Enter tables at the end of the document, before figures.
 %%
 %
+
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{c | | c | c} 
-							  		  			  & \htwo  & \cotwo \\ \hline \hline
-%			$\beta$							  & $\beta_{\htwo} \ = \ 5.5$  & $\beta_{\cotwo} \ = 2$  \\  \hline
-			$k$ (\cminverse)			  & \begin{tabular}{@{}c@{}}\krot = 150 \\ \kvr = 1450  \end{tabular} & \kQ = 667.5  \\  \hline
-			$\kappa\ (\meter^2/\kg)$ & \begin{tabular}{@{}c@{}}\kapparot = 250\\ \kappavr = 10 \end{tabular} & \kappaQ = 175 \\ \hline  
-			$l$ (\cminverse)			  & \begin{tabular}{@{}c@{}}\lrot = 61 \\ \lvr = 42  \end{tabular} & \lQ = 13  \\  \hline
+					\textbf{Quantity}		  		  			  & \textbf{Symbol}  & \textbf{Units} \\ \hline \hline
+			Wavenumber							  & $k$	      &  \cminverse  \\
+			Mass absorption cofficient (with $T$, $p$ dependence)	  & $\kappa$	      &  $\meter^2/\kg$  \\
+			Reference mass absorption cofficients (at $T$= 300 K, $p$ = 1000 hPa)	  & \kapparef,\ $\kappa_{\htwo}$,\ $\kappa_{\cotwo}$ 	      &  $\meter^2/\kg$  \\
+ 		    Optical depth at wavenumber $k$ & \tauk		   & dimensionless \\							       
+ 		    Transmissivity  at wavenumber $k$ & $\trans_k\equiv \exp(-\tauk)$		   & dimensionless \\							       
+		    Optical depth exponent     & $\beta\equiv \der{\ln \tauk}{\ln p}$	& dimensionless \\							       
+ 		    Planck function at wavenumber $k$, temperature $T$ & $B(k,T)$		     & $\Wmsq/\mathrm{sr}/\cminverse$ \\							       
+		    Clear-sky longwave heating rate & \ch		   & K/day \\							       
+		    Spectrally resolved clear-sky longwave heating rate & \chk		   & K/day/\cminverse \\	
+		    Diffusion coefficient for two-stream approximation & $D$		   & dimensionless \\	
+		    Reference water vapor path  & $\WVP_0$		   & $\kg/\meter^2$ \\	
+		   Spectroscopic band			   & $j$, denotes \rot, \vr, or $Q$  & ---  \\
+		    $\tauk=1$ wavenumber profile in band $j$   & \konej(p) 	   & \cminverse \\	
+		    Heating rate integrated over band $j$   &$\ch_j$ 	   & K/day \\	
+		   Effective emitting width    & $\Delta k$ 	   & \cminverse \\	
+		   Spectrally integrated transmissivity gradient   & $\overline{\ppp \trans_k}$ 	   & $\cminverse/\hPa$ \\	
+			\hline \hline \textbf{SSM spectroscopy parameters}	& $\mathbf{\htwo}$  & $\mathbf{\cotwo}$ \\ \hline \hline
+			Wavenumbers at band maxima	 & \begin{tabular}{@{}c@{}}$\krot = 150\ \cminverse$ \\ $\kvr = 1450\  \cminverse $  \end{tabular} & $\kQ = 667.5$ \ \cminverse  \\  \hline
+			Band-maximum reference absorption coefficients  & \begin{tabular}{@{}c@{}}$\kapparot = 260\ \meter^2/\kg$\\ $\kappavr = 10\  \meter^2/\kg$ \end{tabular} & $\kappaQ = 165\ \meter^2/\kg$ \\ \hline  
+			Spectroscopic decay parameter 			  & \begin{tabular}{@{}c@{}}$\lrot = 60\ \cminverse$ \\ $\lvr = 42\ \cminverse $  \end{tabular} & $\lQ = 13\ \cminverse$   \\  \hline
 		\end{tabular}
-		\caption{Parameters used in our analytical models. The $k$ parameters are chosen for \htwo\ by inspection of Fig. \ref{h2o_rfm_theory}a, and for \cotwo\ to be proximate to the central 667.66 \cminverse\ $Q$ branch line.The $\kappa$ and $l$ parameters, on the other hand, result from fits to RFM output. See text for details.
+		\caption{(Top) Definition of important symbols used throughout the paper. (Bottom) Spectroscopic parameters used in the SSM2D and SSM1D.  The \krot\ and \kvr\ are chosen by inspection of Fig. \ref{h2o_rfm_theory}a, and \kQ\ is chosen to be proximate to the central 667.66 \cminverse\ $Q$ branch line. The $\kappa$ and $l$ parameters, on the other hand, are not externally specified but result from fits to RFM output. See text for details.
 		\label{band_params}
 		}
 	\end{center}
@@ -657,8 +791,8 @@ where
 \begin{figure}[h]
 	\begin{center}
 			\includegraphics[scale=0.7]{\figurepath ecmwf_vs_rfm}
-			\caption{\textbf{(Left)}  Zonal mean heating rates \ch\ from ECMWF reanalysis for June-July-August 2001. \ch\ has a characteristic value of -2 K/day which is fairly uniform in height and longitude. 
-						\textbf{(Right)} Vertical heating rate profiles as calculated by globally averaging the ECMWF \ch\ (solid black line) and by performing a 1D calculation on our idealized atmosphere using both RFM (dashed black line)  and  a gray model (solid gray line). The $\tau=1$ level for the gray profile is denoted with a filled gray circle. The 1D RFM calculation emulates the ECMWF global mean, but the 1D gray calculation does not.
+			\caption{\textbf{(a)}  Zonal mean clear-sky longwave heating rates \ch\ from ECMWF reanalysis for June-July-August 2001. $\ch= -2 \pm 0.5$ K/day across most of the troposphere.
+						\textbf{(b)} Vertical heating rate profiles as calculated by globally averaging the ECMWF \ch\ (solid black line) and from our BASE atmosphere as calculated by RFM (dashed black line)  and a gray model (solid gray line) tuned to have the same column-integrated cooling as RFM (i.e. same area under the curve). Gray star denotes the $\tau=1$ level for the gray model. The 1D RFM calculation emulates the tropospheric ECMWF global mean, but the 1D gray model fails dramatically.
 			\label{ecmwf_vs_rfm}
 			}
 	 \end{center}
@@ -668,23 +802,23 @@ where
 \begin{figure}[h]
 	\begin{center}
 			\includegraphics[scale=0.42]{\figurepath h2o_rfm_theory}
-		\caption{Comparison between RFM output and simple model, as follows:
-					 \textbf{(a,d)} \htwo\ absorption spectrum \kapparef, at (\Tref, \pref) = (300 K, 1 atm) from RFM and our linear fit, respectively
+		\caption{Comparison between RFM output and the SSM2D, as follows:
+					 \textbf{(a,d)} \htwo\ absorption spectrum \kapparef, at (\Tref, \pref) = (300 K, 1 atm) from RFM and our linear fit \eqnref{kappa_h2o}, respectively
 					 \textbf{(b,e)} Logarithm of diffusion parameter $D$ times optical depth $\tauk$, from RFM and Eqn. \eqnref{tauk_h2o}, respectively, along with $\tauk=1$ contours.
-					 \textbf{(c,f)}  Spectrally resolved heating $\ch_k$, from RFM and theory (Eqns. \eqnref{cts} and \eqnref{tauk_h2o}). 
-					 All plots show averages over 10 \cminverse\ bins. These panels show that the spectrally resolved cooling \chk\ can be understood as emission from $\tauk=1$ levels, where the height of these levels is determined by $\kapparef(k)$, and that  our simple model captures this physics.
+					 \textbf{(c,f)}  Spectrally resolved heating $\ch_k$, from RFM and  the SSM2D [Eqns. \eqnref{cts} and \eqnref{tauk_h2o}]. 
+					 All plots show averages over 10 \cminverse\ bins, with log averaging in (a) and linear averaging in (b) and (c). These panels show that the spectrally resolved cooling \chk\ can be understood as emission from $\tauk=1$ levels, where the height of these levels is determined by $\kapparef(k)$, and that  the SSM2D  captures this physics.
 		\label{h2o_rfm_theory}
 		}
 	\end{center}
 \end{figure}
 
 
-%Figure H1d_rfm_cts_theory
+%Figure H1d_validation
 \begin{figure}[h!]
 	\begin{center}
-			\includegraphics[scale=0.7]{\figurepath H1d_rfm_cts_theory.pdf}
-		\caption{ Heating rate profiles calculated directly from RMF (black solid line), using RFM optical depths in conjunction with the CTS approximation \eqnref{cts} (solid gray line), and as  $\sum_j\ch_j$ using our simple model \eqnref{heat_cts3}.  Despite some errors, the simple model captures  the overall magnitude and upper tropospheric kink of the RFM \ch\ profile. See text for discussion.
-	  \label{H1d_rfm_cts_theory}
+			\includegraphics[scale=0.7]{\figurepath H1d_validation.pdf}
+		\caption{ Heating rate profiles calculated for our BASE case, using RMF, the SSM2D, and the SSM1D.  Despite errors, the SSM2D and SSM1D capture the characteristic $-2 \pm 0.5$ K/day magnitude of \ch\ from water vapor. See text for further discussion. Note that the water vapor continuum is turned off in the RFM BASE run.
+	  \label{H1d_validation}
 		}
 	\end{center}
 \end{figure}
@@ -693,52 +827,66 @@ where
 \begin{figure}[h]
 	\begin{center}
 			\includegraphics[scale=0.5]{\figurepath H1d_rh_gamma_Ts}
-		\caption{\textbf{(a)} Profiles of \ch\ as output from RFM applied to columns with $\RH=0.3$ (blue line) and $\Gamma=5$ K/km (red line). 
-					\textbf{(b)}\ As in (a), but computed from \eqnref{heat_cts3}. 
-					\textbf{(c)}\ As in (a), but for atmospheres with varying \Ts.
-					\textbf{(d)}\ As in (c), but computed from \eqnref{heat_cts3}. 
-					All RFM profiles are cut-off where the corresponding simple model profile cuts off, for clarity of comparison. The simple model appears to capture the sensitivities of our RFM calculation to variations in \RH, $\Gamma$, and \Ts.
+		\caption{\textbf{(a)} Profiles of \ch\ as output from RFM applied to BASE (black line), as well as atmospheric columns with $\RH=0.3$ (blue line) and $\Gamma=5$ K/km (red line). 
+					\textbf{(b)}\ As in (a), but computed from the SSM1D \eqnref{heat_cts3}. 
+					\textbf{(c)}\ As in (a), but for atmospheres with parameters as in BASE but with varying \Ts.
+					\textbf{(d)}\ As in (c), but computed from the SSM1D \eqnref{heat_cts3}. 
+					All RFM profiles are cut-off where the corresponding simple model profile cuts off, for clarity of comparison. The characteristic value of \ch\   does not change significantly with these typical \RH\ and $\Gamma$ perturbations, but there is a systematic variation with \Ts. These effects are exhibited by both RFM and the SSM1D.
 		\label{H1d_rh_gamma_Ts}
 		}
 	\end{center}
 \end{figure}
 
-%Figure Planck_k1rot
+%%Figure Planck_k1rot
+%\begin{figure}[h]
+%	\begin{center}
+%			\includegraphics[scale=0.6]{\figurepath planck_k1rot}
+%		\caption{\textbf{(Left)} The Planck density $\pi B(k,T)$, with $\konerot$ overlaid. \textbf{(Right)} The function $B^*(\konerot,T)$, equal to $B(\konerot,T)$ normalized by its surface value, along with $\beta^*/p^*$, equal to the emissivity gradient from Eqn. \eqnref{heat_cts4} normalized by its surface value.  Note logarithmic $x$-axis. The change in both factors roughly compensate throughout most of the troposphere up until $\approx 300$ hPa or so, where the decline in $B^*(\konej,T)$ is more severe. This yields the well-known kink in \ch. 
+%		\label{planck_k1rot}
+%		}
+%	\end{center}
+%\end{figure}
+
+%%Figure kink_breakdown
 \begin{figure}[h]
 	\begin{center}
-			\includegraphics[scale=0.6]{\figurepath planck_k1rot}
-		\caption{\textbf{(Left)} The Planck density $\pi B(k,T)$, with $\konerot$ overlaid. \textbf{(Right)} The function $B^*(\konerot,T)$, equal to $B(\konerot,T)$ normalized by its surface value, along with $\beta^*/p^*$, equal to the emissivity gradient from Eqn. \eqnref{heat_cts4} normalized by its surface value.  Note logarithmic $x$-axis. The change in both factors roughly compensate throughout most of the troposphere up until $\approx 300$ hPa or so, where the decline in $B^*(\konej,T)$ is more severe. This yields the well-known kink in \ch. 
-		\label{planck_k1rot}
+			\includegraphics[scale=0.45]{\figurepath kink_breakdown}
+		\caption{\textbf{(a)} Transmissivity gradient $\ppp\trans_k$ for BASE as computed by RFM, averaged over 10 \cminverse\  bins.
+					\textbf{(b)} Spectrally integrated transmissivity gradient $\overline{\ppp\trans_k}$ as defined in \eqnref{int_trans} for  BASE  as computed via RFM and the SSM2D. These quantities exhibit  upper tropospheric kinks coincident with their kinks in \ch\ (Fig. \ref{H1d_validation}). 
+					\textbf{(c)} Effective emitting width $\Delta k$ as computed via \eqnref{eqn_deltak}. Both RFM and the SSM2D exhibit a kink in $\Delta k$ corresponding to their respective kinks in  in panel b).
+					The gray dotted line in all panels is the tropopause, which lies roughly 100 hPa $\sim$ 3.5 km above the RFM kink. All spectral integrations of RFM output are  over the \rot\ band only, $0<k<1000\ \cminverse$. 
+			\label{kink_breakdown}
 		}
 	\end{center}
 \end{figure}
 
-%Figure pptf_tinv
-\begin{figure}[h]
-	\begin{center}
-			\includegraphics[scale=0.7]{\figurepath pptf_tinv}
-		\caption{Test of the \Ts-invariance of flux divergences $\ppt F(T)$, for both RFM (left) and our simple model (right) when expressed in temperature coordinates [Eqn. \eqnref{pptf_simple}]. \Ts-invariance holds for our 1D RFM calculations away from the surface, and this is captured by the simple model.
-		\label{pptf_tinv}
-		}
-	\end{center}
-\end{figure}
+%%Figure pptf_tinv
+%\begin{figure}[h]
+%	\begin{center}
+%			\includegraphics[scale=0.7]{\figurepath pptf_tinv}
+%		\caption{Test of the \Ts-invariance of flux divergences $\ppt F(T)$, for both RFM (left) and our simple 1D model (right) when expressed in temperature coordinates [Eqn. \eqnref{pptf_simple}]. \Ts-invariance holds for our 1D RFM calculations away from the surface, and this is captured by the simple model.
+%		\label{pptf_tinv}
+%		}
+%	\end{center}
+%\end{figure}
 
-%Figure olr
-\begin{figure}[h]
-	\begin{center}
-			\includegraphics[scale=0.7]{\figurepath olr}
-		\caption{Spectrally resolved outgoing longwave radiation \OLRk, as computed from RFM (black line) and Eqn. \eqnref{eqn_olrk} (red line). Equation \eqnref{eqn_olrk} captures the shape of RFM's \OLRk, and also shows that the peak in \OLRk\ is due to the onset of the water vapor window. This conclusion is unchanged by comparing to RFM's \OLRk\ computed with the \htwo\ continuum (dotted line).
-		\label{olr}
-		}
-	\end{center}
-\end{figure}
 
 %Figure co2_rfm_theory
 \begin{figure}[h]
 	\begin{center}
 			\includegraphics[scale=0.42]{\figurepath co2_rfm_theory}
-		\caption{As for Fig. \ref{h2o_rfm_theory}, except for the 550-850 \cminverse\ \cotwo\ band.
+		\caption{As for Fig. \ref{h2o_rfm_theory}, except for the 500-850 \cminverse\ \cotwo\ band. The SSM2D emulates the behavior of RFM, and in particular reproduces the stratospheric enhancement of \chk.
 		\label{co2_rfm_theory}
+		}
+	\end{center}
+\end{figure}
+
+%Figure kappaone
+\begin{figure}[h]
+	\begin{center}
+			\includegraphics[scale=0.7]{\figurepath kappaone}
+		\caption{Profiles of the effective absorption coefficient $\kappaone$ for \cotwo, as predicted by \eqnref{eqn_kappaone} (red) as well as diagnosed from RFM (black) by linearly averaging $\kappa(k,p)$ over those $k$ which also contribute to $\Delta k$ in \eqnref{eqn_deltak}. The good agreement confirms the $1/p$ scaling for \kappaone, which underlies the stratospheric enhancement of \chk\ (Fig. \ref{co2_rfm_theory}).
+		\label{kappaone}
 		}
 	\end{center}
 \end{figure}
@@ -749,11 +897,22 @@ where
 \begin{figure}[h]
 	\begin{center}
 			\includegraphics[scale=0.45]{\figurepath cont_co2_effects}
-		\caption{Spectrally resolved radiative cooling \chk\ as output from RFM with \textbf{(a)} the \htwo\ continuum included and \textbf{(b)} \htwo\ continuum plus \cotwo\ absorption. Panel \textbf{(c)} shows the spectrally integrated cooling rates \ch\ for these cases plus the base case. Continuum emission enhances \ch, particularly in the lower troposphere, but this effect is largely canceled out by \cotwo\ absorption. 
+		\appendcaption{A1}{Spectrally resolved radiative cooling \chk\ as output from RFM for the BASE atmosphere with \textbf{(a)} the \htwo\ continuum included and \textbf{(b)} \htwo\ continuum plus \cotwo\ absorption. Panel \textbf{(c)} shows the spectrally integrated cooling rates \ch\ for these cases plus BASE. Continuum emission enhances \ch, particularly in the lower troposphere, but this effect is largely canceled out by \cotwo\ absorption. 
 		\label{cont_co2_effects}
 		}
 	\end{center}
 \end{figure}
+
+%Figure olr
+\begin{figure}[h]
+	\begin{center}
+			\includegraphics[scale=0.7]{\figurepath olr}
+		\appendcaption{B1}{Spectrally resolved outgoing longwave radiation \OLRk, as computed from RFM (black line) and Eqn. \eqnref{eqn_olrk} (red line). Equation \eqnref{eqn_olrk} captures the shape of RFM's \OLRk, and also shows that the peak in \OLRk\ is due to the onset of the water vapor window. This conclusion is unchanged by comparing to RFM's \OLRk\ computed with the \htwo\ continuum (dotted line).
+		\label{olr}
+		}
+	\end{center}
+\end{figure}
+
 
 
 
