@@ -1,6 +1,6 @@
 Rtoolsdir = "~/Dropbox/Rtools/"
 
-library(fields)
+#library(fields)
 library(ncdf4)
 source(paste(Rtoolsdir,"thermo_tools.R",sep=""))
 source(paste(Rtoolsdir,"rfm_tools.R",sep=""))
@@ -8,7 +8,7 @@ source(paste(Rtoolsdir,"rfm_tools.R",sep=""))
 # params
 cases      = c("h2o_noctm_Ts300_rh0.75_gamma7","co2_noctm_Ts300_rh0.75_gamma7")
 Ncases     = length(cases)
-pref	   = ps
+pref	   = 5e4   # instead of ps
 
 # Band approximation
 band_data  = list()
@@ -30,10 +30,12 @@ for (n in 1:Ncases){
 	nc      = nc_open(ncpath)
 	k       = ncvar_get(nc,"k")
 	p       = ncvar_get(nc,"p")
+	tabs    = ncvar_get(nc,"tabs")
 	dk      = k[2]-k[1]
 	nk      = length(k)
 	sigma   = ncvar_get(nc,sigmavar) # m^2/molec.
-	mref    = which.min(abs(p-ps))
+	mref    = which.min(abs(p-pref))
+	Tref    = tabs[mref]
 	kappa   = as.array(sigma[ ,mref])*N_avo/m_mol     # m^2/kg, Tref=Ts
 	ncoarse = 1000/dk
 	

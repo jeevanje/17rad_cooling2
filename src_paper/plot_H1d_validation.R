@@ -48,6 +48,7 @@ k_fit    = eval(as.name(paste("k_fit_",gas,sep="")))
 dk_fit   = eval(as.name(paste("dk_fit_",gas,sep="")))
 cts_ssm2d = calc_cts2d(k_fit,p,tabs_s,tau_ssm)
 coo1d    = apply(coo2d_s,2,sum)*dk
+coo1d_k150 = apply(coo2d_s[k>150e2,],2,sum)*dk
 cts1d    = apply(cts2d_s,2,sum)*dk
 cts_ssm1d = apply(cts_ssm2d,2,sum)*dk_fit	
 cts_simple_bands = calc_cts_simple_bands(gas,p_s,tabs_s,Ts,Gamma,RH)	
@@ -65,10 +66,10 @@ legendpos  = "bottomright"
 cex	       = 1.25
 cex_leg    = 1
 lwd        = 2.5
-fields1d   = c("coo1d","cts1d","cts_ssm1d","cts_simple1d")
-ltyvec     = c("solid","solid","dashed","solid")
-colvec     = c("black","gray","red","red")
-legendvec  = c("RFM","RFM_CTS","SSM2D","SSM1D")
+fields1d   = c("coo1d","cts1d","cts_ssm1d","cts_simple1d","coo1d_k150")
+ltyvec     = c("solid","solid","dashed","solid","dashed")
+colvec     = c("black","gray","red","red","black")
+legendvec  = c("RFM","RFM_CTS","SSM2D","SSM1D","RFM_k150")
 fieldvec   = c(1,3,4)
 
 # y coord
@@ -97,7 +98,7 @@ plot_H_frame = function(main,coo1d_lim){
 #=======#
 	
 # PDF
-file = "~/Dropbox/17rad_cooling2/plots/H1d_validation.pdf"
+file = "~/Dropbox/17rad_cooling2/plots_paper/H1d_validation.pdf"
 pdf(file,width=5,height=5,bg="white")
 par(mfrow=c(1,1),mar=c(5,5,5,3))
 

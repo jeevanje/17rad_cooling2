@@ -1,4 +1,4 @@
-\begin{thebibliography}{41}
+\begin{thebibliography}{48}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \renewcommand{\UrlFont}{\rmfamily}
@@ -12,18 +12,16 @@
 \bibitem[{Beucler et~al.(2018)Beucler, Cronin,, and Emanuel}]{beucler2018}
 Beucler, T., T.~Cronin, and K.~Emanuel, 2018: {A Linear Response Framework for
   Radiative-Convective Instability}. \textit{Journal of Advances in Modeling
-  Earth Systems}, \textbf{10~(8)}, 1924--1951, \doi{10.1029/2018MS001280}.
+  Earth Systems}, \textbf{10~(8)}, 1924--1951.
 
 \bibitem[{Beucler and Cronin(2016)Beucler, and Cronin}]{beucler2016}
 Beucler, T., and T.~W. Cronin, 2016: {Moisture-radiative cooling instability}.
-  \textit{Journal of Advances in Modeling Earth Systems}, 1--39,
-  \doi{10.1002/2016MS000763}.
+  \textit{Journal of Advances in Modeling Earth Systems}, 1--39.
 
 \bibitem[{Clough et~al.(1992)Clough, Iacono,, and Moncet}]{clough1992}
 Clough, S.~A., M.~J. Iacono, and J.-l. Moncet, 1992: {Line-by-line calculations
   of atmospheric fluxes and cooling rates: Application to water vapor}.
-  \textit{Journal of Geophysical Research}, \textbf{97~(D14)}, 15\,761,
-  \doi{10.1029/92JD01419}.
+  \textit{Journal of Geophysical Research}, \textbf{97~(D14)}, 15\,761.
 
 \bibitem[{{Coakley Jr.} and Yang(2014){Coakley Jr.}, and Yang}]{coakley2014}
 {Coakley Jr.}, J.~A., and P.~Yang, 2014: \textit{{Atmospheric Radiation: A
@@ -32,111 +30,117 @@ Clough, S.~A., M.~J. Iacono, and J.-l. Moncet, 1992: {Line-by-line calculations
 \bibitem[{Costa and Shine(2012)Costa, and Shine}]{costa2012}
 Costa, S. M.~S., and K.~P. Shine, 2012: {Outgoing Longwave Radiation due to
   Directly Transmitted Surface Emission}. \textit{Journal of the Atmospheric
-  Sciences}, \textbf{69~(6)}, 1865--1870, \doi{10.1175/JAS-D-11-0248.1},
-  \urlprefix\url{http://journals.ametsoc.org/doi/abs/10.1175/JAS-D-11-0248.1}.
+  Sciences}, \textbf{69~(6)}, 1865--1870.
 
 \bibitem[{Cousin et~al.(1985)Cousin, Doucen, Boulet,, and Henry}]{cousin1985}
 Cousin, C., R.~L. Doucen, C.~Boulet, and a.~Henry, 1985: {Temperature
   dependence of the absorption in the region beyond the 4.3-microm band head of
   CO(2) . 2: N(2) and O(2) broadening.} \textit{Applied optics},
-  \textbf{24~(22)}, 3899--3907, \doi{10.1364/AO.24.003899}.
+  \textbf{24~(22)}, 3899--3907.
+
+\bibitem[{Dee et~al.(2011)}]{dee2011}
+Dee, D.~P., and Coauthors, 2011: {The ERA-Interim reanalysis: configuration and
+  performance of the data assimilation system}. \textit{Quarterly Journal of
+  the Royal Meteorological Society Q. J. R. Meteorol. Soc}, \textbf{137},
+  553--597.
 
 \bibitem[{Dudhia(2017)}]{dudhia2017}
 Dudhia, A., 2017: {The Reference Forward Model (RFM)}. \textit{Journal of
-  Quantitative Spectroscopy and Radiative Transfer}, \textbf{186}, 243--253,
-  \doi{10.1016/j.jqsrt.2016.06.018},
-  \urlprefix\url{http://dx.doi.org/10.1016/j.jqsrt.2016.06.018}.
+  Quantitative Spectroscopy and Radiative Transfer}, \textbf{186}, 243--253.
 
 \bibitem[{Emanuel et~al.(2014)Emanuel, Wing,, and Vincent}]{emanuel2014}
 Emanuel, K.~A., A.~A. Wing, and E.~M. Vincent, 2014: {Radiative-convective
   instability}. \textit{Journal of Advances in Modeling Earth Systems},
-  \textbf{6~(1)}, 75--90, \doi{10.1002/2013MS000270}.
+  \textbf{6~(1)}, 75--90.
 
 \bibitem[{Frierson et~al.(2006)Frierson, Held,, and
   Zurita-Gotor}]{frierson2006}
 Frierson, D. M.~W., I.~M. Held, and P.~Zurita-Gotor, 2006: {A Gray-Radiation
   Aquaplanet Moist GCM. Part I: Static Stability and Eddy Scale}.
-  \textit{Journal of the Atmospheric Sciences}, \textbf{63~(10)}, 2548--2566,
-  \doi{10.1175/JAS3753.1}.
+  \textit{Journal of the Atmospheric Sciences}, \textbf{63~(10)}, 2548--2566.
 
 \bibitem[{Gasiorowicz(2003)}]{gasiorowicz2003}
-Gasiorowicz, S., 2003: \textit{{Quantum physics}}. Wiley, 336 pp.,
-  \urlprefix\url{https://books.google.com/books/about/Quantum{\_}Physics.html?id=NXMtCwAAQBAJ}.
+Gasiorowicz, S., 2003: \textit{{Quantum physics}}. Wiley, 336 pp.
 
 \bibitem[{Green(1967)}]{green1967}
 Green, J.~S., 1967: {Division of radiative streams into internal transfer and
   cooling to space}. \textit{Quarterly Journal of the Royal Meteorological
-  Society}, \textbf{93~(397)}, 371--372, \doi{10.1002/qj.49709339710}.
+  Society}, \textbf{93~(397)}, 371--372.
 
 \bibitem[{Harries et~al.(2008)}]{harries2008}
 Harries, J., and Coauthors, 2008: {the Far-Infrared Earth}. \textit{Reviews of
-  Geophysics}, \textbf{46}, 1--34, \doi{10.1029/2007RG000233.1.INTRODUCTION}.
+  Geophysics}, \textbf{46}, 1--34.
+
+\bibitem[{Harrop and Hartmann(2012)Harrop, and Hartmann}]{harrop2012}
+Harrop, B.~E., and D.~L. Hartmann, 2012: {Testing the role of radiation in
+  determining tropical cloud-top temperature}. \textit{Journal of Climate},
+  \textbf{25~(17)}, 5731--5747.
 
 \bibitem[{Hartmann et~al.(2001)Hartmann, Holton,, and Fu}]{hartmann2001}
 Hartmann, D.~L., J.~R. Holton, and Q.~Fu, 2001: {The heat balance of the
-  tropical tropopause, cirrus, and stratospheric dehydration}. 1969--1972 pp.,
-  \doi{10.1029/2000GL012833}.
+  tropical tropopause, cirrus, and stratospheric dehydration}.
+  \textit{Geophysical Research Letters}, \textbf{28~(10)}, 1969--1972.
 
 \bibitem[{Hartmann and Larson(2002)Hartmann, and Larson}]{hartmann2002}
 Hartmann, D.~L., and K.~Larson, 2002: {An important constraint on tropical
   cloud - climate feedback}. \textit{Geophysical Research Letters},
-  \textbf{29~(20)}, 1951, \doi{10.1029/2002GL015835},
-  \urlprefix\url{http://doi.wiley.com/10.1029/2002GL015835}.
+  \textbf{29~(20)}, 1951.
 
 \bibitem[{Held(2005)}]{held2005}
 Held, I.~M., 2005: {The gap between simulation and understanding in climate
   modeling}. \textit{Bulletin of the American Meteorological Society},
-  \textbf{86~(11)}, 1609--1614, \doi{10.1175/BAMS-86-11-1609}.
+  \textbf{86~(11)}, 1609--1614.
 
 \bibitem[{Heng et~al.(2011)Heng, Frierson,, and Phillipps}]{heng2011}
 Heng, K., D.~M.~W. Frierson, and P.~J. Phillipps, 2011: {Atmospheric
   circulation of tidally locked exoplanets: II. Dual-band radiative transfer
   and convective adjustment}. \textit{Monthly Notices of the Royal Astronomical
-  Society}, \textbf{418~(4)}, 2669--2696,
-  \doi{10.1111/j.1365-2966.2011.19658.x},
-  \urlprefix\url{https://academic.oup.com/mnras/article-lookup/doi/10.1111/j.1365-2966.2011.19658.x}.
+  Society}, \textbf{418~(4)}, 2669--2696.
 
 \bibitem[{Hoskins(1983)}]{hoskins1983}
 Hoskins, B.~J., 1983: {Dynamical processes in the atmosphere and the use of
-  models}. Tech. Rep. 459, 313 pp.
-  \urlprefix\url{https://rmets.onlinelibrary.wiley.com/doi/pdf/10.1002/qj.49710945902}.
+  models}. \textit{Quart. J. R. Met. SOC}, \textbf{109~(459)}, 313.
+
+\bibitem[{Houghton(2002)}]{houghton2002}
+Houghton, J. T. J.~T., 2002: \textit{{The physics of atmospheres}}. Cambridge
+  University Press, 320 pp.
+
+\bibitem[{Hu and Vallis(2019)Hu, and Vallis}]{hu2019}
+Hu, S., and G.~K. Vallis, 2019: {Meridional structure and future changes of
+  tropopause height and temperature}. \textit{Quarterly Journal of the Royal
+  Meteorological Society}, \textbf{~(June)}, 1--20.
 
 \bibitem[{Jeevanjee and Fueglistaler(2019)Jeevanjee, and
   Fueglistaler}]{jeevanjee2019b}
-Jeevanjee, N., and S.~Fueglistaler, 2019: {On the cooling-to-space
-  approximation}. \textit{Submitted to Journal of Atmospheric Sciences}.
+Jeevanjee, N., and S.~Fueglistaler, 2019: {On the Cooling-to-Space
+  Approximation}. \textit{Journal of the Atmospheric Sciences},
+  JAS--D--18--0352.1.
 
 \bibitem[{Jeevanjee et~al.(2017)Jeevanjee, Hassanzadeh, Hill,, and
   Sheshadri}]{jeevanjee2017a}
 Jeevanjee, N., P.~Hassanzadeh, S.~Hill, and A.~Sheshadri, 2017: {A perspective
   on climate model hierarchies}. \textit{Journal of Advances in Modeling Earth
-  Systems}, \textbf{9~(4)}, 1760--1771, \doi{10.1002/2017MS001038},
-  \urlprefix\url{http://doi.wiley.com/10.1002/2017MS001038}.
+  Systems}, \textbf{9~(4)}, 1760--1771.
 
 \bibitem[{Koll and Cronin(2018)Koll, and Cronin}]{koll2018}
 Koll, D. D.~B., and T.~W. Cronin, 2018: {Earth's outgoing longwave radiation
   linear due to H 2 O greenhouse effect}. \textit{Proceedings of the National
-  Academy of Sciences}, 201809868, \doi{10.1073/pnas.1809868115},
-  \urlprefix\url{http://www.pnas.org/lookup/doi/10.1073/pnas.1809868115}.
+  Academy of Sciences}, 201809868.
 
 \bibitem[{Maher et~al.(2019)}]{maher2019}
 Maher, P., and Coauthors, 2019: {The value of hierarchies and simple models in
-  atmospheric}. \textit{Math.Nyu.Edu},
-  \urlprefix\url{https://www.math.nyu.edu/{~}gerber/pages/documents/maher{\_}etal-RevGeo-submitted.pdf}.
+  atmospheric}. \textit{Math.Nyu.Edu}.
 
 \bibitem[{Manabe et~al.(1964)Manabe, Strickler, Manabe,, and
   Strickler}]{manabe1964}
 Manabe, S., R.~F. Strickler, S.~Manabe, and R.~F. Strickler, 1964: {Thermal
   Equilibrium of the Atmosphere with a Convective Adjustment}. \textit{Journal
-  of the Atmospheric Sciences}, \textbf{21~(4)}, 361--385,
-  \doi{10.1175/1520-0469(1964)021<0361:TEOTAW>2.0.CO;2},
-  \urlprefix\url{http://journals.ametsoc.org/doi/abs/10.1175/1520-0469{\%}281964{\%}29021{\%}3C0361{\%}3ATEOTAW{\%}3E2.0.CO{\%}3B2}.
+  of the Atmospheric Sciences}, \textbf{21~(4)}, 361--385.
 
 \bibitem[{Mapes(2001)}]{mapes2001}
 Mapes, B.~E., 2001: {Water's Two Scale Heights: The Moist Adiabat and the
   Radiative Troposphere}. \textit{Quarterly Journal of the Royal Meteorological
-  Society}, \textbf{127~(January)}, 2353--2366, \doi{10.1002/qj.49712757708},
-  \urlprefix\url{http://onlinelibrary.wiley.com/doi/10.1002/qj.49712757708/abstract}.
+  Society}, \textbf{127~(January)}, 2353--2366.
 
 \bibitem[{Mlawer et~al.(2012)Mlawer, Payne, Moncet, Delamere, Alvarado,, and
   Tobin}]{mlawer2012}
@@ -144,112 +148,117 @@ Mlawer, E.~J., V.~H. Payne, J.-L. Moncet, J.~S. Delamere, M.~J. Alvarado, and
   D.~C. Tobin, 2012: {Development and recent evaluation of the MT{\_}CKD model
   of continuum absorption}. \textit{Philosophical Transactions of the Royal
   Society A: Mathematical, Physical and Engineering Sciences},
-  \textbf{370~(1968)}, 2520--2556, \doi{10.1098/rsta.2011.0295},
-  \urlprefix\url{http://rsta.royalsocietypublishing.org/cgi/doi/10.1098/rsta.2011.0295}.
+  \textbf{370~(1968)}, 2520--2556.
+
+\bibitem[{Mlawer et~al.(1997)Mlawer, Taubman, Brown, Iacono,, and
+  Clough}]{mlawer1997}
+Mlawer, E.~J., S.~J. Taubman, P.~D. Brown, M.~J. Iacono, and S.~A. Clough,
+  1997: {Radiative transfer for inhomogeneous atmospheres: RRTM, a validated
+  correlated-k model for the longwave}. \textit{Journal of Geophysical
+  Research}, \textbf{102~(D14)}, 16\,663.
+
+\bibitem[{Morcrette et~al.(1998)Morcrette, Clough, Mlawer,, and
+  Iacono}]{morcrette1998}
+Morcrette, J.-J., S.~A. Clough, E.~J. Mlawer, and M.~J. Iacono, 1998: {Impact
+  of a validated radiative transfer scheme, RRTM, on the ECMWF model climate
+  and 10 day forecasts}. Tech. rep., European Center for Medium-Range Weather
+  Forecasts, 1--46 pp.
 
 \bibitem[{Parmentier and Guillot(2014)Parmentier, and Guillot}]{parmentier2014}
 Parmentier, V., and T.~Guillot, 2014: {A non-grey analytical model for
   irradiated atmospheres. I. Derivation}. \textit{Astronomy {\&} Astrophysics},
-  \textbf{562}, 133, \doi{10.1051/0004-6361/201322342},
-  \urlprefix\url{http://adsabs.harvard.edu/cgi-bin/nph-data{\_}query?bibcode=2014A{\%}252526A...562A.133P{\&}link{\_}type=ABSTRACT{\%}5Cnpapers://0be24a46-325a-4116-a3c6-fd8a3b614472/Paper/p13431},
-  \eprint{arXiv:1311.6597v1}.
+  \textbf{562}, 133, \eprint{arXiv:1311.6597v1}.
 
 \bibitem[{Petty(2006)}]{petty2006}
 Petty, G.~W., 2006: \textit{{A First Course in Atmospheric Radiation (2nd
-  Ed.)}}. Sundog Pub, 472 pp.,
-  \urlprefix\url{http://www.amazon.com/First-Course-Atmospheric-Radiation-2nd/dp/0972903313}.
+  Ed.)}}. Sundog Pub, 472 pp.
 
 \bibitem[{Pierrehumbert(2010)}]{pierrehumbert2010}
 Pierrehumbert, R.~T., 2010: \textit{{Principles of Planetary Climate}}.
-  Cambridge University Press, Cambridge, UK,
-  \urlprefix\url{https://books.google.com/books?hl=en{\&}lr={\&}id=bO{\_}U8f5pVR8C{\&}pgis=1}.
+  Cambridge University Press, Cambridge, UK.
 
 \bibitem[{Polvani et~al.(2017)Polvani, Medeiros, Simpson, Clement,, and
   Benedict}]{polvani2017}
 Polvani, L., B.~Medeiros, I.~Simpson, A.~Clement, and J.~Benedict, 2017: {When
   Less Is More: Opening the Door to Simpler Climate Models}. \textit{Eos},
-  \textbf{~(September)}, \doi{10.1029/2017eo079417}.
+  \textbf{98~(September)}.
 
 \bibitem[{Rauscher and Menou(2012)Rauscher, and Menou}]{rauscher2012}
 Rauscher, E., and K.~Menou, 2012: {A GENERAL CIRCULATION MODEL FOR GASEOUS
   EXOPLANETS WITH DOUBLE-GRAY RADIATIVE TRANSFER}. \textit{The Astrophysical
-  Journal}, \textbf{750~(2)}, 96, \doi{10.1088/0004-637X/750/2/96},
-  \urlprefix\url{http://stacks.iop.org/0004-637X/750/i=2/a=96?key=crossref.331acc31f5584afb0fbb0c37fccdbaaf}.
+  Journal}, \textbf{750~(2)}, 96.
 
 \bibitem[{Robinson and Catling(2012)Robinson, and Catling}]{robinson2012}
-Robinson, T.~D., and D.~C. Catling, 2012: {AN ANALYTIC RADIATIVE-CONVECTIVE
-  MODEL FOR PLANETARY ATMOSPHERES}. \textit{The Astrophysical Journal},
-  \textbf{757~(1)}, 104, \doi{10.1088/0004-637X/757/1/104},
-  \urlprefix\url{http://stacks.iop.org/0004-637X/757/i=1/a=104?key=crossref.fada8d70f468270b8e56b2777f0af03b}.
+Robinson, T.~D., and D.~C. Catling, 2012: {An analytic radiative-convective
+  model For planetary atmospheres}. \textit{The Astrophysical Journal},
+  \textbf{757~(1)}, 104.
 
 \bibitem[{Rodgers and Walshaw(1966)Rodgers, and Walshaw}]{rodgers1966}
 Rodgers, C.~D., and C.~D. Walshaw, 1966: {The computation of infra-red cooling
   rate in planetary atmospheres}. \textit{Quarterly Journal of the Royal
-  Meteorological Society}, \textbf{92}, 67--92, \doi{10.1002/qj.49709239107}.
+  Meteorological Society}, \textbf{92}, 67--92.
 
 \bibitem[{Schneider and Dickinson(1974)Schneider, and
   Dickinson}]{schneider1974}
 Schneider, S.~H., and R.~E. Dickinson, 1974: {Climate modeling}.
-  \textit{Reviews of Geophysics}, \textbf{12~(3)}, 447,
-  \doi{10.1029/RG012i003p00447},
-  \urlprefix\url{http://doi.wiley.com/10.1029/RG012i003p00447}.
+  \textit{Reviews of Geophysics}, \textbf{12~(3)}, 447.
 
-\bibitem[{Seeley et~al.(2019)Seeley, Jeevanjee,, and Romps}]{seeley2019b}
-Seeley, J.~T., N.~Jeevanjee, and D.~M. Romps, 2019: {FAT or FiTT: Are anvil
-  clouds or the tropopause temperature-invariant?} \textit{Geophysical Research
-  Letters}, \textbf{46~(3)}, 1842--1850, \doi{10.1029/2018gl080096}.
+\bibitem[{Seeley et~al.(2019{\natexlab{a}})Seeley, Jeevanjee, Langhans,, and
+  Romps}]{seeley2019a}
+Seeley, J.~T., N.~Jeevanjee, W.~Langhans, and D.~M. Romps, 2019{\natexlab{a}}:
+  {Formation of Tropical Anvil Clouds by Slow Evaporation}. \textit{Geophysical
+  Research Letters}, \textbf{46~(1)}, 492--501.
+
+\bibitem[{Seeley et~al.(2019{\natexlab{b}})Seeley, Jeevanjee,, and
+  Romps}]{seeley2019b}
+Seeley, J.~T., N.~Jeevanjee, and D.~M. Romps, 2019{\natexlab{b}}: {FAT or FiTT:
+  Are anvil clouds or the tropopause temperature-invariant?}
+  \textit{Geophysical Research Letters}, \textbf{46~(3)}, 1842--1850.
 
 \bibitem[{Shine et~al.(2012)Shine, Ptashnik,, and R{\"{a}}del}]{shine2012}
 Shine, K.~P., I.~V. Ptashnik, and G.~R{\"{a}}del, 2012: {The Water Vapour
   Continuum: Brief History and Recent Developments}. \textit{Surveys in
-  Geophysics}, \textbf{33~(3-4)}, 535--555, \doi{10.1007/s10712-011-9170-y}.
+  Geophysics}, \textbf{33~(3-4)}, 535--555.
 
 \bibitem[{Stevens et~al.(2017)Stevens, Brogniez, Kiemle, Lacour, Crevoisier,,
   and Kiliani}]{stevens2017}
 Stevens, B., H.~Brogniez, C.~Kiemle, J.~L. Lacour, C.~Crevoisier, and
   J.~Kiliani, 2017: {Structure and Dynamical Influence of Water Vapor in the
   Lower Tropical Troposphere}. \textit{Surveys in Geophysics}, \textbf{38~(6)},
-  1371--1397, \doi{10.1007/s10712-017-9420-8}.
+  1371--1397.
 
 \bibitem[{Tan et~al.(2019)Tan, Lachmy,, and Shaw}]{tan2019}
 Tan, Z., O.~Lachmy, and T.~A. Shaw, 2019: {The sensitivity of the jet stream
   response to climate change to radiative assumptions}. \textit{Journal of
-  Advances in Modeling Earth Systems}, 2018MS001492,
-  \doi{10.1029/2018MS001492},
-  \urlprefix\url{https://onlinelibrary.wiley.com/doi/abs/10.1029/2018MS001492}.
+  Advances in Modeling Earth Systems}, 2018MS001492.
 
 \bibitem[{Thompson et~al.(2017)Thompson, Bony,, and Li}]{thompson2017}
 Thompson, D. W.~J., S.~Bony, and Y.~Li, 2017: {Thermodynamic constraint on the
   depth of the global tropospheric circulation}. \textit{Proceedings of the
   National Academy of Sciences}, \textbf{114~(31)}, 8181--8186,
-  \doi{10.1073/pnas.1620493114}, \eprint{arXiv:1408.1149}.
+  \eprint{arXiv:1408.1149}.
 
 \bibitem[{Vallis et~al.(2015)Vallis, Zurita-Gotor, Cairns,, and
   Kidston}]{vallis2015}
 Vallis, G.~K., P.~Zurita-Gotor, C.~Cairns, and J.~Kidston, 2015: {Response of
   the large-scale structure of the atmosphere to global warming}.
   \textit{Quarterly Journal of the Royal Meteorological Society},
-  \textbf{141~(690)}, 1479--1501, \doi{10.1002/qj.2456}.
+  \textbf{141~(690)}, 1479--1501.
 
 \bibitem[{Wallace and Hobbs(2006)Wallace, and Hobbs}]{wallace2006}
 Wallace, J.~M., and P.~V. Hobbs, 2006: \textit{{Atmospheric Science: An
-  Introductory Survey}}. Academic Press, 504 pp.,
-  \urlprefix\url{https://books.google.com/books?hl=en{\&}lr={\&}id=HZ2wNtDOU0oC{\&}pgis=1}.
+  Introductory Survey}}. Academic Press, 504 pp.
 
 \bibitem[{Wilson and Gea-Banacloche(2012)Wilson, and
   Gea-Banacloche}]{wilson2012}
 Wilson, D.~J., and J.~Gea-Banacloche, 2012: {Simple model to estimate the
   contribution of atmospheric CO2 to the Earth's greenhouse effect}.
-  \textit{American Journal of Physics}, \textbf{80~(4)}, 306,
-  \doi{10.1119/1.3681188}.
+  \textit{American Journal of Physics}, \textbf{80~(4)}, 306.
 
 \bibitem[{Zhu et~al.(1992)Zhu, Summers,, and Strobel}]{zhu1992}
-Zhu, X., M.~E. Summers, and D.~F. Strobel, 1992: {Calculation of CO
-  {\textless}sub{\textgreater}2{\textless}/sub{\textgreater} 15-$\mu$m band
-  atmospheric cooling rates by Curtis matrix interpolation of correlated-
-  {\textless}i{\textgreater}k{\textless}/i{\textgreater} coefficients}.
-  \textit{Journal of Geophysical Research}, \textbf{97~(D12)}, 12\,787,
-  \doi{10.1029/92JD01311},
-  \urlprefix\url{http://doi.wiley.com/10.1029/92JD01311}.
+Zhu, X., M.~E. Summers, and D.~F. Strobel, 1992: {Calculation of CO2 15-$\mu$m
+  band atmospheric cooling rates by Curtis matrix interpolation of correlated-k
+  coefficients}. \textit{Journal of Geophysical Research}, \textbf{97~(D12)},
+  12\,787.
 
 \end{thebibliography}

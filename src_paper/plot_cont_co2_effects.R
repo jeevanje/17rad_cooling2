@@ -43,9 +43,9 @@ for (case in cases){
 
 coo1d_lim = c(-6,0)   # K/day
 cex = 2.5
-lwd = 2.5
+lwd = 3
 ltyvec = c("dotted","dashed","solid")
-file = "plots/cont_co2_effects.pdf"
+file = "plots_paper/cont_co2_effects.pdf"
 panelvec = c("(a)","(a)","(b)")
 pvec = 1:(np_s-2)
 
@@ -53,7 +53,7 @@ pdf(file,width=17,height=5,bg="white")
 par(mfrow=c(1,3),mar=c(5,6,5,12))
 for (k_case in 2:3){
 	case  = cases[k_case]
-	main  = bquote(.(panelvec[k_case])~~H[k]~~.(casenames[k_case]))
+	main  = bquote(.(panelvec[k_case])~~H[tilde(nu)]~~.(casenames[k_case]))
 	coo2d = eval(as.name(paste("coo2d_",case,sep="")))
 	coo2d_coarse = coarse_grain(coo2d,ncoarse)
 	plot_coo2d(k_coarse,p_s,coo2d_coarse,main)
@@ -64,6 +64,7 @@ plot(1,type="n",
      xlab     = "H (K/day)",    
      ylab     = plab,
      main     = "(c)  Heating rate",
+ 	 font.main = 1,     
      cex.lab  = cex,
      cex.axis = cex,
      cex.main = cex)

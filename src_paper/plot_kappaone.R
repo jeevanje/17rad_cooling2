@@ -65,7 +65,7 @@ plim       = c(1e3,1e0)
 pvec       = 1:(np-2)
 
 # PDF
-file = "~/Dropbox/17rad_cooling2/plots/kappaone.pdf"
+file = "~/Dropbox/17rad_cooling2/plots_paper/kappaone.pdf"
 pdf(file,width=5,height=5,bg="white")
 par(mfrow=c(1,1),mar=c(6,5,5,5))
 

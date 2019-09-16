@@ -6,8 +6,8 @@ source(paste(Rtoolsdir,"rfm_tools.R",sep=""))
 source(paste(Rtoolsdir,"plot_tools.R",sep=""))
 source(paste(Rtoolsdir,"gray_model.R",sep=""))
 source(paste(Rtoolsdir,"/my_image_plot.R",sep=""))
-source("src/plot_params.R")
-source("src/cts_functions.R")
+source("src_paper/plot_params.R")
+source("src_paper/cts_functions.R")
 
 #=======#
 # ECMWF #
@@ -28,9 +28,8 @@ nlat	      = length(ecmwf_lat)
 # RFM   #
 #=======#
 
-case	= c("h2o_only_no_cont")
 case	= c("h2o_noctm_Ts300_rh0.75_gamma7")
-ncpath  = paste("data/",case,".nc",sep="")
+ncpath  = paste("data_paper/",case,".nc",sep="")
 nc      = nc_open(ncpath)
 k       = ncvar_get(nc,"k")
 dk      = k[2]-k[1]
@@ -78,7 +77,7 @@ k_tau1   = which.min(abs(tau_gray-1))
 p_lim       = c(1000,10) # hPa
 p_fac	    = 1e-2        # SI to hPa
 coo1d_lim   = c(-7,0)   # K/day
-coo_ecmwf_lim = c(-3,3) # K/day
+coo_ecmwf_lim = 2.75*c(-1,1) # K/day
 fields1d    = c("coo","cts","coo_gray")
 cex	        = 1.25
 cex_leg     = 1
@@ -89,7 +88,7 @@ col	        = two.colors(n=64,start="blue",end="red")
 lat_ticks   = c(-90,-45,-30,0,30,45,90)
 p_ticks     = seq(0,1000,by=200)
 # PDF
-file = "plots/ecmwf_vs_rfm.pdf"
+file = "plots_paper/ecmwf_vs_rfm.pdf"
 pdf(file,width=10,height=5,bg="white")
 par(mfrow=c(1,2),mar=c(5,6,5,3))
 
@@ -111,6 +110,8 @@ title("")
 axis(side=1,at=sin(pi*lat_ticks/180),labels=lat_ticks,cex.axis=cex)
 axis(side=2,at=p_ticks,labels=p_ticks,cex.axis=cex)
 #mtext("K/day",side=3,line=1,outer=FALSE,adj=1,cex=1)
+contour(sin(pi/180*ecmwf_lat[nlat:1]),ecmwf_2dp,ecmwf_2dH[nlat:1,],
+		levels=c(-1.5,-2.5),lty="dashed",add=TRUE,lwd=2,labcex=1,col="white")
 
 # 1D Profiles
 plot(1,type="n", 

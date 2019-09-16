@@ -102,7 +102,7 @@ plot_H_frame = function(main){
 #=======#
 	
 # PDF
-file = "~/Dropbox/17rad_cooling2/plots/H1d_rh_gamma_Ts.pdf"
+file = "~/Dropbox/17rad_cooling2/plots_paper/H1d_rh_gamma_Ts.pdf"
 pdf(file,width=11,height=10,bg="white")
 par(mfrow=c(2,2),mar=c(5,5,5,3))
 

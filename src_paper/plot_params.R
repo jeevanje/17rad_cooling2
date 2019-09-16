@@ -15,7 +15,7 @@ coo2d_fac  = -g/Cp*Nsec*1e2  # pppf to K/day/cm^-1 heating
 coo1d_fac  = -g/Cp*Nsec      # pppf to K/day       heating
 k_lim      = c(50,1450) # cm^-1  
 p_lim      = c(1000,1) # hPa
-coo2d_lim  = c(-0.014,0.014) # K/day/cm^-1
+coo2d_lim  = c(-0.015,0.015) # K/day/cm^-1
 
 cex_leg    = 2.25
 

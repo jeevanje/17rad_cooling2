@@ -58,7 +58,7 @@ windlaby    = 0.01
 windcol     = "darkgray"
 windlty     = "dashed"
 
-pdf("./plots/olr.pdf",width=6,height=5)
+pdf("./plots_paper/olr.pdf",width=6,height=5)
 par(mar=c(5,5,4,2))
 plot(1,type="n",xlim=1e-2*range(k),ylim=range(OLRk),xlab=klab,ylab=OLRklab,
 	main     = "Spectrally-resolved OLR",
